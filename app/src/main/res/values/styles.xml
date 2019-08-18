@@ -5,14 +5,36 @@
   ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
   -->
 
-<resources>
-
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <style name="home_button">
+        <item name="android:layout_marginStart">@dimen/spacing_normal</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_normal</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:elevation">@dimen/elevation_min</item>
+        <item name="android:fontFamily">@font/shears</item>
+        <item name="android:textScaleX">@dimen/letter_spacing_normal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/fontSize_homeButton</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="home_title">
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+        <item name="android:fontFamily">@font/royaltee</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:contentDescription">@string/app_name_desc</item>
+        <item name="android:textSize">@dimen/fontSize_title</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

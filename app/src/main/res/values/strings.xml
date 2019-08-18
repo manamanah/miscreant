@@ -1,3 +1,28 @@
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
 <resources>
     <string name="app_name">Miscreant</string>
+
+    <string name="credits">CREDITS</string>
+    <string name="highscore">HIGHSCORES</string>
+    <string name="play">PLAY</string>
+    <string name="settings">SETTINGS</string>
+    <string name="tutorial">TUTORIAL</string>
+
+    <!--TEXT DESC-->
+    <string name="app_name_desc">You\'re playing the game Miscreant.</string>
+
+    <!--BUTTON DESC-->
+    <string name="credits_button_desc">Credits button</string>
+    <string name="highscore_button_desc">Highscores button</string>
+    <string name="play_button_desc">Play button</string>
+    <string name="settings_button_desc">Settings button</string>
+    <string name="tutorial_button_desc">Tutorial button</string>
+
+
 </resources>

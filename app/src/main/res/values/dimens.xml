@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<resources>
+    <item name="letter_spacing_normal" format="float" type="dimen">1.5</item>
+
+    <dimen name="elevation_min">2dp</dimen>
+
+    <!--BUTTON-->
+    <dimen name="button_border">3dp</dimen>
+    <dimen name="button_border_focus">4dp</dimen>
+
+    <!--SPACINGS-->
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_double">16dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+
+    <!--FONT SIZES-->
+    <dimen name="fontSize_title">64sp</dimen>
+    <dimen name="fontSize_homeButton">24sp</dimen>
+
+</resources>
