@@ -12,7 +12,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryColor"
+        android:background="@color/backgroundLight"
         tools:context=".MainActivity">
 
     <TextView
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/play_button" />
+            app:layout_constraintBottom_toTopOf="@id/play_button"/>
 
     <Button
             android:id="@+id/play_button"
@@ -32,8 +32,8 @@
             android:text="@string/play"
             android:contentDescription="@string/play_button_desc"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintBottom_toTopOf="@+id/tutorial_button"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@id/tutorial_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -45,8 +45,8 @@
             android:text="@string/tutorial"
             android:contentDescription="@string/tutorial_button_desc"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/play_button"
-            app:layout_constraintBottom_toTopOf="@+id/settings_button"
+            app:layout_constraintTop_toBottomOf="@id/play_button"
+            app:layout_constraintBottom_toTopOf="@id/settings_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -58,8 +58,8 @@
             android:text="@string/settings"
             android:contentDescription="@string/settings_button_desc"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/tutorial_button"
-            app:layout_constraintBottom_toTopOf="@+id/highscore_button"
+            app:layout_constraintTop_toBottomOf="@id/tutorial_button"
+            app:layout_constraintBottom_toTopOf="@id/highscore_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -71,8 +71,8 @@
             android:text="@string/highscore"
             android:contentDescription="@string/highscore_button_desc"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/settings_button"
-            app:layout_constraintBottom_toTopOf="@+id/credits_button"
+            app:layout_constraintTop_toBottomOf="@id/settings_button"
+            app:layout_constraintBottom_toTopOf="@id/credits_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -85,7 +85,7 @@
             android:contentDescription="@string/credits_button_desc"
             android:layout_marginBottom="@dimen/spacing_large"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/highscore_button"
+            app:layout_constraintTop_toBottomOf="@id/highscore_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
