@@ -9,9 +9,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/backgroundLight">
 
     <TextView
@@ -21,7 +20,20 @@
             android:contentDescription="@string/pre_game_desc"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+    <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/primaryColor"
+            android:contentDescription="@string/back_button_desc"
+            app:srcCompat="@drawable/ic_chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pre_game_title"
+            app:layout_constraintBottom_toBottomOf="@id/pre_game_title"/>
 
     <TextView
             android:id="@+id/difficulty_text"
@@ -74,6 +86,7 @@
     </RadioGroup>
 
     <EditText
+            tools:ignore="Autofill"
             android:id="@+id/name_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +96,6 @@
             android:textSize="@dimen/fontSize_edit"
             android:textScaleX="@fraction/letter_spacing_normal"
             android:hint="@string/name_input_desc"
-            android:importantForAutofill="no"
             android:ems="@integer/edittext_ems_length"
             android:maxLength="@integer/edittext_max_length"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,15 +108,16 @@
             style="@style/hero_button"
             android:layout_width="@dimen/spacing_zero"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:contentDescription="@string/hero_viking_desc"
+            app:srcCompat="@drawable/viking"
             app:layout_constraintHeight_max="@dimen/max_height"
             app:layout_constraintWidth_max="@dimen/max_width"
-            android:layout_marginStart="@dimen/spacing_normal"
-            app:srcCompat="@drawable/viking"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/archer_button"
             app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_middle"/>
+            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_middle"
+            app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
             android:id="@+id/viking_special_text"
@@ -112,8 +125,8 @@
             android:text="@string/viking_power_detail"
             android:contentDescription="@string/viking_power_desc"
             app:layout_constraintStart_toStartOf="@id/viking_button"
-            app:layout_constraintBaseline_toBaselineOf="@+id/archer_special_text"
-            app:layout_constraintEnd_toEndOf="@+id/viking_button"/>
+            app:layout_constraintBaseline_toBaselineOf="@id/archer_special_text"
+            app:layout_constraintEnd_toEndOf="@id/viking_button"/>
 
     <ImageButton
             android:id="@+id/archer_button"
@@ -121,14 +134,15 @@
             android:layout_width="@dimen/spacing_zero"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_normal"
+            android:contentDescription="@string/hero_archer_desc"
             app:layout_constraintHeight_max="@dimen/max_height"
             app:layout_constraintWidth_max="@dimen/max_width"
             app:srcCompat="@drawable/archer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/viking_button"
             app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_middle"/>
+            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_middle"
+            app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
             android:id="@+id/archer_special_text"
@@ -137,7 +151,7 @@
             android:contentDescription="@string/archer_power_desc"
             app:layout_constraintEnd_toEndOf="@id/archer_button"
             app:layout_constraintStart_toStartOf="@id/archer_button"
-            app:layout_constraintTop_toBottomOf="@+id/archer_button"/>
+            app:layout_constraintTop_toBottomOf="@id/archer_button"/>
 
     <Button
             android:id="@+id/ok_button"

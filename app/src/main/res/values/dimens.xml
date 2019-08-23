@@ -25,6 +25,7 @@
     <dimen name="button_border">3dp</dimen>
     <dimen name="button_border_focus">4dp</dimen>
     <dimen name="ok_min_width">220dp</dimen>
+    <dimen name="settings_button_size">48dp</dimen>
 
     <!--IMAGEBUTTON-->
     <dimen name="max_width">140dp</dimen>

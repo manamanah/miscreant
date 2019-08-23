@@ -75,5 +75,6 @@
     <string name="hard_desc">Radiobutton für schweres Spiel</string>
     <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
     <string name="normal_desc">Radiobutton für standard Spiel</string>
+    <string name="back_button_desc">zurück button</string>
 
 </resources>
