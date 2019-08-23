@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundLight">
+
+    <TextView
+            android:id="@+id/pre_game_title"
+            style="@style/menu_title"
+            android:text="@string/pre_game"
+            android:contentDescription="@string/pre_game_desc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            android:id="@+id/difficulty_text"
+            style="@style/within_menu_title"
+            android:text="@string/game_difficulty"
+            android:contentDescription="@string/game_difficulty_title_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pre_game_title"
+            app:layout_constraintBottom_toTopOf="@id/game_difficulty_group"/>
+
+    <RadioGroup
+            android:id="@+id/game_difficulty_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_normal"
+            android:orientation="horizontal"
+            android:contentDescription="@string/game_difficulty_group_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/difficulty_text"
+            android:checkedButton="@id/normal_radioButton">
+        <RadioButton
+                android:id="@+id/easy_radioButton"
+                style="@style/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/spacing_half"
+                android:text="@string/easy"
+                android:contentDescription="@string/easy_desc"/>
+        <RadioButton
+                android:id="@+id/normal_radioButton"
+                style="@style/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/spacing_half"
+                android:text="@string/normal"
+                android:contentDescription="@string/normal_desc"/>
+        <RadioButton
+                android:id="@+id/hard_radioButton"
+                style="@style/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/spacing_half"
+                android:text="@string/hard"
+                android:contentDescription="@string/hard_desc"/>
+    </RadioGroup>
+
+    <EditText
+            android:id="@+id/name_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textSize="@dimen/fontSize_edit"
+            android:textScaleX="@fraction/letter_spacing_normal"
+            android:hint="@string/name_input_desc"
+            android:importantForAutofill="no"
+            android:ems="@integer/edittext_ems_length"
+            android:maxLength="@integer/edittext_max_length"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/difficulty_divider"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_middle"/>
+
+    <ImageButton
+            android:id="@+id/viking_button"
+            style="@style/hero_button"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="wrap_content"
+            app:layout_constraintHeight_max="@dimen/max_height"
+            app:layout_constraintWidth_max="@dimen/max_width"
+            android:layout_marginStart="@dimen/spacing_normal"
+            app:srcCompat="@drawable/viking"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/archer_button"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_middle"/>
+
+    <TextView
+            android:id="@+id/viking_special_text"
+            style="@style/hero_power_description"
+            android:text="@string/viking_power_detail"
+            android:contentDescription="@string/viking_power_desc"
+            app:layout_constraintStart_toStartOf="@id/viking_button"
+            app:layout_constraintBaseline_toBaselineOf="@+id/archer_special_text"
+            app:layout_constraintEnd_toEndOf="@+id/viking_button"/>
+
+    <ImageButton
+            android:id="@+id/archer_button"
+            style="@style/hero_button"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            app:layout_constraintHeight_max="@dimen/max_height"
+            app:layout_constraintWidth_max="@dimen/max_width"
+            app:srcCompat="@drawable/archer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/viking_button"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_middle"/>
+
+    <TextView
+            android:id="@+id/archer_special_text"
+            style="@style/hero_power_description"
+            android:text="@string/archer_power_detail"
+            android:contentDescription="@string/archer_power_desc"
+            app:layout_constraintEnd_toEndOf="@id/archer_button"
+            app:layout_constraintStart_toStartOf="@id/archer_button"
+            app:layout_constraintTop_toBottomOf="@+id/archer_button"/>
+
+    <Button
+            android:id="@+id/ok_button"
+            style="@style/ok_button"
+            android:text="@string/start_game_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <!--GUIDELINES-->
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_top"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/thirty_two_percent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_middle"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/fourty_percent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_bottom"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/eighty_percent"/>
+
+    <!--DIVIDERS-->
+    <View
+            android:id="@+id/difficulty_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_standard_height"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_top"
+            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

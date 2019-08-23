@@ -7,22 +7,72 @@
 
 <resources>
     <string name="app_name">Miscreant</string>
-
+    <string name="archer_power">RANGED</string>
+    <string name="archer_power_detail">RANGED\nAttack monsters \nin 2nd row.</string>
+    <string name="audio">Audio</string>
     <string name="credits">CREDITS</string>
+    <string name="default_name">hero</string>
+    <string name="easy">easy</string>
+    <string name="english">english</string>
+    <string name="game_difficulty">Difficulty</string>
+    <string name="german">german</string>
+    <string name="hard">u sure?</string>
     <string name="highscore">HIGHSCORES</string>
+    <string name="language">Language</string>
+    <string name="music">MUSIC</string>
+    <string name="name">Hero\'s name</string>
+    <string name="normal">normal</string>
+    <string name="ok">OK</string>
     <string name="play">PLAY</string>
+    <string name="pre_game">Get ready!</string>
     <string name="settings">SETTINGS</string>
+    <string name="start_game_button">FOR HONOR AND GLORY</string>
+    <string name="sound">SOUND</string>
     <string name="tutorial">TUTORIAL</string>
+    <string name="viking_power">SMITH</string>
+    <string name="viking_power_detail">SMITH\nWeapon damage +1 \n(3 x per deck)</string>
+    <string name="volume">Volume</string>
 
     <!--TEXT DESC-->
     <string name="app_name_desc">You\'re playing the game Miscreant.</string>
+    <string name="archer_power_desc">Archer\'s power is ranged attack</string>
+    <string name="audio_title_desc">Audio settings</string>
+    <string name="game_difficulty_title_desc">Game difficulty</string>
+    <string name="hero_archer_desc">the archer hero</string>
+    <string name="hero_viking_desc">the viking hero</string>
+    <string name="language_title_desc">Language settings</string>
+    <string name="pre_game_desc">Choose your play mode</string>
+    <string name="settings_title_desc">Settings</string>
+    <string name="viking_power_desc">Viking\'s special is SMITH</string>
+    <string name="volume_music_desc">Music volume</string>
+    <string name="volume_sound_desc">Sound volume</string>
 
     <!--BUTTON DESC-->
     <string name="credits_button_desc">Credits button</string>
     <string name="highscore_button_desc">Highscores button</string>
+    <string name="ok_button_desc">Submit button</string>
     <string name="play_button_desc">Play button</string>
     <string name="settings_button_desc">Settings button</string>
     <string name="tutorial_button_desc">Tutorial button</string>
 
+    <!--SLIDER DESC-->
+    <string name="music_volume_desc">Music volume progressbar</string>
+    <string name="sound_volume_desc">Sound volume progressbar</string>
+
+    <!--TOGGLE DESC-->
+    <string name="music_toggle_desc">Music Toggle</string>
+    <string name="sound_toggle_desc">Sound Toggle</string>
+
+    <!--EDIT TEXT DESC-->
+    <string name="name_input_desc">Enter your hero\'s name</string>
+
+    <!--RADIOBUTTON DESC-->
+    <string name="easy_desc">Radiobutton for easy game</string>
+    <string name="english_button_desc">Radiobutton to select english as language</string>
+    <string name="language_group_desc">Radiobuttons for language selection</string>
+    <string name="game_difficulty_group_desc">Radiobuttons for game difficulty selection</string>
+    <string name="german_button_desc">Radiobutton to select german as language</string>
+    <string name="hard_desc">Radiobutton for hard game</string>
+    <string name="normal_desc">Radiobutton for normal game</string>
 
 </resources>

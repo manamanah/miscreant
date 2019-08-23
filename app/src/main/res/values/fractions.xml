@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<resources>
+    <fraction name="letter_spacing_normal">1.5</fraction>
+    <fraction name="letter_spacing_min">1.1</fraction>
+    <fraction name="linespacing_normal">1.2</fraction>
+    <fraction name="thirty_two_percent">0.32</fraction>
+    <fraction name="fourty_percent">0.4</fraction>
+    <fraction name="fourty_five_percent">0.45</fraction>
+    <fraction name="fifty_percent">0.5</fraction>
+    <fraction name="sixty_five_percent">0.65</fraction>
+    <fraction name="seventy_percent">0.7</fraction>
+    <fraction name="eighty_percent">0.8</fraction>
+</resources>

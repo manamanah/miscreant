@@ -12,6 +12,7 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:fontFamily">@font/shears</item>
     </style>
 
     <style name="home_button">
@@ -20,8 +21,7 @@
         <item name="android:layout_marginTop">@dimen/spacing_large</item>
         <item name="android:background">@drawable/button_custom</item>
         <item name="android:elevation">@dimen/elevation_min</item>
-        <item name="android:fontFamily">@font/shears</item>
-        <item name="android:textScaleX">@dimen/letter_spacing_normal</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/fontSize_homeButton</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
@@ -31,10 +31,98 @@
         <item name="android:layout_marginTop">@dimen/spacing_large</item>
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
         <item name="android:fontFamily">@font/royaltee</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:contentDescription">@string/app_name_desc</item>
-        <item name="android:textSize">@dimen/fontSize_title</item>
+        <item name="android:textSize">@dimen/fontSize_main_title</item>
         <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="menu_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/spacing_double</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/fontSize_main_title</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_min</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:background">@color/primaryColor</item>
+    </style>
+
+    <style name="switch_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/spacing_large</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_xLarge</item>
+        <item name="android:minWidth">@dimen/switch_min_width</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:textSize">@dimen/fontSize_switch</item>
+        <item name="android:elevation">@dimen/elevation_min</item>
+    </style>
+
+    <style name="within_menu_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textSize">@dimen/fontSize_title</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="seekbar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:elevation">@dimen/elevation_min</item>
+        <item name="android:minWidth">@dimen/seekbar_min_width</item>
+        <item name="android:max">@integer/seekbar_max</item>
+        <item name="android:thumb">@drawable/thumb</item>
+    </style>
+
+    <style name="volume_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSize_normal_title</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_large</item>
+    </style>
+
+    <style name="ok_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">@dimen/ok_min_width</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textSize">@dimen/fontSize_homeButton</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_min</item>
+        <item name="android:contentDescription">@string/ok_button_desc</item>
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_double</item>
+    </style>
+
+    <style name="radiobutton">
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:textSize">@dimen/fontSize_radioButton</item>
+    </style>
+
+    <style name="hero_button">
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+        <item name="android:background">@color/backgroundBlack</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="hero_power_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
+        <item name="android:layout_marginStart">@dimen/spacing_half</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_half</item>
+        <item name="android:paddingBottom">@dimen/spacing_normal</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:lineSpacingMultiplier">@fraction/linespacing_normal</item>
     </style>
 
 </resources>

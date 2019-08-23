@@ -8,20 +8,72 @@
 
 <resources>
     <string name="app_name">Miscreant</string>
+    <string name="archer_power">FERNKAMPF</string>
+    <string name="archer_power_detail">FERNKAMPF\nGreife Monster in \n2. Reihe an.</string>
+    <string name="audio">Audio</string>
     <string name="credits">CREDITS</string>
+    <string name="default_name">Held</string>
+    <string name="easy">einfach</string>
+    <string name="english">englisch</string>
+    <string name="game_difficulty">Schwierigkeitsgrad</string>
+    <string name="german">deutsch</string>
+    <string name="hard">echt?</string>
     <string name="highscore">HIGHSCORES</string>
+    <string name="language">Sprache</string>
+    <string name="music">MUSIK</string>
+    <string name="name">Heldenname</string>
+    <string name="normal">normal</string>
+    <string name="ok">OK</string>
     <string name="play">START</string>
-    <string name="settings">EINSTELLUNGEN</string>
+    <string name="pre_game">Auf geht\'s!</string>
+    <string name="settings">OPTIONEN</string>
+    <string name="start_game_button">FÜR RUHM UND EHRE</string>
+    <string name="sound">SOUND</string>
     <string name="tutorial">TUTORIAL</string>
+    <string name="viking_power">SCHMIEDEN</string>
+    <string name="viking_power_detail">SCHMIEDEN\nWaffenschaden +1 \n(3 x pro Deck)</string>
+    <string name="volume">Volume</string>
 
     <!--TEXT DESC-->
     <string name="app_name_desc">Du spielst Miscreant.</string>
+    <string name="archer_power_desc">Die Fähigkeit des Bogenschützen ist Fernkampf</string>
+    <string name="audio_title_desc">Audio Einstellungen</string>
+    <string name="game_difficulty_title_desc">Spielschwierigkeitsgrad</string>
+    <string name="hero_archer_desc">der Bogenschützenheld</string>
+    <string name="hero_viking_desc">der Wikingerheld</string>
+    <string name="language_title_desc">Spracheinstellung</string>
+    <string name="pre_game_desc">Wähle deinen Spielmodus</string>
+    <string name="settings_title_desc">Einstellungen</string>
+    <string name="viking_power_desc">Die Fähigkeit des Wikingers ist SCHMIEDEN</string>
+    <string name="volume_music_desc">Musik Lautstärke</string>
+    <string name="volume_sound_desc">Sound Lautstärke</string>
 
     <!--BUTTON DESC-->
-    <string name="play_button_desc">Start Button</string>
-    <string name="highscore_button_desc">Highscore Button</string>
-    <string name="settings_button_desc">Einstellungen Button</string>
     <string name="credits_button_desc">Credits Button</string>
+    <string name="highscore_button_desc">Highscore Button</string>
+    <string name="ok_button_desc">OK Button</string>
+    <string name="play_button_desc">Start Button</string>
+    <string name="settings_button_desc">Einstellungen Button</string>
     <string name="tutorial_button_desc">Tutorial Button</string>
+
+    <!--EDIT TEXT DESC-->
+    <string name="name_input_desc">Dein Heldenname</string>
+
+    <!--SLIDER DESC-->
+    <string name="music_volume_desc">Musik Lautstärke</string>
+    <string name="sound_volume_desc">Sound Lautstärkeregler</string>
+
+    <!--TOGGLE DESC-->
+    <string name="sound_toggle_desc">Sound Toggle</string>
+    <string name="music_toggle_desc">Musik Toggle</string>
+
+    <!--RADIOBUTTON DESC-->
+    <string name="easy_desc">Radiobutton für einfaches Spiel</string>
+    <string name="english_button_desc">Radiobutton um English als Sprache zu wählen</string>
+    <string name="game_difficulty_group_desc">Radiobuttons um den Spielschwierigkeitsgrad zu wählen</string>
+    <string name="german_button_desc">Radiobutton um Deutsch als Sprache zu wählen</string>
+    <string name="hard_desc">Radiobutton für schweres Spiel</string>
+    <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
+    <string name="normal_desc">Radiobutton für standard Spiel</string>
 
 </resources>

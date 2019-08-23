@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundLight">
+
+    <TextView
+            android:id="@+id/settings_title"
+            style="@style/menu_title"
+            android:text="@string/settings"
+            android:contentDescription="@string/settings_title_desc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            android:id="@+id/audio_text"
+            style="@style/within_menu_title"
+            android:padding="@dimen/spacing_double"
+            android:text="@string/audio"
+            android:contentDescription="@string/audio_title_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_title"/>
+
+    <Switch
+            android:id="@+id/sound_switch"
+            style="@style/switch_style"
+            android:text="@string/sound"
+            android:contentDescription="@string/sound_toggle_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/audio_text"/>
+
+    <TextView
+            android:id="@+id/sound_volume_text"
+            style="@style/volume_text"
+            android:text="@string/volume"
+            android:contentDescription="@string/sound_volume_desc"
+            app:layout_constraintTop_toBottomOf="@id/sound_switch"
+            app:layout_constraintEnd_toEndOf="@id/sound_switch"/>
+
+    <SeekBar
+            android:id="@+id/sound_volume_seekbar"
+            style="@style/seekbar"
+            android:contentDescription="@string/sound_volume_desc"
+            app:layout_constraintStart_toStartOf="@id/vertical_guideline_left"
+            app:layout_constraintTop_toTopOf="@id/sound_volume_text"
+            app:layout_constraintBottom_toBottomOf="@id/sound_volume_text"/>
+    <Switch
+            android:id="@+id/music_switch"
+            style="@style/switch_style"
+            android:text="@string/music"
+            android:contentDescription="@string/music_toggle_desc"
+            android:textScaleX="@fraction/letter_spacing_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_top"/>
+
+    <TextView
+            android:id="@+id/music_volume_text"
+            style="@style/volume_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volume"
+            android:contentDescription="@string/music_volume_desc"
+            app:layout_constraintTop_toBottomOf="@id/music_switch"
+            app:layout_constraintEnd_toEndOf="@id/music_switch"/>
+
+    <SeekBar
+            android:id="@+id/music_volume_seekbar"
+            style="@style/seekbar"
+            android:contentDescription="@string/music_volume_desc"
+            app:layout_constraintStart_toStartOf="@id/sound_volume_seekbar"
+            app:layout_constraintBottom_toBottomOf="@id/music_volume_text"
+            app:layout_constraintTop_toTopOf="@id/music_volume_text"/>
+
+    <TextView
+            android:id="@+id/language_text"
+            style="@style/within_menu_title"
+            android:text="@string/language"
+            android:contentDescription="@string/language_title_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_middle"/>
+
+    <RadioGroup
+            android:id="@+id/language_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:contentDescription="@string/language_group_desc"
+            android:checkedButton="@id/english_radioButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_text">
+        <RadioButton
+                android:id="@+id/english_radioButton"
+                style="@style/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/english"
+                android:contentDescription="@string/english_button_desc"
+                android:gravity="center_vertical" />
+        <RadioButton
+                android:id="@+id/german_radioButton"
+                style="@style/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/german"
+                android:contentDescription="@string/german_button_desc"/>
+    </RadioGroup>
+
+    <Button
+            android:id="@+id/ok_button"
+            style="@style/ok_button"
+            android:text="@string/ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_divider" />
+
+    <!--GUIDELINES-->
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_left"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/fourty_five_percent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_top"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/fourty_five_percent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_middle"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/sixty_five_percent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_bottom"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="@fraction/eighty_percent"/>
+
+    <!--DIVIDERS-->
+    <View
+            android:id="@+id/audio_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_standard_height"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@id/language_text"
+            app:layout_constraintTop_toBottomOf="@id/music_volume_seekbar"/>
+
+    <View
+            android:id="@+id/language_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_standard_height"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_bottom"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
