@@ -38,6 +38,7 @@
     <string name="app_name_desc">Du spielst Miscreant.</string>
     <string name="archer_power_desc">Die Fähigkeit des Bogenschützen ist Fernkampf</string>
     <string name="audio_title_desc">Audio Einstellungen</string>
+    <string name="backpack_desc">Im Rucksack kannst du einen Gegenstand aufbewahren</string>
     <string name="game_difficulty_title_desc">Spielschwierigkeitsgrad</string>
     <string name="hero_archer_desc">der Bogenschützenheld</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
@@ -49,6 +50,7 @@
     <string name="volume_sound_desc">Sound Lautstärke</string>
 
     <!--BUTTON DESC-->
+    <string name="back_button_desc">zurück button</string>
     <string name="credits_button_desc">Credits Button</string>
     <string name="highscore_button_desc">Highscore Button</string>
     <string name="ok_button_desc">OK Button</string>
@@ -75,6 +77,5 @@
     <string name="hard_desc">Radiobutton für schweres Spiel</string>
     <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
     <string name="normal_desc">Radiobutton für standard Spiel</string>
-    <string name="back_button_desc">zurück button</string>
 
 </resources>

@@ -20,8 +20,7 @@
             android:contentDescription="@string/pre_game_desc"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageButton
             android:id="@+id/back_button"
@@ -47,14 +46,16 @@
 
     <RadioGroup
             android:id="@+id/game_difficulty_group"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
             android:orientation="horizontal"
             android:contentDescription="@string/game_difficulty_group_desc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/difficulty_text"
+            app:layout_constraintBottom_toTopOf="@id/name_edit"
             android:checkedButton="@id/normal_radioButton">
         <RadioButton
                 android:id="@+id/easy_radioButton"
@@ -62,7 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/spacing_half"
                 android:text="@string/easy"
                 android:contentDescription="@string/easy_desc"/>
         <RadioButton
@@ -71,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/spacing_half"
                 android:text="@string/normal"
                 android:contentDescription="@string/normal_desc"/>
         <RadioButton
@@ -80,7 +79,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/spacing_half"
                 android:text="@string/hard"
                 android:contentDescription="@string/hard_desc"/>
     </RadioGroup>
@@ -91,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
             android:inputType="textPersonName"
             android:textAlignment="center"
             android:textSize="@dimen/fontSize_edit"
@@ -100,23 +99,22 @@
             android:maxLength="@integer/edittext_max_length"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/difficulty_divider"
-            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_middle"/>
+            app:layout_constraintTop_toBottomOf="@id/game_difficulty_group"
+            app:layout_constraintBottom_toTopOf="@id/viking_button"/>
 
     <ImageButton
             android:id="@+id/viking_button"
             style="@style/hero_button"
             android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_height="@dimen/spacing_zero"
             android:contentDescription="@string/hero_viking_desc"
             app:srcCompat="@drawable/viking"
-            app:layout_constraintHeight_max="@dimen/max_height"
-            app:layout_constraintWidth_max="@dimen/max_width"
+            app:layout_constraintWidth_percent="@fraction/thirty_percent"
+            app:layout_constraintDimensionRatio="@fraction/card_ratio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/archer_button"
-            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_middle"
+            app:layout_constraintBottom_toTopOf="@id/viking_special_text"
+            app:layout_constraintTop_toBottomOf="@id/name_edit"
             app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
@@ -132,16 +130,15 @@
             android:id="@+id/archer_button"
             style="@style/hero_button"
             android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_height="@dimen/spacing_zero"
             android:contentDescription="@string/hero_archer_desc"
-            app:layout_constraintHeight_max="@dimen/max_height"
-            app:layout_constraintWidth_max="@dimen/max_width"
+            app:layout_constraintWidth_percent="@fraction/thirty_percent"
+            app:layout_constraintDimensionRatio="@fraction/card_ratio"
             app:srcCompat="@drawable/archer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/viking_button"
-            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_bottom"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_middle"
+            app:layout_constraintTop_toTopOf="@id/viking_button"
+            app:layout_constraintBottom_toBottomOf="@id/viking_button"
             app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
@@ -151,7 +148,8 @@
             android:contentDescription="@string/archer_power_desc"
             app:layout_constraintEnd_toEndOf="@id/archer_button"
             app:layout_constraintStart_toStartOf="@id/archer_button"
-            app:layout_constraintTop_toBottomOf="@id/archer_button"/>
+            app:layout_constraintTop_toBottomOf="@id/archer_button"
+            app:layout_constraintBottom_toTopOf="@id/ok_button"/>
 
     <Button
             android:id="@+id/ok_button"
@@ -159,29 +157,8 @@
             android:text="@string/start_game_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-    <!--GUIDELINES-->
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_top"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="@fraction/thirty_two_percent"/>
-
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_middle"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="@fraction/fourty_percent"/>
-
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_bottom"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="@fraction/eighty_percent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viking_special_text"/>
 
     <!--DIVIDERS-->
     <View
@@ -189,7 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_standard_height"
             android:background="?android:attr/listDivider"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_top"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_top"/>
+            app:layout_constraintTop_toBottomOf="@id/game_difficulty_group"
+            app:layout_constraintBottom_toTopOf="@id/name_edit"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

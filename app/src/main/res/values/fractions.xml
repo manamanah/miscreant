@@ -7,14 +7,21 @@
   -->
 
 <resources>
+
+    <!--FONT RELATED-->
     <fraction name="letter_spacing_normal">1.5</fraction>
     <fraction name="letter_spacing_min">1.1</fraction>
     <fraction name="linespacing_normal">1.2</fraction>
-    <fraction name="thirty_two_percent">0.32</fraction>
+
+    <!--CARDS-->
+    <fraction name="card_ratio">0.7</fraction>
+
+    <!--PERCENTAGES-->
+    <fraction name="ten_percent">0.1</fraction>
+    <fraction name="twenty_percent">0.2</fraction>
+    <fraction name="thirty_percent">0.3</fraction>
     <fraction name="fourty_percent">0.4</fraction>
     <fraction name="fourty_five_percent">0.45</fraction>
-    <fraction name="fifty_percent">0.5</fraction>
-    <fraction name="sixty_five_percent">0.65</fraction>
     <fraction name="seventy_percent">0.7</fraction>
-    <fraction name="eighty_percent">0.8</fraction>
+
 </resources>
