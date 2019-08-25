@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate
+            android:duration="@integer/duration_short"
+            android:fromXDelta="0%"
+            android:fromYDelta="0%"
+            android:toXDelta="+100%"
+            android:toYDelta="0%" />
+</set>

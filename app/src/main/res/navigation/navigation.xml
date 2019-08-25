@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation"
+        app:startDestination="@id/mainFragment">
+
+    <fragment
+            android:id="@+id/mainFragment"
+            android:name="com.example.android.miscreant.MainFragment"
+            android:label="fragment_main"
+            tools:layout="@layout/fragment_main" >
+        <action
+                android:id="@+id/action_mainFragment_to_preGameFragment"
+                app:destination="@id/preGameFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@id/mainFragment" />
+        <action
+                android:id="@+id/action_mainFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment"
+                app:enterAnim="@anim/slide_down"
+                app:popExitAnim="@anim/slide_up"
+                app:popUpTo="@id/mainFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/preGameFragment"
+            android:name="com.example.android.miscreant.PreGameFragment"
+            android:label="fragment_pre_game"
+            tools:layout="@layout/fragment_pre_game" >
+        <action
+                android:id="@+id/action_preGameFragment_to_gameFragment"
+                app:destination="@id/gameFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/preGameFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.example.android.miscreant.SettingsFragment"
+            android:label="fragment_settings"
+            tools:layout="@layout/fragment_settings" />
+
+    <fragment
+            android:id="@+id/gameFragment"
+            android:name="com.example.android.miscreant.GameFragment"
+            android:label="fragment_game"
+            tools:layout="@layout/fragment_game" >
+        <action
+                android:id="@+id/action_gameFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment"
+                app:enterAnim="@anim/slide_down"
+                app:popExitAnim="@anim/slide_up"
+                app:popUpTo="@+id/gameFragment" />
+    </fragment>
+</navigation>

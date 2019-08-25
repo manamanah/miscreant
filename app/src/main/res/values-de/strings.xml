@@ -104,5 +104,6 @@
     <string name="deal_new_desc">neue Karten geben und 1 Schaden erleiden</string>
     <string name="special_use_desc">Anzeige für Kraftgebrauch</string>
     <string name="skull_desc">Totenkopfbild</string>
+    <string name="fragmentManager_null">"FragmentManager NULL on "</string>
 
 </resources>

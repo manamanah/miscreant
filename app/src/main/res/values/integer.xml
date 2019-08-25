@@ -12,4 +12,9 @@
     <integer name="edittext_max_length">15</integer>
     <integer name="game_decks_max">3</integer>
     <integer name="upside_down">90</integer>
+
+    <!--ANIMATION-->
+    <!--durations in ms-->
+    <integer name="duration_short">300</integer>
+    <integer name="duration_medium">400</integer>
 </resources>

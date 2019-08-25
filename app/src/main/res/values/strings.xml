@@ -103,5 +103,8 @@
     <string name="deal_new_desc">deal new dungeon cards, suffer 1 damage</string>
     <string name="special_use_desc">display for power uses</string>
     <string name="skull_desc">skull image</string>
+    <string name="fragmentManager_null">"FragmentManager NULL on "</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
