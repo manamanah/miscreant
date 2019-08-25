@@ -16,8 +16,13 @@
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="buttonBorderColor">#000000</color>
+
+    <!--BACKGROUNDS-->
     <color name="backgroundWhite">#ffffff</color>
     <color name="backgroundLight">#DDDDDD</color>
     <color name="backgroundBlack">#000000</color>
+    <color name="backgroundDungeon">#221F1F</color>
     <color name="backgroundSelected">#ffa000</color>
+    <color name="dungeonCard_center">#292828</color>
+    <color name="dungeonCard_border">#707070</color>
 </resources>

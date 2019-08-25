@@ -11,6 +11,7 @@
     <dimen name="divider_standard_height">4dp</dimen>
     <dimen name="thumb_size">18dp</dimen>
     <dimen name="card_border">4dp</dimen>
+    <dimen name="game_titlebar_height">64dp</dimen>
 
     <!--SWITCH-->
     <dimen name="switch_min_width">150dp</dimen>
@@ -23,12 +24,14 @@
     <dimen name="button_border_focus">4dp</dimen>
     <dimen name="ok_min_width">300dp</dimen>
     <dimen name="settings_button_size">48dp</dimen>
+    <dimen name="button_height_slim">48dp</dimen>
 
     <!--SPACINGS-->
     <dimen name="spacing_zero">0dp</dimen>
     <dimen name="spacing_half">4dp</dimen>
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_double">16dp</dimen>
+    <dimen name="spacing_triple">24dp</dimen>
     <dimen name="spacing_large">32dp</dimen>
     <dimen name="spacing_xLarge">80dp</dimen>
 
@@ -40,6 +43,7 @@
     <dimen name="fontSize_radioButton">18sp</dimen>
     <dimen name="fontSize_switch">20sp</dimen>
     <dimen name="fontSize_edit">20sp</dimen>
-    <dimen name="fontSize_text">16sp</dimen>
+    <dimen name="fontSize_text">18sp</dimen>
+    <dimen name="fontSize_text_small">14sp</dimen>
 
 </resources>

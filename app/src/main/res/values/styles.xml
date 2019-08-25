@@ -134,4 +134,25 @@
         <item name="android:background">@color/backgroundBlack</item>
     </style>
 
+    <style name="card_dungeon">
+        <item name="android:layout_width">@dimen/spacing_zero</item>
+        <item name="android:layout_height">@dimen/spacing_zero</item>
+        <item name="android:padding">@dimen/spacing_half</item>
+        <item name="android:background">@color/dungeonCard_border</item>
+    </style>
+
+    <style name="basic_text_white">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+    </style>
+
+    <style name="health_text">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
+        <item name="android:padding">@dimen/spacing_half</item>
+        <item name="android:background">@color/backgroundLight</item>
+    </style>
+
 </resources>

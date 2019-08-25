@@ -30,8 +30,8 @@
     <string name="start_game_button">FÜR RUHM UND EHRE</string>
     <string name="sound">SOUND</string>
     <string name="tutorial">TUTORIAL</string>
-    <string name="viking_power">SCHMIEDEN</string>
-    <string name="viking_power_detail">SCHMIEDEN\nWaffenschaden +1 \n(3 x pro Deck)</string>
+    <string name="viking_power">SCHMIED</string>
+    <string name="viking_power_detail">SCHMIED\nWaffenschaden +1 \n(3 x pro Deck)</string>
     <string name="volume">Volume</string>
 
     <!--TEXT DESC-->
@@ -77,5 +77,32 @@
     <string name="hard_desc">Radiobutton für schweres Spiel</string>
     <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
     <string name="normal_desc">Radiobutton für standard Spiel</string>
+    <string name="hero_progress_desc">Spielfortschritt für Helden</string>
+    <string name="hero_progress">HELDENERFOLG</string>
+    <string name="dungeon_left_back_desc">Dungeonkarte hinten links</string>
+    <string name="dungeon_left_front_desc">Dungeonkarte vorne links</string>
+    <string name="dungeon_middle_back_desc">Dungeonkarte hintere Mitte</string>
+    <string name="dungeon_middle_front_desc">Dungeonkarte  vordere Mitte</string>
+    <string name="dungeon_right_back_desc">Dungeonkarte rechts hinten</string>
+    <string name="dungeon_right_front_desc">Dungeonkarte vorne rechts</string>
+    <string name="discard_desc">Werde eine Karte los</string>
+    <string name="hero_card_desc">Heldenkarte</string>
+    <string name="equipleft_desc">linke Hand</string>
+    <string name="equipright_desc">rechte Hand</string>
+    <string name="dungeon">DUNGEON</string>
+    <string name="dungeon_desc">Dungeon</string>
+    <string name="cards_in_deck_desc">Karten im Deck</string>
+    <string name="cards_in_deck">/54</string>
+    <string name="cards_in_deck_left_desc">verbleibende Deckkarten</string>
+    <string name="cards_in_deck_left">XX</string>
+    <string name="current_health">12</string>
+    <string name="heart_desc">Herzbild</string>
+    <string name="max_health">12</string>
+    <string name="max_health_desc">maximale Leben</string>
+    <string name="current_health_desc">derzeitige Heldenleben</string>
+    <string name="deal_new">neue Karten: -1 HP</string>
+    <string name="deal_new_desc">neue Karten geben und 1 Schaden erleiden</string>
+    <string name="special_use_desc">Anzeige für Kraftgebrauch</string>
+    <string name="skull_desc">Totenkopfbild</string>
 
 </resources>

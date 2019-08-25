@@ -76,5 +76,32 @@
     <string name="german_button_desc">Radiobutton to select german as language</string>
     <string name="hard_desc">Radiobutton for hard game</string>
     <string name="normal_desc">Radiobutton for normal game</string>
+    <string name="hero_progress">HERO PROGRESS</string>
+    <string name="hero_progress_desc">hero progress in game</string>
+    <string name="dungeon_left_back_desc">dungeon card in left back</string>
+    <string name="dungeon_middle_back_desc">dungeon card in middle back</string>
+    <string name="dungeon_right_back_desc">dungeon card in right back</string>
+    <string name="dungeon_left_front_desc">dungeon card in left front</string>
+    <string name="dungeon_middle_front_desc">dungeon card in middle front</string>
+    <string name="dungeon_right_front_desc">dungeon card in right front</string>
+    <string name="discard_desc">discard a card</string>
+    <string name="hero_card_desc">hero card</string>
+    <string name="equipleft_desc">left hero hand</string>
+    <string name="equipright_desc">right hero hand</string>
+    <string name="dungeon">DUNGEON</string>
+    <string name="dungeon_desc">dungeon</string>
+    <string name="cards_in_deck">/54</string>
+    <string name="cards_in_deck_desc">cards in deck</string>
+    <string name="cards_in_deck_left">XX</string>
+    <string name="cards_in_deck_left_desc">left cards in deck</string>
+    <string name="current_health">12</string>
+    <string name="max_health">12</string>
+    <string name="max_health_desc">max health value</string>
+    <string name="heart_desc">heart image</string>
+    <string name="current_health_desc">current hero health value</string>
+    <string name="deal_new">deal new: -1 HP</string>
+    <string name="deal_new_desc">deal new dungeon cards, suffer 1 damage</string>
+    <string name="special_use_desc">display for power uses</string>
+    <string name="skull_desc">skull image</string>
 
 </resources>
