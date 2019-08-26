@@ -7,103 +7,107 @@
   -->
 
 <resources>
+
+    <!--TEXT & DESC-->
     <string name="app_name">Miscreant</string>
+    <string name="app_name_desc">Du spielst Miscreant.</string>
     <string name="archer_power">FERNKAMPF</string>
+    <string name="archer_power_desc">Die Fähigkeit des Bogenschützen ist Fernkampf</string>
     <string name="archer_power_detail">FERNKAMPF\nGreife Monster in \n2. Reihe an.</string>
     <string name="audio">Audio</string>
-    <string name="credits">CREDITS</string>
-    <string name="default_name">Held</string>
-    <string name="easy">einfach</string>
-    <string name="english">englisch</string>
-    <string name="game_difficulty">Schwierigkeitsgrad</string>
-    <string name="german">deutsch</string>
-    <string name="hard">echt?</string>
-    <string name="highscore">HIGHSCORES</string>
-    <string name="language">Sprache</string>
-    <string name="music">MUSIK</string>
-    <string name="name">Heldenname</string>
-    <string name="normal">normal</string>
-    <string name="ok">OK</string>
-    <string name="play">START</string>
-    <string name="pre_game">Auf geht\'s!</string>
-    <string name="settings">OPTIONEN</string>
-    <string name="start_game_button">FÜR RUHM UND EHRE</string>
-    <string name="sound">SOUND</string>
-    <string name="tutorial">TUTORIAL</string>
-    <string name="viking_power">SCHMIED</string>
-    <string name="viking_power_detail">SCHMIED\nWaffenschaden +1 \n(3 x pro Deck)</string>
-    <string name="volume">Volume</string>
-
-    <!--TEXT DESC-->
-    <string name="app_name_desc">Du spielst Miscreant.</string>
-    <string name="archer_power_desc">Die Fähigkeit des Bogenschützen ist Fernkampf</string>
     <string name="audio_title_desc">Audio Einstellungen</string>
-    <string name="backpack_desc">Im Rucksack kannst du einen Gegenstand aufbewahren</string>
-    <string name="game_difficulty_title_desc">Spielschwierigkeitsgrad</string>
+    <string name="cards_in_deck">/54</string>
+    <string name="cards_in_deck_desc">Karten im Deck</string>
+    <string name="cards_in_deck_left">XX</string>
+    <string name="cards_in_deck_left_desc">verbleibende Deckkarten</string>
+    <string name="current_health">12</string>
+    <string name="current_health_desc">derzeitige Heldenleben</string>
+    <string name="default_name">Held</string>
+    <string name="dungeon">DUNGEON</string>
+    <string name="dungeon_desc">Dungeon</string>
+    <string name="heart_desc">Herzbild</string>
     <string name="hero_archer_desc">der Bogenschützenheld</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
-    <string name="language_title_desc">Spracheinstellung</string>
+    <string name="max_health">12</string>
+    <string name="max_health_desc">maximale Leben</string>
+    <string name="name">Heldenname</string>
+    <string name="pre_game">Auf geht\'s!</string>
     <string name="pre_game_desc">Wähle deinen Spielmodus</string>
     <string name="settings_title_desc">Einstellungen</string>
+    <string name="viking_power">SCHMIED</string>
     <string name="viking_power_desc">Die Fähigkeit des Wikingers ist SCHMIEDEN</string>
-    <string name="volume_music_desc">Musik Lautstärke</string>
-    <string name="volume_sound_desc">Sound Lautstärke</string>
+    <string name="viking_power_detail">SCHMIED\nWaffenschaden +1 \n(3 x pro Deck)</string>
 
-    <!--BUTTON DESC-->
+    <!--BUTTON & DESC-->
     <string name="back_button_desc">zurück button</string>
+    <string name="credits">CREDITS</string>
     <string name="credits_button_desc">Credits Button</string>
+    <string name="highscore">HIGHSCORES</string>
     <string name="highscore_button_desc">Highscore Button</string>
+    <string name="ok">OK</string>
     <string name="ok_button_desc">OK Button</string>
+    <string name="play">START</string>
     <string name="play_button_desc">Start Button</string>
+    <string name="settings">OPTIONEN</string>
     <string name="settings_button_desc">Einstellungen Button</string>
+    <string name="start_game_button">FÜR RUHM UND EHRE</string>
+    <string name="tutorial">TUTORIAL</string>
     <string name="tutorial_button_desc">Tutorial Button</string>
 
     <!--EDIT TEXT DESC-->
     <string name="name_input_desc">Dein Heldenname</string>
 
     <!--SLIDER DESC-->
-    <string name="music_volume_desc">Musik Lautstärke</string>
-    <string name="sound_volume_desc">Sound Lautstärkeregler</string>
-
-    <!--TOGGLE DESC-->
-    <string name="sound_toggle_desc">Sound Toggle</string>
-    <string name="music_toggle_desc">Musik Toggle</string>
-
-    <!--RADIOBUTTON DESC-->
-    <string name="easy_desc">Radiobutton für einfaches Spiel</string>
-    <string name="english_button_desc">Radiobutton um English als Sprache zu wählen</string>
-    <string name="game_difficulty_group_desc">Radiobuttons um den Spielschwierigkeitsgrad zu wählen</string>
-    <string name="german_button_desc">Radiobutton um Deutsch als Sprache zu wählen</string>
-    <string name="hard_desc">Radiobutton für schweres Spiel</string>
-    <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
-    <string name="normal_desc">Radiobutton für standard Spiel</string>
     <string name="hero_progress_desc">Spielfortschritt für Helden</string>
     <string name="hero_progress">HELDENERFOLG</string>
+    <string name="volume">Volume</string>
+    <string name="music_volume_desc">Musik Lautstärke</string>
+    <string name="sound_volume_desc">Sound Lautstärkeregler</string>
+    <string name="volume_music_desc">Musik Lautstärke</string>
+    <string name="volume_sound_desc">Sound Lautstärke</string>
+
+    <!--SWITCH DESC-->
+    <string name="music">MUSIK</string>
+    <string name="music_toggle_desc">Musik Toggle</string>
+    <string name="sound">SOUND</string>
+    <string name="sound_toggle_desc">Sound Toggle</string>
+
+    <!--RADIOBUTTON DESC-->
+    <string name="easy">einfach</string>
+    <string name="easy_desc">Radiobutton für einfaches Spiel</string>
+    <string name="english">englisch</string>
+    <string name="english_button_desc">Radiobutton um English als Sprache zu wählen</string>
+    <string name="game_difficulty">Schwierigkeitsgrad</string>
+    <string name="game_difficulty_group_desc">Radiobuttons um den Spielschwierigkeitsgrad zu wählen</string>
+    <string name="game_difficulty_title_desc">Spielschwierigkeitsgrad</string>
+    <string name="german">deutsch</string>
+    <string name="german_button_desc">Radiobutton um Deutsch als Sprache zu wählen</string>
+    <string name="hard">echt?</string>
+    <string name="hard_desc">Radiobutton für schweres Spiel</string>
+    <string name="language">Sprache</string>
+    <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>
+    <string name="language_title_desc">Spracheinstellung</string>
+    <string name="normal">normal</string>
+    <string name="normal_desc">Radiobutton für standard Spiel</string>
+    <string name="deal_new">neue Karten: -1 HP</string>
+    <string name="deal_new_desc">neue Karten geben und 1 Schaden erleiden</string>
+    <string name="special_use_desc">Anzeige für Kraftgebrauch</string>
+    <string name="skull_desc">Totenkopfbild</string>
+
+    <!--CARDS & DESC-->
+    <string name="backpack_desc">Im Rucksack kannst du einen Gegenstand aufbewahren</string>
+    <string name="discard_desc">Werde eine Karte los</string>
     <string name="dungeon_left_back_desc">Dungeonkarte hinten links</string>
     <string name="dungeon_left_front_desc">Dungeonkarte vorne links</string>
     <string name="dungeon_middle_back_desc">Dungeonkarte hintere Mitte</string>
     <string name="dungeon_middle_front_desc">Dungeonkarte  vordere Mitte</string>
     <string name="dungeon_right_back_desc">Dungeonkarte rechts hinten</string>
     <string name="dungeon_right_front_desc">Dungeonkarte vorne rechts</string>
-    <string name="discard_desc">Werde eine Karte los</string>
-    <string name="hero_card_desc">Heldenkarte</string>
     <string name="equipleft_desc">linke Hand</string>
     <string name="equipright_desc">rechte Hand</string>
-    <string name="dungeon">DUNGEON</string>
-    <string name="dungeon_desc">Dungeon</string>
-    <string name="cards_in_deck_desc">Karten im Deck</string>
-    <string name="cards_in_deck">/54</string>
-    <string name="cards_in_deck_left_desc">verbleibende Deckkarten</string>
-    <string name="cards_in_deck_left">XX</string>
-    <string name="current_health">12</string>
-    <string name="heart_desc">Herzbild</string>
-    <string name="max_health">12</string>
-    <string name="max_health_desc">maximale Leben</string>
-    <string name="current_health_desc">derzeitige Heldenleben</string>
-    <string name="deal_new">neue Karten: -1 HP</string>
-    <string name="deal_new_desc">neue Karten geben und 1 Schaden erleiden</string>
-    <string name="special_use_desc">Anzeige für Kraftgebrauch</string>
-    <string name="skull_desc">Totenkopfbild</string>
+    <string name="hero_card_desc">Heldenkarte</string>
+
+    <!--IN APP OUTPUT-->
     <string name="fragmentManager_null">"FragmentManager NULL on "</string>
 
 </resources>
