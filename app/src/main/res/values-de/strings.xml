@@ -16,7 +16,7 @@
     <string name="archer_power_detail">FERNKAMPF\nGreife Monster in \n2. Reihe an.</string>
     <string name="audio">Audio</string>
     <string name="audio_title_desc">Audio Einstellungen</string>
-    <string name="cards_in_deck">/54</string>
+    <string name="cards_in_deck">/56</string>
     <string name="cards_in_deck_desc">Karten im Deck</string>
     <string name="cards_in_deck_left">XX</string>
     <string name="cards_in_deck_left_desc">verbleibende Deckkarten</string>
@@ -95,7 +95,13 @@
     <string name="skull_desc">Totenkopfbild</string>
 
     <!--CARDS & DESC-->
+    <string name="attack">ANGRIFF</string>
+    <string name="attack_desc">Ist das Monster in der ersten Reihe, greift es unmittelbar vor dem Austeilen neuer Dungeonkarten an.</string>
     <string name="backpack_desc">Im Rucksack kannst du einen Gegenstand aufbewahren</string>
+    <string name="card_img_desc">Bild auf Karte</string>
+    <string name="card_rip">R.I.P.</string>
+    <string name="card_rip_desc">Das Monster ist tot: Ruhe in Frieden.</string>
+    <string name="card_title_desc">Der Kartentitel</string>
     <string name="discard_desc">Werde eine Karte los</string>
     <string name="dungeon_left_back_desc">Dungeonkarte hinten links</string>
     <string name="dungeon_left_front_desc">Dungeonkarte vorne links</string>
@@ -109,5 +115,9 @@
 
     <!--IN APP OUTPUT-->
     <string name="fragmentManager_null">"FragmentManager NULL on "</string>
+
+    <!--DESIGN PLACEHOLDER-->
+    <string name="placeholder_card_title" translatable="false">CARD TITLE</string>
+    <string name="placeholder_card_value" translatable="false">10</string>
 
 </resources>

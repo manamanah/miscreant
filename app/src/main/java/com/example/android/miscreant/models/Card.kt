@@ -13,9 +13,14 @@ data class Card(val type: CardType = CardType.NONE,
                 val name: String = "",
                 var value: Int = 0,
                 val image: String = "",
-                var potentialVal: Int = 0,
+                var potentialValue: Int = 0,
                 var showValue: Boolean = false,
                 var showRIP: Boolean = false,
-                var showPotentialVal: Boolean = false,
-                var bgColorOn: Boolean = false,
-                var attackVisible: Boolean = false)
+                var showPotentialValue: Boolean = false,
+                var isBgColorOn: Boolean = false,
+                var isAttackVisible: Boolean = false){
+
+    fun isEmpty(): Boolean {
+        return type == CardType.NONE
+    }
+}

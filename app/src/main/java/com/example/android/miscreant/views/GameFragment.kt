@@ -29,6 +29,8 @@ class GameFragment : Fragment() {
     private var currentDeck = 1
     private var gameOver = false
 
+    // todo: fragment_game seekbar: on touch event just return false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentGameBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_game, container, false)
@@ -47,6 +49,14 @@ class GameFragment : Fragment() {
             view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToSettingsFragment())
         }
 
+        // todo deliver infos on game difficulty, hero name, hero type onStartGame
+        // start game
+        startGame()
+
         return binding.root
+    }
+
+    private fun startGame(){
+        gameViewModel.startGame()
     }
 }

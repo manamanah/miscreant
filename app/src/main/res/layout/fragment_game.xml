@@ -8,6 +8,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".views.GameFragment">
 
@@ -18,410 +19,540 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/dungeon_gradient">
-
-    <TextView
-            android:id="@+id/game_titlebar"
-            style="@style/basic_text_white"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/game_titlebar_height"
-            android:background="@color/primaryColor"
-            android:contentDescription="@string/hero_progress_desc"
-            android:padding="@dimen/spacing_normal"
-            android:text="@string/hero_progress"
-            android:textSize="@dimen/fontSize_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/dungeon_gradient">
 
-    <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_normal"
-            android:background="@color/primaryColor"
-            android:contentDescription="@string/back_button_desc"
-            app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/game_titlebar"
-            app:srcCompat="@drawable/ic_chevron_left" />
+        <!--TITLE BAR -->
+        <TextView
+                android:id="@+id/game_titlebar"
+                style="@style/basic_text_white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/game_titlebar_height"
+                android:background="@color/primaryColor"
+                android:contentDescription="@string/hero_progress_desc"
+                android:padding="@dimen/spacing_normal"
+                android:text="@string/hero_progress"
+                android:textSize="@dimen/fontSize_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <SeekBar
-            android:id="@+id/seekbar_game_progress"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:elevation="@dimen/elevation_min"
-            android:max="@integer/game_decks_max"
-            android:thumb="@drawable/thumb"
-            app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
-            app:layout_constraintEnd_toStartOf="@id/settings_button"
-            app:layout_constraintStart_toEndOf="@id/back_button" />
+        <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="@color/primaryColor"
+                android:contentDescription="@string/back_button_desc"
+                app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/game_titlebar"
+                app:srcCompat="@drawable/ic_chevron_left" />
 
-    <ImageButton
-            android:id="@+id/settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_normal"
-            android:background="@color/primaryColor"
-            android:contentDescription="@string/settings_button_desc"
-            app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/game_titlebar"
-            app:srcCompat="@drawable/settings" />
+        <SeekBar
+                android:id="@+id/seekbar_game_progress"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:elevation="@dimen/elevation_min"
+                android:max="@integer/game_decks_max"
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
+                app:layout_constraintEnd_toStartOf="@id/settings_button"
+                app:layout_constraintStart_toEndOf="@id/back_button" />
 
-    <TextView
-            android:id="@+id/dungeon_title"
-            style="@style/basic_text_white"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/dungeon_desc"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/dungeon"
-            android:textSize="@dimen/fontSize_title"
-            app:layout_constraintBottom_toTopOf="@id/deck_cards_all"
-            app:layout_constraintEnd_toStartOf="@id/skull_right"
-            app:layout_constraintStart_toEndOf="@id/skull_left"
-            app:layout_constraintTop_toBottomOf="@id/game_titlebar"/>
+        <ImageButton
+                android:id="@+id/settings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="@color/primaryColor"
+                android:contentDescription="@string/settings_button_desc"
+                app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/game_titlebar"
+                app:srcCompat="@drawable/settings" />
 
-    <ImageView
-            android:id="@+id/skull_left"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:layout_marginBottom="@dimen/spacing_half"
-            android:layout_marginEnd="@dimen/spacing_double"
-            android:contentDescription="@string/skull_desc"
-            app:srcCompat="@drawable/skull_left"
-            app:layout_constraintDimensionRatio="@fraction/skull_ratio"
-            app:layout_constraintTop_toBottomOf="@id/game_titlebar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/dungeon_left_back"
-            app:layout_constraintEnd_toEndOf="@id/dungeon_left_back"/>
+        <!--DUNGEON AREA-->
+        <TextView
+                android:id="@+id/dungeon_title"
+                style="@style/basic_text_white"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:contentDescription="@string/dungeon_desc"
+                android:text="@string/dungeon"
+                android:textSize="@dimen/fontSize_title"
+                app:layout_constraintBottom_toTopOf="@id/deck_cards_all"
+                app:layout_constraintEnd_toStartOf="@id/skull_right"
+                app:layout_constraintStart_toEndOf="@id/skull_left"
+                app:layout_constraintTop_toBottomOf="@id/game_titlebar" />
 
-    <TextView
-            android:id="@+id/deck_cards_left"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:text="@string/cards_in_deck_left"
-            android:textColor="@color/primaryTextColor"
-            android:textAlignment="viewEnd"
-            android:textSize="@dimen/fontSize_text"
-            android:textScaleX="@fraction/letter_spacing_normal"
-            android:contentDescription="@string/cards_in_deck_left_desc"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@id/dungeon_middle_back"
-            app:layout_constraintTop_toBottomOf="@id/dungeon_title"
-            app:layout_constraintEnd_toStartOf="@id/deck_cards_all"
-            app:layout_constraintBottom_toTopOf="@id/dungeon_middle_back"/>
+        <ImageView
+                android:id="@+id/skull_left"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:layout_marginEnd="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_half"
+                android:contentDescription="@string/skull_desc"
+                app:layout_constraintBottom_toTopOf="@id/dungeon_left_back"
+                app:layout_constraintDimensionRatio="@fraction/skull_ratio"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_left_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game_titlebar"
+                app:srcCompat="@drawable/skull_left" />
 
-    <TextView
-            android:id="@+id/deck_cards_all"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:text="@string/cards_in_deck"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/fontSize_text"
-            android:textScaleX="@fraction/letter_spacing_normal"
-            android:textAlignment="viewStart"
-            android:contentDescription="@string/cards_in_deck_desc"
-            app:layout_constraintStart_toEndOf="@id/deck_cards_left"
-            app:layout_constraintEnd_toEndOf="@id/dungeon_middle_back"
-            app:layout_constraintTop_toTopOf="@id/deck_cards_left"
-            app:layout_constraintBottom_toBottomOf="@id/deck_cards_left"/>
+        <TextView
+                android:id="@+id/deck_cards_left"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:text="@{Integer.toString(gameViewModel.cardsLeftInDeck)}"
+                android:contentDescription="@string/cards_in_deck_left_desc"
+                tools:text="@string/cards_in_deck_left"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/primaryTextColor"
+                android:textScaleX="@fraction/letter_spacing_normal"
+                android:textSize="@dimen/fontSize_text"
+                app:layout_constraintBottom_toTopOf="@id/dungeon_middle_back"
+                app:layout_constraintEnd_toStartOf="@id/deck_cards_all"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/dungeon_middle_back"
+                app:layout_constraintTop_toBottomOf="@id/dungeon_title" />
 
-    <ImageView
-            android:id="@+id/skull_right"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:layout_marginBottom="@dimen/spacing_half"
-            android:layout_marginStart="@dimen/spacing_double"
-            android:contentDescription="@string/skull_desc"
-            app:srcCompat="@drawable/skull_right"
-            app:layout_constraintDimensionRatio="@fraction/skull_ratio"
-            app:layout_constraintTop_toBottomOf="@id/game_titlebar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/dungeon_right_back"
-            app:layout_constraintStart_toStartOf="@id/dungeon_right_back"/>
+        <TextView
+                android:id="@+id/deck_cards_all"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/cards_in_deck_desc"
+                android:text="@string/cards_in_deck"
+                android:textAlignment="viewStart"
+                android:textColor="@color/primaryTextColor"
+                android:textScaleX="@fraction/letter_spacing_normal"
+                android:textSize="@dimen/fontSize_text"
+                app:layout_constraintBottom_toBottomOf="@id/deck_cards_left"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_middle_back"
+                app:layout_constraintStart_toEndOf="@id/deck_cards_left"
+                app:layout_constraintTop_toTopOf="@id/deck_cards_left" />
 
-    <!--DUNGEON BACK-->
-    <ImageView
-            android:id="@+id/dungeon_left_back"
-            style="@style/card_dungeon"
-            android:layout_marginTop="@dimen/spacing_xLarge"
-            android:contentDescription="@string/dungeon_left_back_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/dungeon_middle_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <ImageView
+                android:id="@+id/skull_right"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:layout_marginStart="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_half"
+                android:contentDescription="@string/skull_desc"
+                app:layout_constraintBottom_toTopOf="@id/dungeon_right_back"
+                app:layout_constraintDimensionRatio="@fraction/skull_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/dungeon_right_back"
+                app:layout_constraintTop_toBottomOf="@id/game_titlebar"
+                app:srcCompat="@drawable/skull_right" />
 
-    <ImageView
-            android:id="@+id/dungeon_middle_back"
-            style="@style/card_dungeon"
-            android:layout_marginTop="@dimen/spacing_xLarge"
-            android:contentDescription="@string/dungeon_middle_back_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/dungeon_right_back"
-            app:layout_constraintStart_toEndOf="@id/dungeon_left_back"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <!--DUNGEON BACK-->
+        <ImageView
+                android:id="@+id/dungeon_left_back"
+                style="@style/card_dungeon"
+                android:contentDescription="@string/dungeon_left_back_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/dungeon_middle_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <ImageView
-            android:id="@+id/dungeon_right_back"
-            style="@style/card_dungeon"
-            android:layout_marginTop="@dimen/spacing_xLarge"
-            android:contentDescription="@string/dungeon_right_back_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dungeon_middle_back"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <ImageView
+                android:id="@+id/dungeon_middle_back"
+                style="@style/card_dungeon"
+                android:layout_marginTop="@dimen/spacing_xLarge"
+                android:contentDescription="@string/dungeon_middle_back_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/dungeon_right_back"
+                app:layout_constraintStart_toEndOf="@id/dungeon_left_back"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <!--DUNGEON FRONT-->
-    <ImageView
-            android:id="@+id/dungeon_left_front"
-            style="@style/card_dungeon"
-            android:contentDescription="@string/dungeon_left_front_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/dungeon_middle_front"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <ImageView
+                android:id="@+id/dungeon_right_back"
+                style="@style/card_dungeon"
+                android:layout_marginTop="@dimen/spacing_xLarge"
+                android:contentDescription="@string/dungeon_right_back_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_top"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dungeon_middle_back"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <ImageView
-            android:id="@+id/dungeon_middle_front"
-            style="@style/card_dungeon"
-            android:contentDescription="@string/dungeon_middle_front_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/dungeon_right_front"
-            app:layout_constraintStart_toEndOf="@id/dungeon_left_front"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <!--DUNGEON FRONT-->
+        <ImageView
+                android:id="@+id/dungeon_left_front"
+                style="@style/card_dungeon"
+                android:contentDescription="@string/dungeon_left_front_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/dungeon_middle_front"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <ImageView
-            android:id="@+id/dungeon_right_front"
-            style="@style/card_dungeon"
-            android:contentDescription="@string/dungeon_right_front_desc"
-            app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dungeon_middle_front"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/dungeonCard_center" />
+        <ImageView
+                android:id="@+id/dungeon_middle_front"
+                style="@style/card_dungeon"
+                android:contentDescription="@string/dungeon_middle_front_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/dungeon_right_front"
+                app:layout_constraintStart_toEndOf="@id/dungeon_left_front"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <ImageView
-            android:id="@+id/discard"
-            style="@style/card"
-            android:contentDescription="@string/discard_desc"
-            app:layout_constraintWidth_percent="@fraction/fifteen_percent"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@color/backgroundBlack" />
+        <ImageView
+                android:id="@+id/dungeon_right_front"
+                style="@style/card_dungeon"
+                android:contentDescription="@string/dungeon_right_front_desc"
+                app:layout_constraintBottom_toTopOf="@id/guideline_dungeon_bottom"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dungeon_middle_front"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/dungeonCard_center" />
 
-    <ImageView
-            android:id="@+id/trash_image"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:padding="@dimen/spacing_double"
-            android:contentDescription="@string/discard_desc"
-            app:layout_constraintBottom_toBottomOf="@id/discard"
-            app:layout_constraintEnd_toEndOf="@id/discard"
-            app:layout_constraintStart_toStartOf="@id/discard"
-            app:layout_constraintTop_toTopOf="@id/discard"
-            app:srcCompat="@drawable/trash" />
+        <!--HERO AREA-->
+        <ImageView
+                android:id="@+id/discard"
+                style="@style/card"
+                android:contentDescription="@string/discard_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="@fraction/fifteen_percent"
+                app:srcCompat="@color/backgroundBlack" />
 
-    <ImageView
-            android:id="@+id/backpack"
-            style="@style/card"
-            android:contentDescription="@string/backpack_desc"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintWidth_percent="@fraction/fifteen_percent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@color/backgroundWhite" />
+        <ImageView
+                android:id="@+id/trash_image"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/discard_desc"
+                android:padding="@dimen/spacing_double"
+                app:layout_constraintBottom_toBottomOf="@id/discard"
+                app:layout_constraintEnd_toEndOf="@id/discard"
+                app:layout_constraintStart_toStartOf="@id/discard"
+                app:layout_constraintTop_toTopOf="@id/discard"
+                app:srcCompat="@drawable/trash" />
 
-    <ImageView
-            android:id="@+id/backpack_image"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:padding="@dimen/spacing_double"
-            android:contentDescription="@string/backpack_desc"
-            app:layout_constraintBottom_toBottomOf="@id/backpack"
-            app:layout_constraintEnd_toEndOf="@id/backpack"
-            app:layout_constraintStart_toStartOf="@id/backpack"
-            app:layout_constraintTop_toTopOf="@id/backpack"
-            app:srcCompat="@drawable/backpack" />
+        <ImageView
+                android:id="@+id/backpack"
+                style="@style/card"
+                android:contentDescription="@string/backpack_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="@fraction/fifteen_percent"
+                app:srcCompat="@color/backgroundWhite" />
 
-    <!--HERO SIDE-->
-    <ImageView
-            android:id="@+id/equipleft"
-            style="@style/card"
-            android:contentDescription="@string/equipleft_desc"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintBottom_toBottomOf="@id/hero"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/hero"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/hero"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/backgroundWhite"/>
+        <ImageView
+                android:id="@+id/backpack_image"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/backpack_desc"
+                android:padding="@dimen/spacing_double"
+                app:layout_constraintBottom_toBottomOf="@id/backpack"
+                app:layout_constraintEnd_toEndOf="@id/backpack"
+                app:layout_constraintStart_toStartOf="@id/backpack"
+                app:layout_constraintTop_toTopOf="@id/backpack"
+                app:srcCompat="@drawable/backpack" />
 
-    <ImageView
-            android:id="@+id/special_use_1"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:contentDescription="@string/special_use_desc"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
-            app:layout_constraintStart_toStartOf="@id/hero"
-            app:layout_constraintBottom_toTopOf="@id/hero_special"
-            app:layout_constraintEnd_toStartOf="@id/special_use_2"/>
+        <!--HERO CARDS-->
+        <ImageView
+                android:id="@+id/equipleft"
+                style="@style/card"
+                android:contentDescription="@string/equipleft_desc"
+                app:layout_constraintBottom_toBottomOf="@id/hero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/hero"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hero"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/backgroundWhite" />
 
-    <ImageView
-            android:id="@+id/special_use_2"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:contentDescription="@string/special_use_desc"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
-            app:layout_constraintStart_toEndOf="@id/special_use_1"
-            app:layout_constraintEnd_toStartOf="@id/special_use_3"
-            app:layout_constraintBottom_toTopOf="@id/hero_special"/>
+        <ImageView
+                android:id="@+id/special_use_1"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/special_use_desc"
+                app:layout_constraintBottom_toTopOf="@id/hero_special"
+                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
+                app:layout_constraintEnd_toStartOf="@id/special_use_2"
+                app:layout_constraintStart_toStartOf="@id/hero"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <ImageView
-            android:id="@+id/special_use_3"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:contentDescription="@string/special_use_desc"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
-            app:layout_constraintStart_toEndOf="@id/special_use_2"
-            app:layout_constraintBottom_toTopOf="@id/hero_special"
-            app:layout_constraintEnd_toEndOf="@id/hero"/>
+        <ImageView
+                android:id="@+id/special_use_2"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/special_use_desc"
+                app:layout_constraintBottom_toTopOf="@id/hero_special"
+                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
+                app:layout_constraintEnd_toStartOf="@id/special_use_3"
+                app:layout_constraintStart_toEndOf="@id/special_use_1"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <TextView
-            android:id="@+id/hero_special"
-            style="@style/basic_text_white"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/viking_power_desc"
-            android:text="@string/viking_power"
-            android:textSize="@dimen/fontSize_text_small"
-            app:layout_constraintBottom_toTopOf="@id/hero"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+                android:id="@+id/special_use_3"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:contentDescription="@string/special_use_desc"
+                app:layout_constraintBottom_toTopOf="@id/hero_special"
+                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
+                app:layout_constraintEnd_toEndOf="@id/hero"
+                app:layout_constraintStart_toEndOf="@id/special_use_2"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <ImageView
-            android:id="@+id/hero"
-            style="@style/card"
-            android:contentDescription="@string/hero_card_desc"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            app:layout_constraintBottom_toBottomOf="@id/equipright"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toStartOf="@id/equipright"
-            app:layout_constraintStart_toEndOf="@id/equipleft"
-            app:layout_constraintTop_toTopOf="@id/equipright"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/backgroundWhite"/>
+        <TextView
+                android:id="@+id/hero_special"
+                style="@style/basic_text_white"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/viking_power_desc"
+                android:text="@string/viking_power"
+                android:textSize="@dimen/fontSize_text_small"
+                app:layout_constraintBottom_toTopOf="@id/hero"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-            android:id="@+id/current_health"
-            style="@style/health_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/current_health"
-            android:textSize="@dimen/fontSize_text"
-            android:contentDescription="@string/current_health_desc"
-            app:layout_constraintStart_toStartOf="@id/hero"
-            app:layout_constraintTop_toBottomOf="@id/hero"
-            app:layout_constraintEnd_toStartOf="@id/heart"/>
+        <ImageView
+                android:id="@+id/hero"
+                style="@style/card"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:contentDescription="@string/hero_card_desc"
+                app:layout_constraintBottom_toBottomOf="@id/equipright"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toStartOf="@id/equipright"
+                app:layout_constraintStart_toEndOf="@id/equipleft"
+                app:layout_constraintTop_toTopOf="@id/equipright"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/backgroundWhite" />
 
-    <ImageView
-            android:id="@+id/heart"
-            android:layout_width="@dimen/spacing_zero"
-            android:layout_height="@dimen/spacing_zero"
-            android:contentDescription="@string/heart_desc"
-            android:background="@color/backgroundLight"
-            app:srcCompat="@drawable/heart"
-            app:layout_constraintStart_toEndOf="@id/current_health"
-            app:layout_constraintTop_toBottomOf="@id/hero"
-            app:layout_constraintEnd_toStartOf="@id/max_health"
-            app:layout_constraintBottom_toBottomOf="@id/current_health"/>
+        <TextView
+                android:id="@+id/current_health"
+                style="@style/health_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/current_health_desc"
+                android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
+                android:textSize="@dimen/fontSize_text"
+                app:layout_constraintEnd_toStartOf="@id/heart"
+                app:layout_constraintStart_toStartOf="@id/hero"
+                app:layout_constraintTop_toBottomOf="@id/hero" />
 
-    <TextView
-            android:id="@+id/max_health"
-            style="@style/health_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/max_health"
-            android:textSize="@dimen/fontSize_text"
-            android:contentDescription="@string/max_health_desc"
-            app:layout_constraintStart_toEndOf="@id/heart"
-            app:layout_constraintTop_toBottomOf="@id/hero"
-            app:layout_constraintEnd_toEndOf="@id/hero"/>
+        <ImageView
+                android:id="@+id/heart"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                android:background="@color/backgroundLight"
+                android:contentDescription="@string/heart_desc"
+                app:layout_constraintBottom_toBottomOf="@id/current_health"
+                app:layout_constraintEnd_toStartOf="@id/max_health"
+                app:layout_constraintStart_toEndOf="@id/current_health"
+                app:layout_constraintTop_toBottomOf="@id/hero"
+                app:srcCompat="@drawable/heart" />
 
-    <ImageView
-            android:id="@+id/equipright"
-            style="@style/card"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:contentDescription="@string/equipright_desc"
-            app:layout_constraintDimensionRatio="@fraction/card_ratio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/hero"
-            app:layout_constraintTop_toBottomOf="@id/guideline_hero"
-            app:layout_constraintWidth_percent="@fraction/twenty_percent"
-            app:srcCompat="@color/backgroundWhite"/>
+        <TextView
+                android:id="@+id/max_health"
+                style="@style/health_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/max_health_desc"
+                android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
+                tools:text="@string/max_health"
+                android:textSize="@dimen/fontSize_text"
+                app:layout_constraintEnd_toEndOf="@id/hero"
+                app:layout_constraintStart_toEndOf="@id/heart"
+                app:layout_constraintTop_toBottomOf="@id/hero" />
 
-    <Button
-            android:id="@+id/deal_new"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/spacing_zero"
-            android:paddingStart="@dimen/spacing_normal"
-            android:paddingEnd="@dimen/spacing_normal"
-            app:layout_constraintHeight_max="@dimen/button_height_slim"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:text="@string/deal_new"
-            android:textScaleX="@fraction/letter_spacing_normal"
-            android:contentDescription="@string/deal_new_desc"
-            android:background="@drawable/button_custom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heart"
-            app:layout_constraintStart_toEndOf="@id/discard"
-            app:layout_constraintEnd_toStartOf="@id/backpack"/>
+        <ImageView
+                android:id="@+id/equipright"
+                style="@style/card"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:contentDescription="@string/equipright_desc"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/hero"
+                app:layout_constraintTop_toBottomOf="@id/guideline_hero"
+                app:layout_constraintWidth_percent="@fraction/twenty_percent"
+                app:srcCompat="@color/backgroundWhite" />
 
-    <!--GUIDELINES-->
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="@fraction/sixty_eight_percent" />
+        <Button
+                android:id="@+id/deal_new"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spacing_zero"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:background="@drawable/button_custom"
+                android:contentDescription="@string/deal_new_desc"
+                android:paddingStart="@dimen/spacing_normal"
+                android:paddingEnd="@dimen/spacing_normal"
+                android:text="@string/deal_new"
+                android:textScaleX="@fraction/letter_spacing_normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/backpack"
+                app:layout_constraintHeight_max="@dimen/button_height_slim"
+                app:layout_constraintStart_toEndOf="@id/discard"
+                app:layout_constraintTop_toBottomOf="@id/heart" />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_dungeon_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="@fraction/fourty_five_percent" />
+        <!--DISPLAYED CARDS-->
+        <!--DUNGEON-->
+        <include
+                android:id="@+id/card_dungeon_left_back"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/dungeon_left_back"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_left_back"
+                app:layout_constraintStart_toStartOf="@id/dungeon_left_back"
+                bind:cardViewModel="@{gameViewModel.cardLeftBack}" />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_dungeon_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="@fraction/fifty_three_percent" />
+        <include
+                android:id="@+id/card_dungeon_middle_back"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/dungeon_middle_back"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_middle_back"
+                app:layout_constraintStart_toStartOf="@id/dungeon_middle_back"
+                bind:cardViewModel="@{gameViewModel.cardMiddleBack}" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+                android:id="@+id/card_dungeon_right_back"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/dungeon_right_back"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_right_back"
+                app:layout_constraintStart_toStartOf="@id/dungeon_right_back"
+                bind:cardViewModel="@{gameViewModel.cardRightBack}" />
+
+        <include
+                android:id="@+id/card_dungeon_left_front"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_left_front"
+                app:layout_constraintStart_toStartOf="@id/dungeon_left_front"
+                app:layout_constraintTop_toTopOf="@id/dungeon_left_front"
+                bind:cardViewModel="@{gameViewModel.cardLeftFront}"/>
+
+        <include
+                android:id="@+id/card_dungeon_middle_front"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/dungeon_middle_front"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_middle_front"
+                app:layout_constraintStart_toStartOf="@id/dungeon_middle_front"
+                bind:cardViewModel="@{gameViewModel.cardMiddleFront}" />
+
+        <include
+                android:id="@+id/card_dungeon_right_front"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/dungeon_right_front"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_right_front"
+                app:layout_constraintStart_toStartOf="@id/dungeon_right_front"
+                bind:cardViewModel="@{gameViewModel.cardRightFront}" />
+
+        <!--HERO-->
+        <include
+                android:id="@+id/card_equip_left"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toTopOf="@id/equipleft"
+                app:layout_constraintEnd_toEndOf="@id/equipleft"
+                app:layout_constraintStart_toStartOf="@id/equipleft"
+                bind:cardViewModel="@{gameViewModel.cardEquipLeft}" />
+
+        <include
+                android:id="@+id/card_hero"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintBottom_toBottomOf="@+id/hero"
+                app:layout_constraintEnd_toEndOf="@id/hero"
+                app:layout_constraintStart_toStartOf="@id/hero"
+                app:layout_constraintTop_toTopOf="@id/hero"
+                bind:cardViewModel="@{gameViewModel.cardHero}" />
+
+        <include
+                android:id="@+id/card_equip_right"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintBottom_toBottomOf="@+id/equipright"
+                app:layout_constraintEnd_toEndOf="@id/equipright"
+                app:layout_constraintStart_toStartOf="@id/equipright"
+                app:layout_constraintTop_toTopOf="@id/equipright"
+                bind:cardViewModel="@{gameViewModel.cardEquipRight}" />
+
+        <include
+                android:id="@+id/card_backpack"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="@id/backpack"
+                app:layout_constraintStart_toStartOf="@id/backpack"
+                app:layout_constraintTop_toTopOf="@id/backpack"
+                bind:cardViewModel="@{gameViewModel.cardBackpack}" />
+
+        <include
+                android:id="@+id/card_discard"
+                layout="@layout/card"
+                android:layout_width="@dimen/spacing_zero"
+                android:layout_height="@dimen/spacing_zero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintEnd_toEndOf="@id/discard"
+                app:layout_constraintStart_toStartOf="@id/discard"
+                app:layout_constraintTop_toTopOf="@id/discard"
+                bind:cardViewModel="@{gameViewModel.cardDiscard}" />
+
+        <!--GUIDELINES-->
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="@fraction/sixty_eight_percent" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_dungeon_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="@fraction/fourty_five_percent" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_dungeon_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="@fraction/fifty_three_percent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,7 +15,7 @@
     <string name="archer_power_detail">RANGED\nAttack monsters \nin 2nd row.</string>
     <string name="audio">Audio</string>
     <string name="audio_title_desc">Audio settings</string>
-    <string name="cards_in_deck">/54</string>
+    <string name="cards_in_deck">/56</string>
     <string name="cards_in_deck_desc">cards in deck</string>
     <string name="cards_in_deck_left">XX</string>
     <string name="cards_in_deck_left_desc">left cards in deck</string>
@@ -94,7 +94,13 @@
     <string name="hero_progress_desc">hero progress in game</string>
 
     <!--CARDS & DESC-->
+    <string name="attack">ATTACK</string>
+    <string name="attack_desc">This monster is attacking if in front before new cards are dealt.</string>
     <string name="backpack_desc">backpack stores an item card</string>
+    <string name="card_img_desc">Image on card</string>
+    <string name="card_rip">R.I.P.</string>
+    <string name="card_rip_desc">This monster is dead: RIP.</string>
+    <string name="card_title_desc">This is the card\'s title.</string>
     <string name="discard_desc">discard a card</string>
     <string name="dungeon_left_back_desc">dungeon card in left back</string>
     <string name="dungeon_middle_back_desc">dungeon card in middle back</string>
@@ -108,5 +114,9 @@
 
     <!--IN APP OUTPUT-->
     <string name="fragmentManager_null">"FragmentManager NULL on "</string>
+
+    <!--DESIGN PLACEHOLDER-->
+    <string name="placeholder_card_title">CARD TITLE</string>
+    <string name="placeholder_card_value">10</string>
 
 </resources>

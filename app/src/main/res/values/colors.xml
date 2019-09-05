@@ -25,4 +25,8 @@
     <color name="backgroundSelected">#ffa000</color>
     <color name="dungeonCard_center">#292828</color>
     <color name="dungeonCard_border">#707070</color>
+
+    <!--EFFECT-->
+    <color name="aggressiveRed">#e20008</color>
+    <color name="cardHighlight">#b9fdb601</color>
 </resources>

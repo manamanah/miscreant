@@ -18,7 +18,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        // todo: fragment_game seekbar: on touch event just return false
     }
 }
