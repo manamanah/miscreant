@@ -5,7 +5,7 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant
+package com.example.android.miscreant.views
 
 
 import android.os.Bundle
@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.android.miscreant.R
 import com.example.android.miscreant.databinding.FragmentPreGameBinding
 
 
@@ -23,7 +24,8 @@ class PreGameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val binding: FragmentPreGameBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_pre_game, container, false)
+        val binding: FragmentPreGameBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_pre_game, container, false)
 
         // button onClickListeners
         binding.backButton.setOnClickListener{ view: View ->

@@ -5,7 +5,7 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant
+package com.example.android.miscreant.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.android.miscreant.R
 import com.example.android.miscreant.databinding.FragmentMainBinding
 
 
@@ -22,7 +23,8 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         // inflate layout for this fragment
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_main, container, false)
 
         // button onClickListeners
         binding.playButton.setOnClickListener{ view: View ->

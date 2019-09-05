@@ -15,7 +15,7 @@
 
     <fragment
             android:id="@+id/mainFragment"
-            android:name="com.example.android.miscreant.MainFragment"
+            android:name="com.example.android.miscreant.views.MainFragment"
             android:label="fragment_main"
             tools:layout="@layout/fragment_main" >
         <action
@@ -36,7 +36,7 @@
 
     <fragment
             android:id="@+id/preGameFragment"
-            android:name="com.example.android.miscreant.PreGameFragment"
+            android:name="com.example.android.miscreant.views.PreGameFragment"
             android:label="fragment_pre_game"
             tools:layout="@layout/fragment_pre_game" >
         <action
@@ -51,13 +51,13 @@
 
     <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.example.android.miscreant.SettingsFragment"
+            android:name="com.example.android.miscreant.views.SettingsFragment"
             android:label="fragment_settings"
             tools:layout="@layout/fragment_settings" />
 
     <fragment
             android:id="@+id/gameFragment"
-            android:name="com.example.android.miscreant.GameFragment"
+            android:name="com.example.android.miscreant.views.GameFragment"
             android:label="fragment_game"
             tools:layout="@layout/fragment_game" >
         <action

@@ -5,7 +5,7 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant
+package com.example.android.miscreant.views
 
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import com.example.android.miscreant.R
 import com.example.android.miscreant.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -22,7 +23,8 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val binding: FragmentSettingsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+            DataBindingUtil.inflate(inflater,
+                R.layout.fragment_settings, container, false)
 
         // button onClickListeners
         binding.okButton.setOnClickListener { view: View ->
