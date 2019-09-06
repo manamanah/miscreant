@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+
+  // adapted source: https://www.zoftino.com/android-seekbar-and-custom-seekbar-examples
+  -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background"
+            android:gravity="center_vertical|fill_horizontal">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/seekbar_corners"/>
+            <size android:height="@dimen/progress_height" />
+            <solid android:color="@color/primaryLightColor" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress"
+            android:gravity="center_vertical|fill_horizontal">
+        <scale android:scaleWidth="100%">
+            <selector>
+                <item android:state_enabled="false"
+                        android:gravity="center_vertical|fill_horizontal"
+                        android:drawable="@color/progress">
+                </item>
+                <item>
+                    <shape android:shape="rectangle">
+                        <corners android:radius="@dimen/seekbar_corners"/>
+                        <size android:height="@dimen/progress_height" />
+                        <size android:width="@dimen/spacing_zero"/>
+                        <solid android:color="@color/progress" />
+                    </shape>
+                </item>
+            </selector>
+        </scale>
+    </item>
+</layer-list>

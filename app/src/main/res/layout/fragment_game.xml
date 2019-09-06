@@ -42,35 +42,36 @@
                 android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_half"
+                android:layout_marginStart="@dimen/spacing_half"
                 android:background="@color/primaryColor"
                 android:contentDescription="@string/back_button_desc"
-                app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/game_titlebar"
                 app:srcCompat="@drawable/ic_chevron_left" />
 
         <SeekBar
                 android:id="@+id/seekbar_game_progress"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                style="@style/seekbar"
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_normal"
-                android:elevation="@dimen/elevation_min"
+                android:layout_marginBottom="@dimen/spacing_half"
                 android:max="@integer/game_decks_max"
-                android:thumb="@drawable/thumb"
+                android:progressDrawable="@drawable/custom_seekbar"
+                app:layout_constraintTop_toBottomOf="@id/back_button"
                 app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
-                app:layout_constraintEnd_toStartOf="@id/settings_button"
-                app:layout_constraintStart_toEndOf="@id/back_button" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
                 android:id="@+id/settings_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:background="@color/primaryColor"
                 android:contentDescription="@string/settings_button_desc"
-                app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
+                app:layout_constraintBottom_toTopOf="@id/seekbar_game_progress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/game_titlebar"
                 app:srcCompat="@drawable/settings" />
