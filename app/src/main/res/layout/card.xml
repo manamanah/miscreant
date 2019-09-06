@@ -19,9 +19,8 @@
             android:id="@+id/cardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/spacing_normal"
-            app:backgroundColor="@{cardViewModel.bgColorOn}"
-            tools:background="@color/primaryLightColor">
+            android:tag="@{cardViewModel.type.id}"
+            app:backgroundColor="@{cardViewModel.highlightOn}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,7 +33,6 @@
                     android:layout_margin="@dimen/spacing_min"
                     android:contentDescription="@string/card_img_desc"
                     android:src="@{cardViewModel.image}"
-                    android:background="@color/backgroundBlack"
                     tools:src="@drawable/dragon"
                     app:layout_constraintDimensionRatio="@fraction/card_ratio"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -77,13 +75,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_min"
                     android:layout_marginTop="@dimen/spacing_min"
-                    android:text="@{Integer.toString(cardViewModel.value)}"
+                    android:text="@{Integer.toString(cardViewModel.health)}"
                     android:textColor="@color/secondaryTextColor"
                     android:textSize="@dimen/fontSize_card_values"
                     tools:text="@string/placeholder_card_value"
                     app:layout_constraintStart_toStartOf="@id/card_image"
                     app:layout_constraintTop_toTopOf="@id/card_image"
-                    app:toggleValue="@{cardViewModel.showValue}" />
+                    app:toggleValue="@{cardViewModel.showHealth}" />
 
             <TextView
                     android:id="@+id/card_rip"
@@ -106,13 +104,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_min"
                     android:layout_marginTop="@dimen/spacing_min"
-                    android:text="@{Integer.toString(cardViewModel.potentialValue)}"
+                    android:text="@{Integer.toString(cardViewModel.potentialHealth)}"
                     android:textColor="@color/aggressiveRed"
                     android:textSize="@dimen/fontSize_card_values"
                     tools:text="@string/placeholder_card_value"
                     app:layout_constraintStart_toStartOf="@id/card_image"
                     app:layout_constraintTop_toTopOf="@id/card_image"
-                    app:togglePotVal="@{cardViewModel.showPotentialValue}" />
+                    app:togglePotVal="@{cardViewModel.showPotentialHealth}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

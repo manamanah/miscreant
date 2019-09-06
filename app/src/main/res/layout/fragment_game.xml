@@ -42,8 +42,8 @@
                 android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_half"
                 android:layout_marginStart="@dimen/spacing_half"
+                android:layout_marginTop="@dimen/spacing_half"
                 android:background="@color/primaryColor"
                 android:contentDescription="@string/back_button_desc"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +58,10 @@
                 android:layout_marginBottom="@dimen/spacing_half"
                 android:max="@integer/game_decks_max"
                 android:progressDrawable="@drawable/custom_seekbar"
-                app:layout_constraintTop_toBottomOf="@id/back_button"
                 app:layout_constraintBottom_toBottomOf="@id/game_titlebar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back_button" />
 
         <ImageButton
                 android:id="@+id/settings_button"
@@ -110,9 +110,8 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_normal"
-                android:text="@{Integer.toString(gameViewModel.cardsLeftInDeck)}"
                 android:contentDescription="@string/cards_in_deck_left_desc"
-                tools:text="@string/cards_in_deck_left"
+                android:text="@{Integer.toString(gameViewModel.cardsLeftInDeck)}"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/primaryTextColor"
                 android:textScaleX="@fraction/letter_spacing_normal"
@@ -120,8 +119,9 @@
                 app:layout_constraintBottom_toTopOf="@id/dungeon_middle_back"
                 app:layout_constraintEnd_toStartOf="@id/deck_cards_all"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@id/dungeon_middle_back"
-                app:layout_constraintTop_toBottomOf="@id/dungeon_title" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dungeon_title"
+                tools:text="@string/cards_in_deck_left" />
 
         <TextView
                 android:id="@+id/deck_cards_all"
@@ -134,7 +134,7 @@
                 android:textScaleX="@fraction/letter_spacing_normal"
                 android:textSize="@dimen/fontSize_text"
                 app:layout_constraintBottom_toBottomOf="@id/deck_cards_left"
-                app:layout_constraintEnd_toEndOf="@id/dungeon_middle_back"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/deck_cards_left"
                 app:layout_constraintTop_toTopOf="@id/deck_cards_left" />
 
@@ -348,6 +348,7 @@
                 android:contentDescription="@string/current_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
                 android:textSize="@dimen/fontSize_text"
+                tools:text="@string/max_health"
                 app:layout_constraintEnd_toStartOf="@id/heart"
                 app:layout_constraintStart_toStartOf="@id/hero"
                 app:layout_constraintTop_toBottomOf="@id/hero" />
@@ -371,11 +372,11 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/max_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
-                tools:text="@string/max_health"
                 android:textSize="@dimen/fontSize_text"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toEndOf="@id/heart"
-                app:layout_constraintTop_toBottomOf="@id/hero" />
+                app:layout_constraintTop_toBottomOf="@id/hero"
+                tools:text="@string/max_health" />
 
         <ImageView
                 android:id="@+id/equipright"
@@ -415,9 +416,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/dungeon_left_back"
                 app:layout_constraintEnd_toEndOf="@id/dungeon_left_back"
                 app:layout_constraintStart_toStartOf="@id/dungeon_left_back"
+                app:layout_constraintTop_toTopOf="@id/dungeon_left_back"
                 bind:cardViewModel="@{gameViewModel.cardLeftBack}" />
 
         <include
@@ -426,9 +427,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/dungeon_middle_back"
                 app:layout_constraintEnd_toEndOf="@id/dungeon_middle_back"
                 app:layout_constraintStart_toStartOf="@id/dungeon_middle_back"
+                app:layout_constraintTop_toTopOf="@id/dungeon_middle_back"
                 bind:cardViewModel="@{gameViewModel.cardMiddleBack}" />
 
         <include
@@ -437,9 +438,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/dungeon_right_back"
                 app:layout_constraintEnd_toEndOf="@id/dungeon_right_back"
                 app:layout_constraintStart_toStartOf="@id/dungeon_right_back"
+                app:layout_constraintTop_toTopOf="@id/dungeon_right_back"
                 bind:cardViewModel="@{gameViewModel.cardRightBack}" />
 
         <include
@@ -451,7 +452,7 @@
                 app:layout_constraintEnd_toEndOf="@id/dungeon_left_front"
                 app:layout_constraintStart_toStartOf="@id/dungeon_left_front"
                 app:layout_constraintTop_toTopOf="@id/dungeon_left_front"
-                bind:cardViewModel="@{gameViewModel.cardLeftFront}"/>
+                bind:cardViewModel="@{gameViewModel.cardLeftFront}" />
 
         <include
                 android:id="@+id/card_dungeon_middle_front"
@@ -459,9 +460,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/dungeon_middle_front"
                 app:layout_constraintEnd_toEndOf="@id/dungeon_middle_front"
                 app:layout_constraintStart_toStartOf="@id/dungeon_middle_front"
+                app:layout_constraintTop_toTopOf="@id/dungeon_middle_front"
                 bind:cardViewModel="@{gameViewModel.cardMiddleFront}" />
 
         <include
@@ -470,9 +471,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/dungeon_right_front"
                 app:layout_constraintEnd_toEndOf="@id/dungeon_right_front"
                 app:layout_constraintStart_toStartOf="@id/dungeon_right_front"
+                app:layout_constraintTop_toTopOf="@id/dungeon_right_front"
                 bind:cardViewModel="@{gameViewModel.cardRightFront}" />
 
         <!--HERO-->
@@ -482,9 +483,9 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 app:layout_constraintDimensionRatio="@fraction/card_ratio"
-                app:layout_constraintTop_toTopOf="@id/equipleft"
                 app:layout_constraintEnd_toEndOf="@id/equipleft"
                 app:layout_constraintStart_toStartOf="@id/equipleft"
+                app:layout_constraintTop_toTopOf="@id/equipleft"
                 bind:cardViewModel="@{gameViewModel.cardEquipLeft}" />
 
         <include
@@ -492,8 +493,8 @@
                 layout="@layout/card"
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
-                app:layout_constraintDimensionRatio="@fraction/card_ratio"
                 app:layout_constraintBottom_toBottomOf="@+id/hero"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toStartOf="@id/hero"
                 app:layout_constraintTop_toTopOf="@id/hero"
@@ -504,8 +505,8 @@
                 layout="@layout/card"
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
-                app:layout_constraintDimensionRatio="@fraction/card_ratio"
                 app:layout_constraintBottom_toBottomOf="@+id/equipright"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
                 app:layout_constraintEnd_toEndOf="@id/equipright"
                 app:layout_constraintStart_toStartOf="@id/equipright"
                 app:layout_constraintTop_toTopOf="@id/equipright"

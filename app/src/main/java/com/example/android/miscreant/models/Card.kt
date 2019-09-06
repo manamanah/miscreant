@@ -11,13 +11,13 @@ import com.example.android.miscreant.CardType
 
 data class Card(val type: CardType = CardType.NONE,
                 val name: String = "",
-                var value: Int = 0,
+                var health: Int = 0,
                 val image: String = "",
-                var potentialValue: Int = 0,
-                var showValue: Boolean = false,
+                var potentialHealth: Int = 0,
+                var showHealth: Boolean = false,
                 var showRIP: Boolean = false,
-                var showPotentialValue: Boolean = false,
-                var isBgColorOn: Boolean = false,
+                var showPotentialHealth: Boolean = false,
+                var isHighlightOn: Boolean = false,
                 var isAttackVisible: Boolean = false){
 
     fun isEmpty(): Boolean {

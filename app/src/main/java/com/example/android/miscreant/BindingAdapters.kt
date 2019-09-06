@@ -18,8 +18,13 @@ import androidx.databinding.BindingAdapter
 
 @BindingAdapter("backgroundColor")
 fun setBGColor(view: CardView, setBG: Boolean){
-    if (setBG) view.setBackgroundColor(view.resources.getIdentifier("cardHighlight", "color", view.context.packageName))
-    else view.setBackgroundColor(Color.BLACK)
+    if (view.tag == null || view.tag == CardType.NONE.id){
+        view.setBackgroundColor(Color.TRANSPARENT)
+    }
+    else{
+        if (setBG) view.setBackgroundColor(view.resources.getIdentifier("cardHighlight", "color", view.context.packageName))
+        else view.setBackgroundColor(Color.BLACK)
+    }
 }
 
 @BindingAdapter("android:src")

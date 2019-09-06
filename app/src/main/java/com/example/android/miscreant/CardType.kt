@@ -7,11 +7,11 @@
 
 package com.example.android.miscreant
 
-enum class CardType {
-    NONE,
-    MONSTER,
-    HERO,
-    WEAPON,
-    SHIELD,
-    POTION
+enum class CardType(val id: String) {
+    NONE("none"),
+    MONSTER("monster"),
+    HERO("hero"),
+    WEAPON("weapon"),
+    SHIELD("shield"),
+    POTION("potion")
 }
