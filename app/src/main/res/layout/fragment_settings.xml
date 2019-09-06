@@ -54,6 +54,8 @@
     <SeekBar
             android:id="@+id/sound_volume_seekbar"
             style="@style/seekbar"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/sound_volume_desc"
             app:layout_constraintStart_toStartOf="@id/vertical_guideline_left"
             app:layout_constraintTop_toTopOf="@id/sound_volume_text"
@@ -82,6 +84,8 @@
     <SeekBar
             android:id="@+id/music_volume_seekbar"
             style="@style/seekbar"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/music_volume_desc"
             app:layout_constraintStart_toStartOf="@id/sound_volume_seekbar"
             app:layout_constraintBottom_toBottomOf="@id/music_volume_text"
