@@ -11,20 +11,43 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.miscreant.Difficulty
+import com.example.android.miscreant.Hero
+import com.example.android.miscreant.R
 import com.example.android.miscreant.models.Card
-import com.example.android.miscreant.models.GameData
+import com.example.android.miscreant.models.Settings
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.IllegalArgumentException
 
 class GameViewModel(context: Context?) : ViewModel() {
 
+    // needed for loading decks
     private val context: Context = context ?: throw IllegalArgumentException("${this.javaClass.simpleName}: context is NULL" )
-    // todo combine with map -> difficulty keys
-    private val deckPaths: List<String> = listOf("testdeck.json")
 
-    private var gameData = GameData()
-    private var currentDeck: MutableList<Card> = mutableListOf()
+    // todo each difficulty consists of 3 different decks
+    private val deckPaths : Map<Difficulty, List<String>> = mapOf(
+        Difficulty.easy to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty()),
+        Difficulty.normal to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty()),
+        Difficulty.hard to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty())
+    )
+
+    private lateinit var gameSettings: Settings
+
+    private var _currentDeckNumber = MutableLiveData<Int>()
+    val currentDeckNumber : LiveData<Int>
+        get() = _currentDeckNumber
+
+    private var activeDeck: MutableList<Card> = mutableListOf()
 
     // region name dungeon area cards
     private var _cardLeftBack = MutableLiveData<Card>()
@@ -115,13 +138,6 @@ class GameViewModel(context: Context?) : ViewModel() {
     // endregion
 
     init {
-        // todo maybe load all decks at start
-
-        // initialize start values
-        _heroCurrentHealth.value = gameData.heroStartHealth
-        _heroMaxHealth.value = gameData.heroStartHealth
-        _cardsLeftInDeck.value = currentDeck.size
-
         // initialize empty dungeon cards
         _cardLeftBack.value = Card()
         _cardMiddleBack.value = Card()
@@ -132,22 +148,37 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     }
 
+    fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
+        gameSettings = Settings(difficulty, heroName, hero)
+
+        // initialize start values
+        _heroCurrentHealth.value = gameSettings.currentHealth
+        _heroMaxHealth.value = gameSettings.currentMaxHealth
+        _cardsLeftInDeck.value = if (activeDeck.isEmpty()) 0 else activeDeck.size
+
+        // todo - consider: load all decks for difficulty here
+    }
+
     fun startGame(){
         // todo: check, if still running
         // todo: if running, check if monster attack
-        if (currentDeck.isEmpty()){
-            val deckPath = deckPaths[gameData.currentDeckNumber]
-            currentDeck = getDeck(deckPath)
+        if (activeDeck.isEmpty()){
+            if (deckPaths.containsKey(gameSettings.difficulty)){
+                val deckNumber = _currentDeckNumber.value ?: 0
+
+                val deckPath = deckPaths[gameSettings.difficulty]?.get(deckNumber).orEmpty()
+                activeDeck = getDeck(deckPath)
+            }
+
             // todo check decksize
         }
 
         // todo: ensure after game end - in scoring all left dungeon cards removed -> points
-        // todo: ensure progress currentDeckNumber in GameData @gameEnd
+        // todo: ensure progress currentDeckNumber in Settings @gameEnd
         dealCards()
         // update nr cardsLeft/in Deck
     }
 
-    // todo later 3 decks per playthrough
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath : String) : MutableList<Card> {
 
@@ -162,11 +193,11 @@ class GameViewModel(context: Context?) : ViewModel() {
         // todo include check if deck empty: scoring etc.
 
         // fill dungeon
-        dungeonMap.forEach { (key, card)->
+        dungeonMap.forEach { (_, card)->
             if (card.value?.isEmpty() ?: return@forEach){
-                if (currentDeck.isNotEmpty()){
-                    card.value = currentDeck[0]
-                    currentDeck.removeAt(0)
+                if (activeDeck.isNotEmpty()){
+                    card.value = activeDeck[0]
+                    activeDeck.removeAt(0)
                 }
                 else moveBackrowCardsToDungeonFront()
             }
@@ -179,7 +210,7 @@ class GameViewModel(context: Context?) : ViewModel() {
                 moveFromToCard(_cardLeftBack, _cardLeftFront)
             }
         }
-        
+
         _cardMiddleFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardMiddleBack, _cardMiddleFront)

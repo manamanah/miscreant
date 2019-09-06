@@ -119,4 +119,9 @@
     <string name="placeholder_card_title">CARD TITLE</string>
     <string name="placeholder_card_value">10</string>
 
+    <!--DECK PATHS-->
+    <string name="easy_deck_path">testdeck.json</string>
+    <string name="medium_deck_path">testdeck.json</string>
+    <string name="hard_deck_path">testdeck.json</string>
+
 </resources>
