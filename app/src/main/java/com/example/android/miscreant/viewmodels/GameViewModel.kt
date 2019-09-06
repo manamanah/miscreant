@@ -174,16 +174,22 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     private fun moveBackrowCardsToDungeonFront(){
-        if (_cardLeftFront.isEmpty()){
-            moveFromToCard(_cardLeftBack, _cardLeftFront)
+        _cardLeftFront.value?.let {
+            if (!it.isEmpty()) {
+                moveFromToCard(_cardLeftBack, _cardLeftFront)
+            }
+        }
+        
+        _cardMiddleFront.value?.let {
+            if (!it.isEmpty()) {
+                moveFromToCard(_cardMiddleBack, _cardMiddleFront)
+            }
         }
 
-        if (_cardMiddleFront.isEmpty()){
-            moveFromToCard(_cardMiddleBack, _cardMiddleFront)
-        }
-
-        if (_cardRightFront.isEmpty()){
-            moveFromToCard(_cardRightBack, _cardRightFront)
+        _cardRightFront.value?.let {
+            if (!it.isEmpty()) {
+                moveFromToCard(_cardRightBack, _cardRightFront)
+            }
         }
 
         // todo monster counter attack
@@ -192,9 +198,5 @@ class GameViewModel(context: Context?) : ViewModel() {
     private fun moveFromToCard(provideCard: MutableLiveData<Card>, receiveCard: MutableLiveData<Card>){
         receiveCard.value = provideCard.value
         provideCard.value = Card()
-    }
-
-    private fun MutableLiveData<Card>.isEmpty(): Boolean {
-        return this.isEmpty()
     }
 }
