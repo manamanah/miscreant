@@ -7,7 +7,7 @@
 
 package com.example.android.miscreant
 
-enum class Hero {
-    viking,
-    archer
+enum class Hero(val imageName: String) {
+    viking("viking"),
+    archer("archer")
 }

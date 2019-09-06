@@ -7,12 +7,17 @@
 
 package com.example.android.miscreant.models
 
+import com.example.android.miscreant.CardType
 import com.example.android.miscreant.Difficulty
 import com.example.android.miscreant.Hero
 
 data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking){
 
     val maxDeckNumber: Int = 3
+    val maxSpecials: Int = 3
+
+    var usedSpecials: Int = 0
+        private set
 
     var startHealth : Int = 0
         private set
@@ -47,5 +52,11 @@ data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: 
                 dealCardsPenalty = 1
             }
         }
+
+        usedSpecials = if (hero == Hero.archer) maxSpecials else 0
+    }
+
+    fun getHeroCard() : Card {
+        return Card(CardType.HERO, heroName, currentHealth, hero.imageName)
     }
 }

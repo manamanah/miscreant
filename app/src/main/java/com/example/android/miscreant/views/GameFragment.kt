@@ -15,6 +15,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -47,8 +48,31 @@ class GameFragment : Fragment() {
         binding.gameViewModel = gameViewModel
 
         // todo get navigation arguments from selection in pre-game-fragment
-        gameViewModel.initializeGameSettings(Difficulty.easy, "hero", Hero.viking)
+        // region name init game settings and hero stuff
+        gameViewModel.initializeGameSettings(Difficulty.easy, "hero", Hero.archer)
+        binding.heroSpecial.text = gameViewModel.heroSpecial
 
+        gameViewModel.specialsUsed.observe(this, Observer{
+            if (it != null){
+                when(it){
+                    0 -> {
+                        binding.specialUse1.isVisible = true
+                        binding.specialUse2.isVisible = true
+                        binding.specialUse3.isVisible = true
+                    }
+                    1 -> binding.specialUse3.isVisible = false
+                    2 -> binding.specialUse2.isVisible = false
+                    else -> {
+                        binding.specialUse1.isVisible = false
+                        binding.specialUse2.isVisible = false
+                        binding.specialUse3.isVisible = false
+                    }
+                }
+            }
+        })
+        // endregion
+
+        // region name game progress in seekbar
         // don't allow user interaction with game progress seekbar
         // custom seekbar takes care of correct look
         binding.seekbarGameProgress.isEnabled = false
@@ -58,8 +82,9 @@ class GameFragment : Fragment() {
                 binding.seekbarGameProgress.progress = it
             }
         })
+        // endregion
 
-        // menu buttons setOnClickListener
+        // region name menu buttons
         binding.backButton.setOnClickListener { view: View ->
             fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
         }
@@ -67,9 +92,8 @@ class GameFragment : Fragment() {
         binding.settingsButton.setOnClickListener { view: View ->
             view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToSettingsFragment())
         }
+        // endregion
 
-        // todo deliver infos on game difficulty, hero name, hero type onStartGame
-        // start game
         startGame()
 
         return binding.root

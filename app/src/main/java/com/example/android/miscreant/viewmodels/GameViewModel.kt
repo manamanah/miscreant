@@ -111,6 +111,13 @@ class GameViewModel(context: Context?) : ViewModel() {
     private var _heroCurrentHealth = MutableLiveData<Int>()
     val heroCurrentHealth  : LiveData<Int>
         get() = _heroCurrentHealth
+
+    private var _specialsUsed = MutableLiveData<Int>()
+    val specialsUsed  : LiveData<Int>
+        get() = _specialsUsed
+
+    var heroSpecial  : String = ""
+        private set
     // endregion
 
     // todo no hardcoded strings
@@ -149,12 +156,20 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
-        gameSettings = Settings(difficulty, heroName, hero)
+        if (!::gameSettings.isInitialized){
+            gameSettings = Settings(difficulty, heroName, hero)
+        }
 
         // initialize start values
         _heroCurrentHealth.value = gameSettings.currentHealth
         _heroMaxHealth.value = gameSettings.currentMaxHealth
         _cardsLeftInDeck.value = if (activeDeck.isEmpty()) 0 else activeDeck.size
+
+        // set hero stuff
+        _cardHero.value = gameSettings.getHeroCard()
+        _specialsUsed.value = gameSettings.usedSpecials
+        heroSpecial = if (hero == Hero.archer) context?.getString(R.string.archer_power)
+                      else context?.getString(R.string.viking_power)
 
         // todo - consider: load all decks for difficulty here
     }
