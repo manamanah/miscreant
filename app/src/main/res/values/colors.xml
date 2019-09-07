@@ -28,7 +28,7 @@
 
     <!--EFFECT-->
     <color name="aggressiveRed">#e20008</color>
-    <color name="cardHighlight">#b9fdb601</color>
+    <color name="cardHighlight">#FFC107</color>
 
     <!--VIEW ELEMENTS-->
     <color name="progress">#ffa000</color>

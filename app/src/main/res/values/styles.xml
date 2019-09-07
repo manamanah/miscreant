@@ -127,7 +127,7 @@
         <item name="android:layout_width">@dimen/spacing_zero</item>
         <item name="android:layout_height">@dimen/spacing_zero</item>
         <item name="android:padding">@dimen/spacing_half</item>
-        <item name="android:background">@color/backgroundBlack</item>
+        <item name="android:foreground">@drawable/img_border_black</item>
     </style>
 
     <style name="card_dungeon">
