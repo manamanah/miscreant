@@ -12,9 +12,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.example.android.miscreant.views.GameFragment
+
+// workaround to be able to set listeners on included layouts in fragment
+@BindingAdapter("setListeners")
+fun setListeners(view: View, dummyParameter: String?) {
+    GameFragment.setListeners(view)
+}
 
 @BindingAdapter("backgroundColor")
 fun setBGColor(view: CardView, setBG: Boolean){

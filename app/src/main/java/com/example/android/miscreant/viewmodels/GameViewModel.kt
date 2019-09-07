@@ -196,6 +196,22 @@ class GameViewModel(context: Context?) : ViewModel() {
         // update nr cardsLeft/in Deck
     }
 
+    fun singleTap(view: View){
+        // testing
+        var cardTYpe = view.tag
+        var cardLocation = view.getCardLocationByName()
+    }
+
+    fun doubleTap(view: View){
+
+    }
+
+    fun View.getCardLocationByName() : Location {
+        val cardPosition = this.toString().split("app:id/card_")[1].dropLast(1)
+        var location = Location.getLocationFromString(cardPosition)
+        return location
+    }
+
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath : String) : MutableList<Card> {
 

@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:tag="@{cardViewModel.type.id}"
-            app:backgroundColor="@{cardViewModel.highlightOn}">
+            app:setListeners="@{cardViewModel.type.id}"
+            app:backgroundColor="@{cardViewModel.isHighlightOn}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

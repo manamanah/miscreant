@@ -9,35 +9,76 @@ package com.example.android.miscreant.views
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.example.android.miscreant.Difficulty
-import com.example.android.miscreant.Hero
-import com.example.android.miscreant.R
+import com.example.android.miscreant.*
 import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.databinding.FragmentGameBinding
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
-import kotlinx.android.synthetic.main.fragment_game.*
-import kotlinx.android.synthetic.main.fragment_game.view.*
-import kotlin.math.absoluteValue
 
-class GameFragment : Fragment() {
+class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener{
 
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
+    private lateinit var gestureDetector : GestureDetector
+    private lateinit var selectedCard : View
+
+    // static access for setListener needed in bindingadapter when creating cards in Fragment
+    companion object Listener  {
+
+        private lateinit var gameFragment: GameFragment
+
+        fun setFragmentInstance(gameFragment: GameFragment){
+            this.gameFragment = gameFragment
+        }
+
+        fun setListeners(view: View){
+            view.setOnTouchListener(gameFragment)
+        }
+    }
+
+    // region name touch interactions
+    override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
+        // don't bother if view not valid
+        selectedCard = view ?: return true
+        gestureDetector.onTouchEvent(motionEvent)
+
+        return true
+    }
+
+    override fun onDoubleTap(motionEvent: MotionEvent?): Boolean {
+        Log.i("GESTURE", "double tap")
+        gameViewModel.doubleTap(selectedCard)
+        return true
+    }
+
+    override fun onDoubleTapEvent(motionEvent: MotionEvent?): Boolean {
+        return true
+    }
+
+    override fun onSingleTapConfirmed(motionEvent: MotionEvent?): Boolean {
+        Log.i("GESTURE", "single tap")
+        gameViewModel.singleTap(selectedCard)
+        return true
+    }
+    // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val binding: FragmentGameBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_game, container, false)
+
+        // set up listeners for card touch interaction
+        // todo drag & drop as well
+        setFragmentInstance(this)
+        gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
+        gestureDetector.setOnDoubleTapListener(this)
+        selectedCard = View(context)
 
         // allows data binding to observe LiveData in fragment lifecycle
         binding.lifecycleOwner = this
