@@ -13,10 +13,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.miscreant.Difficulty
-import com.example.android.miscreant.Hero
-import com.example.android.miscreant.Location
-import com.example.android.miscreant.R
+import com.example.android.miscreant.*
 import com.example.android.miscreant.models.Card
 import com.example.android.miscreant.models.Settings
 import com.google.gson.Gson
@@ -198,18 +195,12 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     fun singleTap(view: View){
         // testing
-        var cardTYpe = view.tag
+        var cardType = view.getCardTypeFromTag()
         var cardLocation = view.getCardLocationByName()
     }
 
     fun doubleTap(view: View){
 
-    }
-
-    fun View.getCardLocationByName() : Location {
-        val cardPosition = this.toString().split("app:id/card_")[1].dropLast(1)
-        var location = Location.getLocationFromString(cardPosition)
-        return location
     }
 
     // better throw exception -> no game possible w/o deck

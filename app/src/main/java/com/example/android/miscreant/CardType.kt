@@ -13,5 +13,16 @@ enum class CardType(val id: String) {
     HERO("hero"),
     WEAPON("weapon"),
     SHIELD("shield"),
-    POTION("potion")
+    POTION("potion");
+
+    companion object{
+        private val map = values().associateBy(CardType::id)
+
+        fun getTypeFromString(name: String) : CardType{
+            return if (map.containsKey(name)){
+                map[name] ?: NONE
+            }
+            else NONE
+        }
+    }
 }
