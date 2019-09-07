@@ -42,7 +42,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         }
     }
 
-    // region name touch interactions
+    // region touch interactions
     override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
         // don't bother if view not valid
         selectedCard = view ?: return true
@@ -89,7 +89,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         binding.gameViewModel = gameViewModel
 
         // todo get navigation arguments from selection in pre-game-fragment
-        // region name init game settings and hero stuff
+        // region init game settings and hero stuff
         gameViewModel.initializeGameSettings(Difficulty.easy, "hero", Hero.archer)
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
@@ -113,7 +113,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
-        // region name game progress in seekbar
+        // region game progress in seekbar
         // don't allow user interaction with game progress seekbar
         // custom seekbar takes care of correct look
         binding.seekbarGameProgress.isEnabled = false
@@ -125,7 +125,11 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
-        // region name menu buttons
+        // region observe cards
+
+        // endregion
+
+        // region menu buttons
         binding.backButton.setOnClickListener { view: View ->
             fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
         }

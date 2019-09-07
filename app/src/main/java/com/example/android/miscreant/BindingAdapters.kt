@@ -7,7 +7,6 @@
 
 package com.example.android.miscreant
 
-import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,54 +20,13 @@ fun setListeners(view: View, dummyParameter: String?) {
     GameFragment.setListeners(view)
 }
 
-@BindingAdapter("backgroundColor")
-fun setBGColor(view: CardView, setBG: Boolean){
-    if (view.tag == null || view.tag == CardType.NONE.id){
-        view.setBackgroundColor(Color.TRANSPARENT)
-    }
-    else{
-        if (setBG) view.setBackgroundColor(view.resources.getIdentifier("cardHighlight", "color", view.context.packageName))
-        else view.setBackgroundColor(Color.BLACK)
-    }
-}
-
 @BindingAdapter("android:src")
 fun setImageViewDrawable(view: ImageView, imageString: String?) {
-    if (imageString != null){
+    if (imageString != null && imageString.isNotEmpty()){
         val id : Int? = view.resources.getIdentifier(imageString, "drawable", view.context.packageName)
         view.setImageResource(id ?: android.R.color.transparent)
     }
     else view.setImageResource(android.R.color.transparent)
-}
-
-@BindingAdapter("toggleValue")
-fun setValView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("togglePotVal")
-fun setPotValView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("toggleAttackView")
-fun setAttackView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("toggleRIP")
-fun setRIPView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("toggleCurrentHealth")
-fun setCurrentHealthView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("togglePotCurrentHealth")
-fun setPotCurrentHealthView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
 @BindingAdapter("toggleMaxHealth")
