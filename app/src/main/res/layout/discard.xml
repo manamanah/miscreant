@@ -20,10 +20,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/discard_desc"
+                android:tag="@{cardViewModel.type.id}"
+                android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}"
                 android:background="@color/backgroundBlack"
                 android:src="@drawable/trash"
                 tools:src="@drawable/trash"
-                android:tag="@{cardViewModel.type.id}"
-                android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}"
                 app:setListeners="@{cardViewModel.type.id}" />
 </layout>

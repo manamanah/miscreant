@@ -17,6 +17,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.android.miscreant.*
+import com.example.android.miscreant.Enums.Difficulty
+import com.example.android.miscreant.Enums.Hero
 import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.databinding.FragmentGameBinding
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
@@ -123,10 +125,6 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
                 binding.seekbarGameProgress.progress = it
             }
         })
-        // endregion
-
-        // region observe cards
-
         // endregion
 
         // region menu buttons

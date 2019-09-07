@@ -10,7 +10,6 @@ package com.example.android.miscreant
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.example.android.miscreant.views.GameFragment
 

@@ -20,11 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_normal"
+            android:tag="@{cardViewModel.type.id}"
+            android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}"
             android:contentDescription="@string/backpack_desc"
             android:background="@color/backgroundWhite"
             android:src="@drawable/backpack"
             tools:src="@drawable/backpack"
-            android:tag="@{cardViewModel.type.id}"
-            android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}"
             app:setListeners="@{cardViewModel.type.id}" />
 </layout>
