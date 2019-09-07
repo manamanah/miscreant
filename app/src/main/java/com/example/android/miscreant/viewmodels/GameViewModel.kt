@@ -8,11 +8,14 @@
 package com.example.android.miscreant.viewmodels
 
 import android.content.Context
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.miscreant.Difficulty
 import com.example.android.miscreant.Hero
+import com.example.android.miscreant.Location
 import com.example.android.miscreant.R
 import com.example.android.miscreant.models.Card
 import com.example.android.miscreant.models.Settings
@@ -122,25 +125,25 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     // todo no hardcoded strings
     // region name dungeonCardsMap
-    private var dungeonMap: MutableMap<String, MutableLiveData<Card>> =
+    private var dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
     mutableMapOf(
-        "card_dungeon_left_back" to _cardLeftBack,
-        "card_dungeon_middle_back" to _cardMiddleBack,
-        "card_dungeon_right_back" to _cardRightBack,
-        "card_dungeon_left_front" to _cardLeftFront,
-        "card_dungeon_middle_front" to _cardMiddleFront,
-        "card_dungeon_right_front" to _cardRightFront
+        Location.dungeon_left_back to _cardLeftBack,
+        Location.dungeon_middle_back to _cardMiddleBack,
+        Location.dungeon_right_back to _cardRightBack,
+        Location.dungeon_left_front to _cardLeftFront,
+        Location.dungeon_middle_front to _cardMiddleFront,
+        Location.dungeon_right_front to _cardRightFront
     )
     // endregion
 
     // region name heroCardsMap
-    var heroMap: MutableMap<String, MutableLiveData<Card>> =
+    var heroMap: MutableMap<Location, MutableLiveData<Card>> =
         mutableMapOf(
-            "card_equip_left" to _cardEquipLeft,
-            "card_equip_right" to _cardEquipRight,
-            "card_backpack" to _cardBackpack,
-            "card_hero" to _cardHero,
-            "card_discard" to _cardDiscard
+            Location.equip_left to _cardEquipLeft,
+            Location.equip_right to _cardEquipRight,
+            Location.backpack to _cardBackpack,
+            Location.hero to _cardHero,
+            Location.discard to _cardDiscard
         )
     // endregion
 
@@ -152,7 +155,6 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardLeftFront.value = Card()
         _cardMiddleFront.value = Card()
         _cardRightFront.value = Card()
-
     }
 
     fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
@@ -168,8 +170,8 @@ class GameViewModel(context: Context?) : ViewModel() {
         // set hero stuff
         _cardHero.value = gameSettings.getHeroCard()
         _specialsUsed.value = gameSettings.usedSpecials
-        heroSpecial = if (hero == Hero.archer) context?.getString(R.string.archer_power)
-                      else context?.getString(R.string.viking_power)
+        heroSpecial = if (hero == Hero.archer) context.getString(R.string.archer_power)
+                      else context.getString(R.string.viking_power)
 
         // todo - consider: load all decks for difficulty here
     }
@@ -208,10 +210,11 @@ class GameViewModel(context: Context?) : ViewModel() {
         // todo include check if deck empty: scoring etc.
 
         // fill dungeon
-        dungeonMap.forEach { (_, card)->
+        dungeonMap.forEach { (key, card)->
             if (card.value?.isEmpty() ?: return@forEach){
                 if (activeDeck.isNotEmpty()){
                     card.value = activeDeck[0]
+                    card.value?.setLocation(key) ?: Log.i("DEAL CARDS", "Card value is null - can't set location")
                     activeDeck.removeAt(0)
                 }
                 else moveBackrowCardsToDungeonFront()
@@ -223,26 +226,29 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardLeftFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardLeftBack, _cardLeftFront)
+                _cardLeftFront.value?.setLocation(Location.dungeon_left_front)
             }
         }
 
         _cardMiddleFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardMiddleBack, _cardMiddleFront)
+                _cardMiddleFront.value?.setLocation(Location.dungeon_middle_front)
             }
         }
 
         _cardRightFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardRightBack, _cardRightFront)
+                _cardRightFront.value?.setLocation(Location.dungeon_right_front)
             }
         }
 
         // todo monster counter attack
     }
 
-    private fun moveFromToCard(provideCard: MutableLiveData<Card>, receiveCard: MutableLiveData<Card>){
-        receiveCard.value = provideCard.value
-        provideCard.value = Card()
+    private fun moveFromToCard(from: MutableLiveData<Card>, to: MutableLiveData<Card>){
+        to.value = from.value
+        from.value = Card()
     }
 }

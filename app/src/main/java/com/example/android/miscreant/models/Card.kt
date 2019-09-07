@@ -8,6 +8,7 @@
 package com.example.android.miscreant.models
 
 import com.example.android.miscreant.CardType
+import com.example.android.miscreant.Location
 
 data class Card(val type: CardType = CardType.NONE,
                 val name: String = "",
@@ -20,7 +21,14 @@ data class Card(val type: CardType = CardType.NONE,
                 var isHighlightOn: Boolean = false,
                 var isAttackVisible: Boolean = false){
 
+    var location: Location = Location.none
+        private set
+
     fun isEmpty(): Boolean {
         return type == CardType.NONE
+    }
+
+    fun setLocation(location: Location){
+        this.location = location
     }
 }
