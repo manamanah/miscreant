@@ -14,7 +14,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.miscreant.*
+import com.example.android.miscreant.Enums.*
 import com.example.android.miscreant.models.Card
+import com.example.android.miscreant.models.SelectedCard
 import com.example.android.miscreant.models.Settings
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -48,8 +50,10 @@ class GameViewModel(context: Context?) : ViewModel() {
         get() = _currentDeckNumber
 
     private var activeDeck: MutableList<Card> = mutableListOf()
+    private var firstSelectedCard = SelectedCard()
+    private var secondSelectedCard= SelectedCard()
 
-    // region name dungeon area cards
+    // region dungeon area cards
     private var _cardLeftBack = MutableLiveData<Card>()
     val cardLeftBack : LiveData<Card>
         get() = _cardLeftBack
@@ -77,7 +81,7 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     // endregion
 
-    // region name hero area cards
+    // region hero area cards
     private var _cardEquipLeft = MutableLiveData<Card>()
     val cardEquipLeft : LiveData<Card>
         get() = _cardEquipLeft
@@ -99,7 +103,11 @@ class GameViewModel(context: Context?) : ViewModel() {
         get() = _cardBackpack
     // endregion
 
-    // region name displayed values on game screen
+    // region highlighted cards
+    private var highlightedCards = mutableListOf<MutableLiveData<Card>>()
+    // end region
+
+    // region displayed values on game screen
     private var _cardsLeftInDeck = MutableLiveData<Int>()
     val cardsLeftInDeck  : LiveData<Int>
         get() = _cardsLeftInDeck
@@ -133,7 +141,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     )
     // endregion
 
-    // region name heroCardsMap
+    // region heroCardsMap
     var heroMap: MutableMap<Location, MutableLiveData<Card>> =
         mutableMapOf(
             Location.equip_left to _cardEquipLeft,
@@ -145,13 +153,20 @@ class GameViewModel(context: Context?) : ViewModel() {
     // endregion
 
     init {
-        // initialize empty dungeon cards
+        // init empty dungeon cards
         _cardLeftBack.value = Card()
         _cardMiddleBack.value = Card()
         _cardRightBack.value = Card()
         _cardLeftFront.value = Card()
         _cardMiddleFront.value = Card()
         _cardRightFront.value = Card()
+
+        // init empty hero area cards
+        _cardEquipLeft.value = Card()
+        _cardHero.value = Card()
+        _cardEquipRight.value = Card()
+        _cardBackpack.value = Card()
+        _cardDiscard.value = Card()
     }
 
     fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
@@ -196,11 +211,27 @@ class GameViewModel(context: Context?) : ViewModel() {
     fun singleTap(view: View){
         // testing
         var cardType = view.getCardTypeFromTag()
-        var cardLocation = view.getCardLocationByName()
+        var location = view.getCardLocationByName()
+
+        if (firstSelectedCard.isEmtpy()){
+            firstSelectedCard = SelectedCard(location, cardType)
+            showDropLocations()
+        } else {
+            secondSelectedCard = SelectedCard(location, cardType)
+            // todo show potential outcome
+        }
     }
 
     fun doubleTap(view: View){
+        if (firstSelectedCard.isEmtpy()){
+            Log.i("DOUBLE TAP", "No card has been selected yet. Returning")
+            return
+        }
 
+        // first card is selected - execute move/game action by double tap
+        // todo deactivate highlighting
+        // todo update card values
+        // todo move cards
     }
 
     // better throw exception -> no game possible w/o deck
@@ -218,13 +249,19 @@ class GameViewModel(context: Context?) : ViewModel() {
 
         // fill dungeon
         dungeonMap.forEach { (key, card)->
-            if (card.value?.isEmpty() ?: return@forEach){
-                if (activeDeck.isNotEmpty()){
-                    card.value = activeDeck[0]
-                    card.value?.setLocation(key) ?: Log.i("DEAL CARDS", "Card value is null - can't set location")
-                    activeDeck.removeAt(0)
+            card.value?.let {
+                if (it.isEmpty()){
+                    if (activeDeck.isNotEmpty()){
+                        card.value = activeDeck[0]
+                        card.value?.setLocation(key) ?: Log.i("DEAL CARDS", "Card value is null - can't set location")
+                        //card.postValue(card.value)
+                        activeDeck.removeAt(0)
+                    } else {
+                        moveBackrowCardsToDungeonFront()
+                    }
+                } else {
+                    return@forEach
                 }
-                else moveBackrowCardsToDungeonFront()
             }
         }
     }
@@ -257,5 +294,86 @@ class GameViewModel(context: Context?) : ViewModel() {
     private fun moveFromToCard(from: MutableLiveData<Card>, to: MutableLiveData<Card>){
         to.value = from.value
         from.value = Card()
+    }
+
+    // is called when a first card is selected
+    private fun showDropLocations(){
+        when(firstSelectedCard.area){
+            Area.dungeon -> showDropLocationsForDungeonCard()
+            Area.equipped -> showDropLocationsForEquippedCard()
+            Area.backpack -> showDropLocationsForBackpackedCard()
+            else -> return
+        }
+    }
+
+    // discard, equip left, equip right
+    private fun showDropLocationsForBackpackedCard() {
+        heroMap.forEach { (location, card) ->
+            card.value?.let {
+                if (!it.isEmpty()) {
+                    if (location != Location.backpack){
+                        it.isHighlightOn = true
+                        card.postValue(card.value) // not updating w/o postValue
+                        highlightedCards.add(card)
+                    }
+                } else {
+                    return@forEach
+                }
+            }
+        }
+    }
+
+    // non-monster: if free: all on hero side (if empty)
+    // monster: hero; equipped, if cards equipped
+    private fun showDropLocationsForDungeonCard(){
+        val isMonster = firstSelectedCard.type == CardType.monster
+
+        heroMap.forEach{ (location, card) ->
+            card.value?.let {
+                if (isMonster){
+                    if (it.type == CardType.backpack || it.type == CardType.discard || it.isEmpty()){
+                        return@forEach
+                    } else {
+                        it.isHighlightOn = true
+                        card.postValue(card.value)
+                        highlightedCards.add(card)
+                    }
+                } else {
+                    if (it.isEmpty()){
+                        it.isHighlightOn = true
+                        card.postValue(card.value)
+                        highlightedCards.add(card)
+
+                    } else {
+                        return@forEach
+                    }
+                }
+            }
+        }
+    }
+
+    // dungeon front (unless archer), if monster card
+    private fun showDropLocationsForEquippedCard(){
+        val isArcher = gameSettings.hero == Hero.archer
+
+        dungeonMap.forEach{ (location, card)->
+            card.value?.let {
+                if (it.type == CardType.monster){
+                    if (location == Location.dungeon_left_front ||
+                        location == Location.dungeon_middle_front ||
+                        location == Location.dungeon_right_front) {
+                        it.isHighlightOn = true
+                        card.postValue(card.value)
+                        highlightedCards.add(card)
+                    } else {
+                        if (isArcher) {
+                            it.isHighlightOn = true
+                            card.postValue(card.value)
+                            highlightedCards.add(card)
+                        }
+                    }
+                }
+            }
+        }
     }
 }

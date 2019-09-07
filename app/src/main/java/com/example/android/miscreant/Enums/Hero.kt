@@ -5,10 +5,9 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant
+package com.example.android.miscreant.Enums
 
-enum class Difficulty {
-    easy,
-    normal,
-    hard
+enum class Hero(val imageName: String) {
+    viking("viking"),
+    archer("archer")
 }

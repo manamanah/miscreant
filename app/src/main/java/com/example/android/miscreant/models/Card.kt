@@ -7,10 +7,10 @@
 
 package com.example.android.miscreant.models
 
-import com.example.android.miscreant.CardType
-import com.example.android.miscreant.Location
+import com.example.android.miscreant.Enums.CardType
+import com.example.android.miscreant.Enums.Location
 
-data class Card(val type: CardType = CardType.NONE,
+data class Card(val type: CardType = CardType.none,
                 val name: String = "",
                 var health: Int = 0,
                 val image: String = "",
@@ -25,7 +25,7 @@ data class Card(val type: CardType = CardType.NONE,
         private set
 
     fun isEmpty(): Boolean {
-        return type == CardType.NONE
+        return type == CardType.none
     }
 
     fun setLocation(location: Location){

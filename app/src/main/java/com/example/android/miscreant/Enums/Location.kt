@@ -5,7 +5,7 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant
+package com.example.android.miscreant.Enums
 
 enum class Location(val title: String){
     dungeon_left_back("dungeon_left_back"),
@@ -22,13 +22,19 @@ enum class Location(val title: String){
     none("none");
 
     companion object {
-        private val map: Map<String, Location> = values().associateBy(Location::title)
+        private val map: Map<String, Location> = values().associateBy(
+            Location::title)
+
+        private var area = Area.none
 
         fun getLocationFromString(name: String): Location {
-            return if (map.containsKey(name)){
-                map[name] ?: none
+            var location = none
+
+            if (map.containsKey(name)) {
+                location = map[name] ?: none
             }
-            else none
+
+            return location
         }
     }
 }

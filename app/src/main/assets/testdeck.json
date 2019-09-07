@@ -1,391 +1,391 @@
 [
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Snake",
     "value": 2,
     "image": "snake",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Snake",
     "value": 2,
     "image": "snake",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Snake",
     "value": 2,
     "image": "snake",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Snake",
     "value": 2,
     "image": "snake",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Bzzzzz",
     "value": 3,
     "image": "bzzzzz",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Bzzzzz",
     "value": 3,
     "image": "bzzzzz",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Bzzzzz",
     "value": 3,
     "image": "bzzzzz",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Bzzzzz",
     "value": 3,
     "image": "bzzzzz",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Hungry Plant",
     "value": 4,
     "image": "plant",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Nasty Plant",
     "value": 4,
     "image": "plant",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Hungry Plant",
     "value": 4,
     "image": "plant",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Nasty Plant",
     "value": 4,
     "image": "plant",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "U snack?",
     "value": 5,
     "image": "snack",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "U snack?",
     "value": 5,
     "image": "snack",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "U snack?",
     "value": 5,
     "image": "snack",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "U snack?",
     "value": 5,
     "image": "snack",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Grumpy Pig",
     "value": 6,
     "image": "pig",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Grumpy Pig",
     "value": 6,
     "image": "pig",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Grumpy Pig",
     "value": 6,
     "image": "pig",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Grumpy Pig",
     "value": 6,
     "image": "pig",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Zombie",
     "value": 7,
     "image": "zombie",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Zombie",
     "value": 7,
     "image": "zombie",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Zombie",
     "value": 7,
     "image": "zombie",
     "showValue" : "true"
   },
   {
-    "type": "MONSTER",
+    "type": "monster",
     "name": "Zombie",
     "value": 7,
     "image": "zombie",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Sword",
     "value": 3,
     "image": "sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Sword",
     "value": 3,
     "image": "sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Big Sword",
     "value": 4,
     "image": "big_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Big Sword",
     "value": 4,
     "image": "big_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Big Sword",
     "value": 4,
     "image": "big_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Big Sword",
     "value": 4,
     "image": "big_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Long Sword",
     "value": 5,
     "image": "long_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Long Sword",
     "value": 5,
     "image": "long_sword",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Axe",
     "value": 6,
     "image": "axe",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Axe",
     "value": 6,
     "image": "axe",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Axe",
     "value": 6,
     "image": "axe",
     "showValue" : "true"
   },
   {
-    "type": "WEAPON",
+    "type": "weapon",
     "name": "Axe",
     "value": 6,
     "image": "axe",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Shield",
     "value": 3,
     "image": "shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Shield",
     "value": 3,
     "image": "shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Edgy Shield",
     "value": 4,
     "image": "robust_shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Edgy Shield",
     "value": 4,
     "image": "robust_shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Robust Shield",
     "value": 5,
     "image": "regular_shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Robust Shield",
     "value": 5,
     "image": "regular_shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Big Shield",
     "value": 6,
     "image": "small_shield",
     "showValue" : "true"
   },
   {
-    "type": "SHIELD",
+    "type": "shield",
     "name": "Big Shield",
     "value": 6,
     "image": "small_shield",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Potion",
     "value": 2,
     "image": "potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Potion",
     "value": 2,
     "image": "potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Breakfast!",
     "value": 3,
     "image": "breakfast",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Breakfast!",
     "value": 3,
     "image": "breakfast",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Breakfast!",
     "value": 3,
     "image": "breakfast",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Breakfast!",
     "value": 3,
     "image": "breakfast",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Better Potion",
     "value": 4,
     "image": "better_potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "Better Potion",
     "value": 4,
     "image": "better_potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "STRONGER",
     "value": 5,
     "image": "stronger_potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "STRONGER",
     "value": 5,
     "image": "stronger_potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "The Special",
     "value": 6,
     "image": "special_potion",
     "showValue" : "true"
   },
   {
-    "type": "POTION",
+    "type": "potion",
     "name": "The Special",
     "value": 6,
     "image": "special_potion",

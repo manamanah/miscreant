@@ -7,9 +7,9 @@
 
 package com.example.android.miscreant.models
 
-import com.example.android.miscreant.CardType
-import com.example.android.miscreant.Difficulty
-import com.example.android.miscreant.Hero
+import com.example.android.miscreant.Enums.CardType
+import com.example.android.miscreant.Enums.Difficulty
+import com.example.android.miscreant.Enums.Hero
 
 data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking){
 
@@ -57,6 +57,6 @@ data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: 
     }
 
     fun getHeroCard() : Card {
-        return Card(CardType.HERO, heroName, currentHealth, hero.imageName)
+        return Card(CardType.hero, heroName, currentHealth, hero.imageName)
     }
 }
