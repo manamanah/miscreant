@@ -13,6 +13,7 @@
         tools:context=".views.GameFragment">
 
     <data>
+        <import type="android.view.View"/>
         <variable
                 name="gameViewModel"
                 type="com.example.android.miscreant.viewmodels.GameViewModel" />
@@ -305,6 +306,22 @@
                 android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
                 android:textSize="@dimen/fontSize_text"
                 tools:text="@string/max_health"
+                android:textColor="@color/secondaryTextColor"
+                app:layout_constraintEnd_toStartOf="@id/heart"
+                app:layout_constraintStart_toStartOf="@id/hero"
+                app:layout_constraintTop_toBottomOf="@id/hero" />
+
+        <TextView
+                android:id="@+id/potential_health"
+                style="@style/health_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/potential_health_desc"
+                android:text="@{Integer.toString(gameViewModel.heroPotentialHealth)}"
+                android:textSize="@dimen/fontSize_text"
+                tools:text="@string/max_health"
+                android:textColor="@{gameViewModel.heroPotentialHealth &lt; gameViewModel.heroCurrentHealth ? @color/aggressiveRed : @color/benefit}"
+                android:visibility="@{gameViewModel.showHeroPotentialHealth ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toStartOf="@id/heart"
                 app:layout_constraintStart_toStartOf="@id/hero"
                 app:layout_constraintTop_toBottomOf="@id/hero" />
@@ -329,6 +346,22 @@
                 android:contentDescription="@string/max_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
                 android:textSize="@dimen/fontSize_text"
+                android:textColor="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="@id/hero"
+                app:layout_constraintStart_toEndOf="@id/heart"
+                app:layout_constraintTop_toBottomOf="@id/hero"
+                tools:text="@string/max_health" />
+
+        <TextView
+                android:id="@+id/max_potential_health"
+                style="@style/health_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/max_health_desc"
+                android:text="@{Integer.toString(gameViewModel.heroPotentialMaxHealth)}"
+                android:textSize="@dimen/fontSize_text"
+                android:textColor="@color/benefit"
+                android:visibility="@{gameViewModel.showHeroPotentialMaxHealth ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toEndOf="@id/heart"
                 app:layout_constraintTop_toBottomOf="@id/hero"

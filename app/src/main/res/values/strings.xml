@@ -30,6 +30,7 @@
     <string name="max_health">12</string>
     <string name="max_health_desc">max health value</string>
     <string name="name">Hero\'s name</string>
+    <string name="potential_health_desc">Your hero\'s health, if you play this card</string>
     <string name="pre_game">Get ready!</string>
     <string name="pre_game_desc">Choose your play mode</string>
     <string name="settings_title_desc">Settings</string>

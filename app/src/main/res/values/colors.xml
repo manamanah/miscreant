@@ -26,8 +26,11 @@
     <color name="dungeonCard_center">#292828</color>
     <color name="dungeonCard_border">#707070</color>
 
+    <color name="transparent">#00000000</color>
+
     <!--EFFECT-->
     <color name="aggressiveRed">#e20008</color>
+    <color name="benefit">#3C9704</color>
     <color name="cardHighlight">#FFC107</color>
 
     <!--VIEW ELEMENTS-->
