@@ -283,14 +283,14 @@
     "type": "shield",
     "name": "Robust Shield",
     "health": 5,
-    "image": "round_shield_robust",
+    "image": "round_shield_big",
     "showHealth": "true"
   },
   {
     "type": "shield",
     "name": "Robust Shield",
     "health": 5,
-    "image": "round_shield_robust",
+    "image": "round_shield_big",
     "showHealth": "true"
   },
   {
