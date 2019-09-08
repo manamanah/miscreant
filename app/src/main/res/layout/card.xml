@@ -34,7 +34,7 @@
                     android:layout_height="@dimen/spacing_zero"
                     android:layout_margin="@dimen/spacing_min"
                     android:contentDescription="@string/card_img_desc"
-                    android:src="@{cardViewModel.image}"
+                    app:src='@{cardViewModel.image}'
                     tools:src="@drawable/dragon"
                     app:layout_constraintDimensionRatio="@fraction/card_ratio"
                     app:layout_constraintBottom_toBottomOf="parent"

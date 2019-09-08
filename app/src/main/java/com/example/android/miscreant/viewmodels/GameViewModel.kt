@@ -328,7 +328,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     private fun showDropLocationsForDungeonCard(){
         val isMonster = firstSelectedCard.type == CardType.monster
 
-        heroMap.forEach{ (location, card) ->
+        heroMap.forEach{ (_, card) ->
             card.value?.let {
                 if (isMonster){
                     if (it.type == CardType.backpack || it.type == CardType.discard || it.isEmpty()){
