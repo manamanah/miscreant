@@ -128,8 +128,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         private set
     // endregion
 
-    // todo no hardcoded strings
-    // region name dungeonCardsMap
+    // region dungeonCardsMap
     private var dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
     mutableMapOf(
         Location.dungeon_left_back to _cardLeftBack,
@@ -181,11 +180,12 @@ class GameViewModel(context: Context?) : ViewModel() {
 
         // set hero stuff
         _cardHero.value = gameSettings.getHeroCard()
+        _cardHero.value?.location = Location.hero
         _specialsUsed.value = gameSettings.usedSpecials
         heroSpecial = if (hero == Hero.archer) context.getString(R.string.archer_power)
                       else context.getString(R.string.viking_power)
 
-        // todo - consider: load all decks for difficulty here
+        // todo - consider: load all decks for difficulty @app start
     }
 
     fun startGame(){
@@ -210,15 +210,27 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     fun singleTap(view: View){
         // testing
-        var cardType = view.getCardTypeFromTag()
-        var location = view.getCardLocationByName()
+        val cardType = view.getCardTypeFromTag()
+        val location = view.getCardLocationByName()
 
         if (firstSelectedCard.isEmtpy()){
             firstSelectedCard = SelectedCard(location, cardType)
             showDropLocations()
         } else {
             secondSelectedCard = SelectedCard(location, cardType)
-            // todo show potential outcome
+
+            if (firstSelectedCard.location == secondSelectedCard.location){
+                removeHighlights()
+                resetSelectedCards()
+            } else {
+                // check if 2nd clicked card valid target
+                if (highlightedCards.any{ it.value?.location == secondSelectedCard.location}){
+                    showImpact()
+                } else {
+                    removeHighlights()
+                    resetSelectedCards()
+                }
+            }
         }
     }
 
@@ -253,8 +265,8 @@ class GameViewModel(context: Context?) : ViewModel() {
                 if (it.isEmpty()){
                     if (activeDeck.isNotEmpty()){
                         card.value = activeDeck[0]
-                        card.value?.setLocation(key) ?: Log.i("DEAL CARDS", "Card value is null - can't set location")
-                        //card.postValue(card.value)
+                        card.value?.location = key
+                        card.postValue(card.value)
                         activeDeck.removeAt(0)
                     } else {
                         moveBackrowCardsToDungeonFront()
@@ -270,21 +282,21 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardLeftFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardLeftBack, _cardLeftFront)
-                _cardLeftFront.value?.setLocation(Location.dungeon_left_front)
+                _cardLeftFront.value?.location = Location.dungeon_left_front
             }
         }
 
         _cardMiddleFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardMiddleBack, _cardMiddleFront)
-                _cardMiddleFront.value?.setLocation(Location.dungeon_middle_front)
+                _cardMiddleFront.value?.location = Location.dungeon_middle_front
             }
         }
 
         _cardRightFront.value?.let {
             if (!it.isEmpty()) {
                 moveFromToCard(_cardRightBack, _cardRightFront)
-                _cardRightFront.value?.setLocation(Location.dungeon_right_front)
+                _cardRightFront.value?.location = Location.dungeon_right_front
             }
         }
 
@@ -296,6 +308,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         from.value = Card()
     }
 
+    // region show drop locations
     // is called when a first card is selected
     private fun showDropLocations(){
         when(firstSelectedCard.area){
@@ -376,4 +389,31 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
         }
     }
+    // endregion
+
+    private fun removeHighlights(){
+        highlightedCards.forEach{ card ->
+            card.value?.let {
+                it.isHighlightOn = false
+                card.postValue(card.value)
+            }
+        }
+
+        highlightedCards.clear()
+    }
+
+    private fun resetSelectedCards(){
+        firstSelectedCard = SelectedCard()
+        secondSelectedCard = SelectedCard()
+    }
+
+    // region show potential impact
+
+    // if valid target visualise impact
+    // otherwise deselect
+    private fun showImpact(){
+
+
+    }
+    // endregion
 }

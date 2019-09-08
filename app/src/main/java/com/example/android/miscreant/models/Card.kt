@@ -19,16 +19,10 @@ data class Card(val type: CardType = CardType.none,
                 var showRIP: Boolean = false,
                 var showPotentialHealth: Boolean = false,
                 var isHighlightOn: Boolean = false,
-                var isAttackVisible: Boolean = false){
-
-    var location: Location = Location.none
-        private set
+                var isAttackVisible: Boolean = false,
+                var location: Location = Location.none){
 
     fun isEmpty(): Boolean {
         return type == CardType.none
-    }
-
-    fun setLocation(location: Location){
-        this.location = location
     }
 }
