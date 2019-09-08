@@ -11,5 +11,6 @@ enum class Area(val area: String) {
     dungeon("dungeon"),
     equipped("equipped"),
     backpack("backpack"),
+    hero("hero"),
     none("none")
 }

@@ -9,7 +9,7 @@ package com.example.android.miscreant.Enums
 
 enum class Location(val title: String){
     dungeon_left_back("dungeon_left_back"),
-    dungeon_middle_back("dungeon_middle_bac"),
+    dungeon_middle_back("dungeon_middle_back"),
     dungeon_right_back("dungeon_right_back"),
     dungeon_left_front("dungeon_left_front"),
     dungeon_middle_front("dungeon_middle_front"),
