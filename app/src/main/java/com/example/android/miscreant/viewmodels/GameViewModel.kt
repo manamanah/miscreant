@@ -294,14 +294,36 @@ class GameViewModel(context: Context?) : ViewModel() {
     // shortcut to make move, if 1st card selected and doubleTap on valid dropTarget
     fun doubleTap(view: View){
         if (firstSelected.isEmpty()){
-            Log.i("DOUBLE TAP", "No card has been selected yet. Returning")
             return
         }
 
-        // first card is selected - execute move/game action by double tap
-        // todo deactivate highlighting
-        // todo update card values
-        // todo move cards
+        val cardType = view.getCardTypeFromTag()
+        val location = view.getCardLocationByName()
+
+        if (secondSelected.isEmpty()) {
+            secondSelected = SelectedCard(location, cardType)
+        }
+
+        // if valid card drop target
+        if (firstSelected.location != secondSelected.location) {
+
+            if (highlightedCards.any { it.value?.location == secondSelected.location }){
+                _firstSelectedCard = getCard(firstSelected.inArea, firstSelected.location)
+                _secondSelectedCard = getCard(secondSelected.inArea, secondSelected.location)
+
+                val output = cardResolver.resolveCardAction(
+                    firstSelected,
+                    _firstSelectedCard.value ?: Card(),
+                    _secondSelectedCard.value ?: Card(),
+                    settings.currentHealth,
+                    settings.currentMaxHealth
+                )
+                applyImpact(output)
+            }
+        }
+
+        resetSelectedCards()
+        moveBackrowCardsToDungeonFront()
     }
 
     // better throw exception -> no game possible w/o deck
