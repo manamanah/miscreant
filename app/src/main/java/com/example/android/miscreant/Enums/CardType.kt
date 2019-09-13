@@ -20,7 +20,7 @@ enum class CardType(val id: String) {
     companion object{
         private val map = values().associateBy(CardType::id)
 
-        fun getTypeFromString(name: String) : CardType {
+        fun getTypeFromString(name: String): CardType {
             return if (map.containsKey(name)){
                 map[name] ?: none
             } else {

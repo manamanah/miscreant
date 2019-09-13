@@ -22,10 +22,7 @@ enum class Location(val title: String){
     none("none");
 
     companion object {
-        private val map: Map<String, Location> = values().associateBy(
-            Location::title)
-
-        private var area = Area.none
+        private val map: Map<String, Location> = values().associateBy(Location::title)
 
         fun getLocationFromString(name: String): Location {
             var location = none
@@ -33,7 +30,6 @@ enum class Location(val title: String){
             if (map.containsKey(name)) {
                 location = map[name] ?: none
             }
-
             return location
         }
     }
