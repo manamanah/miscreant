@@ -5,16 +5,15 @@
  * See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
  */
 
-package com.example.android.miscreant.models
+package com.example.android.miscreant
 
 import com.example.android.miscreant.Enums.CardType
 import com.example.android.miscreant.Enums.Difficulty
 import com.example.android.miscreant.Enums.Hero
+import com.example.android.miscreant.Enums.Location
+import com.example.android.miscreant.models.Card
 
-data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking){
-
-    val maxDeckNumber: Int = 3
-    val maxSpecials: Int = 3
+class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking, val maxDeckNumber: Int = 3, val maxSpecials: Int = 3){
 
     var usedSpecials: Int = 0
         private set
@@ -35,28 +34,38 @@ data class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: 
         when (difficulty){
             Difficulty.easy -> {
                 startHealth = 12
-                currentHealth = startHealth
-                currentMaxHealth = startHealth
                 dealCardsPenalty = 0
             }
             Difficulty.normal -> {
                 startHealth = 12
-                currentHealth = startHealth
-                currentMaxHealth = startHealth
                 dealCardsPenalty = 1
             }
             Difficulty.hard -> {
                 startHealth = 11
-                currentHealth = startHealth
-                currentMaxHealth = startHealth
                 dealCardsPenalty = 1
             }
         }
 
+        currentHealth = startHealth
+        currentMaxHealth = startHealth
         usedSpecials = if (hero == Hero.archer) maxSpecials else 0
     }
 
-    fun getHeroCard() : Card {
-        return Card(CardType.hero, heroName, currentHealth, hero.imageName)
+    fun getHeroCard(): Card {
+        return Card(
+            type = CardType.hero,
+            name = heroName,
+            health = currentHealth,
+            image = hero.imageName,
+            location = Location.hero
+        )
+    }
+
+    fun updateHeroHealth(newHealth: Int){
+        currentHealth = newHealth
+    }
+
+    fun updateHeroMaxHealth(addHealth: Int){
+        currentMaxHealth = currentMaxHealth + addHealth
     }
 }
