@@ -66,6 +66,6 @@ class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: Strin
     }
 
     fun updateHeroMaxHealth(addHealth: Int){
-        currentMaxHealth = currentMaxHealth + addHealth
+        currentMaxHealth = addHealth
     }
 }
