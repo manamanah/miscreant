@@ -28,7 +28,9 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
     private lateinit var gestureDetector : GestureDetector
-    private lateinit var selectedCard : View
+    private lateinit var selectedView : View
+
+    // todo listener on background -> tap somewhere = deselect
 
     // static access for setListener needed in bindingadapter when creating cards in Fragment
     companion object Listener  {
@@ -47,15 +49,14 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     // region touch interactions
     override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
         // don't bother if view not valid
-        selectedCard = view ?: return true
+        selectedView = view ?: return true
         gestureDetector.onTouchEvent(motionEvent)
-
+        view.performClick()
         return true
     }
 
     override fun onDoubleTap(motionEvent: MotionEvent?): Boolean {
-        Log.i("GESTURE", "double tap")
-        gameViewModel.doubleTap(selectedCard)
+        gameViewModel.doubleTap(selectedView)
         return true
     }
 
@@ -64,8 +65,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     }
 
     override fun onSingleTapConfirmed(motionEvent: MotionEvent?): Boolean {
-        Log.i("GESTURE", "single tap")
-        gameViewModel.singleTap(selectedCard)
+        gameViewModel.singleTap(selectedView)
         return true
     }
     // endregion
@@ -76,11 +76,10 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             R.layout.fragment_game, container, false)
 
         // set up listeners for card touch interaction
-        // todo drag & drop as well
         setFragmentInstance(this)
         gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
         gestureDetector.setOnDoubleTapListener(this)
-        selectedCard = View(context)
+        selectedView = View(context)
 
         // allows data binding to observe LiveData in fragment lifecycle
         binding.lifecycleOwner = this
@@ -92,6 +91,8 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
 
         // todo get navigation arguments from selection in pre-game-fragment
         // region init game settings and hero stuff
+        binding.gameBackground.setOnTouchListener(this)
+
         gameViewModel.initializeGameSettings(Difficulty.easy, "hero", Hero.archer)
         binding.heroSpecial.text = gameViewModel.heroSpecial
 

@@ -20,6 +20,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/game_background"
+            android:tag="@string/game_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/dungeon_gradient">

@@ -27,6 +27,7 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     // needed for loading decks
     private val context: Context = context ?: throw IllegalArgumentException("${this.javaClass.simpleName}: context is NULL" )
+    private val gameBackground = context?.getString(R.string.game_background).orEmpty()
     private lateinit var settings: Settings
 
     // region deck related
@@ -241,6 +242,12 @@ class GameViewModel(context: Context?) : ViewModel() {
     // 2nd tap - on 1st card: deselect / on diff card: select a 2nd card and show potential impact
     // 3rd tap: on diff card - deselect / on 2nd card: move and resolve, resetHighlights
     fun singleTap(view: View){
+        // if clicked somewhere else on game screen reset
+        if (view.tag == gameBackground){
+            resetSelectedCards()
+            return
+        }
+
         val cardType = view.getCardTypeFromTag()
         val location = view.getCardLocationByName()
 
