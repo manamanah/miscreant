@@ -345,13 +345,18 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     private fun dealCards(){
         // todo include check if deck empty: scoring etc.
-
+        if (activeDeck.isEmpty()){
+            // check, if monster left -> not over yet
+            // otherwise trigger end -> keep equipped, stored cards (button deal new-> new deck)
+            Log.i("GAME END", "TO BE DONE")
+            return
+        }
         // fill dungeon
         dungeonMap.forEach { (key, card)->
             card.value?.let {
                 if (it.isEmpty()){
                     if (activeDeck.isNotEmpty()){
-                        var dealtCard = activeDeck[0]
+                        val dealtCard = activeDeck[0]
                         dealtCard.location = key
                         card.value = dealtCard
                         activeDeck.removeAt(0)
@@ -361,8 +366,8 @@ class GameViewModel(context: Context?) : ViewModel() {
                 else return@forEach
             }
         }
-
-        // todo monster retaliate
+        
+        _cardsLeftInDeck.postValue(activeDeck.size)
     }
 
     private fun applyImpact(impactOutput: ImpactOutput){
@@ -401,6 +406,9 @@ class GameViewModel(context: Context?) : ViewModel() {
                 settings.updateHeroMaxHealth(impactOutput.maxHealth)
             }
         }
+
+        // maybe monster was killed in front row
+        moveBackrowCardsToDungeonFront()
     }
 
     private fun isValidFirstSelectedCard(cardType: CardType, location: Location): Boolean {
@@ -522,17 +530,22 @@ class GameViewModel(context: Context?) : ViewModel() {
                 moveFromToCard(_cardRightBack, _cardRightFront)
             }
         }
+
+        val emptyDungeonSpots = dungeonMap.count { it.value.value?.isEmpty() ?: true}
+        if (emptyDungeonSpots == 3){
+            // todo trigger monster retaliate
+            dealCards()
+        }
     }
 
     private fun moveFromToCard(from: MutableLiveData<Card>, to: MutableLiveData<Card>){
         val toLocation = to.value?.location ?: Location.none
-        var fromCard = from.value ?: Card()
+        val fromCard = from.value ?: Card()
 
         from.value = Card(location = fromCard.location)
-        from.postValue(from.value)
 
         fromCard.location = toLocation
-        to.postValue(fromCard)
+        to.value = fromCard
     }
 
     private fun getCard(area: Area, location: Location): MutableLiveData<Card> {
