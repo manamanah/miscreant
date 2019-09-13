@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel
 import com.example.android.miscreant.*
 import com.example.android.miscreant.Enums.*
 import com.example.android.miscreant.models.Card
+import com.example.android.miscreant.models.ImpactOutput
 import com.example.android.miscreant.models.SelectedCard
 import com.example.android.miscreant.Settings
 import com.google.gson.Gson
@@ -53,6 +54,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     // endregion
 
     // region selected, highlighted cards, cardresolver
+    private var cardResolver = CardResolver()
     private var firstSelected = SelectedCard()
     private var secondSelected= SelectedCard()
     private var _firstSelectedCard = MutableLiveData<Card>()
@@ -261,7 +263,13 @@ class GameViewModel(context: Context?) : ViewModel() {
                     _firstSelectedCard = getCard(firstSelected.inArea, firstSelected.location)
                     _secondSelectedCard = getCard(secondSelected.inArea, secondSelected.location)
 
-                    // todo visualize outcome
+                    val output = cardResolver.showImpact(
+                                                _firstSelectedCard.value ?: Card(),
+                                                _secondSelectedCard.value ?: Card(),
+                                                settings.currentHealth,
+                                                settings.currentMaxHealth
+                                            )
+                    applyImpact(output)
                     return
                 }
             }
@@ -269,7 +277,14 @@ class GameViewModel(context: Context?) : ViewModel() {
         } // if tap on 2nd card: resolve card move action
         else {
             if (location == secondSelected.location){
-                // todo resolve outcome
+                val output = cardResolver.resolveCardAction(
+                                            firstSelected,
+                                            _firstSelectedCard.value ?: Card(),
+                                            _secondSelectedCard.value ?: Card(),
+                                            settings.currentHealth,
+                                            settings.currentMaxHealth
+                                        )
+                applyImpact(output)
             }
             resetSelectedCards()
             moveBackrowCardsToDungeonFront()
@@ -319,6 +334,44 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
 
         // todo monster retaliate
+    }
+
+    private fun applyImpact(impactOutput: ImpactOutput){
+        // if different aka empty card returned - set new card, otherwise update
+        if (_firstSelectedCard.value?.type != impactOutput.firstCard.type){
+            _firstSelectedCard.value = impactOutput.firstCard
+        }
+        else _firstSelectedCard.postValue(impactOutput.firstCard)
+
+        if (_secondSelectedCard.value?.type != impactOutput.secondCard.type){
+            _secondSelectedCard.value = impactOutput.secondCard
+        }
+        else _secondSelectedCard.postValue(impactOutput.secondCard)
+
+        // todo handle if secondCard Hero and RIP
+        // todo load according endscreen
+
+        if (impactOutput.currentHealth != -1){
+            if (impactOutput.showPotentialHealth){
+                _heroPotentialHealth.postValue(impactOutput.currentHealth)
+                _showHeroPotentialHealth.postValue(true)
+            }
+            else{
+                _heroCurrentHealth.postValue(impactOutput.currentHealth)
+                settings.updateHeroHealth(impactOutput.currentHealth)
+            }
+        }
+
+        if (impactOutput.maxHealth != -1){
+            if (impactOutput.showPotentialMaxHealth){
+                _heroPotentialMaxHealth.postValue(impactOutput.maxHealth)
+                _showHeroPotentialMaxHealth.postValue(true)
+            }
+            else{
+                _heroMaxHealth.postValue(impactOutput.maxHealth)
+                settings.updateHeroMaxHealth(impactOutput.maxHealth)
+            }
+        }
     }
 
     private fun isValidFirstSelectedCard(cardType: CardType, location: Location): Boolean {
