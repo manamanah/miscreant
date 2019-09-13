@@ -11,6 +11,9 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <import type="com.example.android.miscreant.Enums.Location"/>
+        <import type="com.example.android.miscreant.Enums.CardType"/>
         <variable
                 name="cardViewModel"
                 type="com.example.android.miscreant.models.Card" />
@@ -34,6 +37,7 @@
                     android:layout_height="@dimen/spacing_zero"
                     android:layout_margin="@dimen/spacing_min"
                     android:contentDescription="@string/card_img_desc"
+                    android:padding="@{cardViewModel.type == CardType.none ? @dimen/spacing_normal : @dimen/spacing_zero}"
                     app:src='@{cardViewModel.image}'
                     tools:src="@drawable/dragon"
                     app:layout_constraintDimensionRatio="@fraction/card_ratio"
@@ -65,7 +69,8 @@
                     android:contentDescription="@string/card_title_desc"
                     android:text="@{cardViewModel.name}"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/fontSize_card_title"
+                    android:textSize="@{cardViewModel.location == Location.backpack ? @dimen/fontSize_card_in_backpack : @dimen/fontSize_card_title}"
+                    android:textScaleX="@fraction/letter_spacing_cards"
                     tools:text="@string/placeholder_card_title"
                     app:layout_constraintBottom_toBottomOf="@id/card_image"
                     app:layout_constraintEnd_toEndOf="@id/card_image"
@@ -85,6 +90,27 @@
                     app:layout_constraintTop_toTopOf="@id/card_image"/>
 
             <TextView
+                    android:id="@+id/card_potentialValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_half"
+                    android:visibility="@{cardViewModel.showPotentialHealth ? View.VISIBLE : View.GONE}"
+                    android:text="@{Integer.toString(cardViewModel.potentialHealth)}"
+                    android:textColor="@color/aggressiveRed"
+                    android:textSize="@dimen/fontSize_card_values"
+                    tools:text="@string/placeholder_card_value"
+                    app:layout_constraintStart_toStartOf="@id/card_image"
+                    app:layout_constraintTop_toTopOf="@id/card_image"/>
+
+            <ImageView
+                    android:id="@+id/disabled_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/card_disabled_desc"
+                    android:background="@color/look_disabled"
+                    android:visibility="@{cardViewModel.isLookActive ? View.GONE : View.VISIBLE}"/>
+
+            <TextView
                     android:id="@+id/card_rip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,18 +125,34 @@
                     app:layout_constraintStart_toStartOf="@+id/card_image"
                     app:layout_constraintTop_toTopOf="@+id/card_image"/>
 
-            <TextView
-                    android:id="@+id/card_potentialValue"
+            <ImageView
+                    android:id="@+id/consumed_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_half"
-                    android:visibility="@{cardViewModel.showPotentialHealth ? View.VISIBLE : View.GONE}"
-                    android:text="@{Integer.toString(cardViewModel.potentialHealth)}"
-                    android:textColor="@color/aggressiveRed"
-                    android:textSize="@dimen/fontSize_card_values"
-                    tools:text="@string/placeholder_card_value"
-                    app:layout_constraintStart_toStartOf="@id/card_image"
-                    app:layout_constraintTop_toTopOf="@id/card_image"/>
+                    android:contentDescription="@string/card_consumed_img_desc"
+                    android:padding="@dimen/spacing_normal"
+                    android:visibility="@{cardViewModel.showConsumed ? View.VISIBLE : View.GONE}"
+                    android:tint="@color/aggressiveRed"
+                    android:src="@drawable/trash"
+                    tools:src="@drawable/trash"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/equip_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/card_equip_visual_desc"
+                    android:src="@drawable/arrow_down"
+                    tools:src="@drawable/arrow_down"
+                    android:tint='@{cardViewModel.isEmpty() ? @color/equip : @color/aggressiveRed}'
+                    android:visibility="@{cardViewModel.showEquip ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

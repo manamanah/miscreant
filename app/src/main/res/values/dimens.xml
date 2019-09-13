@@ -12,6 +12,7 @@
     <dimen name="thumb_size">18dp</dimen>
     <dimen name="card_border">4dp</dimen>
     <dimen name="game_titlebar_height">80dp</dimen>
+    <dimen name="heart_size">30dp</dimen>
 
     <!--SWITCH-->
     <dimen name="switch_min_width">150dp</dimen>
@@ -49,7 +50,8 @@
     <dimen name="fontSize_text">18sp</dimen>
     <dimen name="fontSize_text_small">12sp</dimen>
     <dimen name="fontSize_card_values">16sp</dimen>
-    <dimen name="fontSize_card_title">12sp</dimen>
+    <dimen name="fontSize_card_title">10sp</dimen>
+    <dimen name="fontSize_card_in_backpack">8sp</dimen>
     <dimen name="fontSize_card_RIP">30sp</dimen>
 
 </resources>

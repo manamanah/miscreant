@@ -300,11 +300,10 @@
         <TextView
                 android:id="@+id/current_health"
                 style="@style/health_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/heart_size"
+                android:layout_height="@dimen/heart_size"
                 android:contentDescription="@string/current_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
-                android:textSize="@dimen/fontSize_text"
                 tools:text="@string/max_health"
                 android:textColor="@color/secondaryTextColor"
                 app:layout_constraintEnd_toStartOf="@id/heart"
@@ -314,11 +313,11 @@
         <TextView
                 android:id="@+id/potential_health"
                 style="@style/health_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/heart_size"
+                android:layout_height="@dimen/heart_size"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:contentDescription="@string/potential_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroPotentialHealth)}"
-                android:textSize="@dimen/fontSize_text"
                 tools:text="@string/max_health"
                 android:textColor="@{gameViewModel.heroPotentialHealth &lt; gameViewModel.heroCurrentHealth ? @color/aggressiveRed : @color/benefit}"
                 android:visibility="@{gameViewModel.showHeroPotentialHealth ? View.VISIBLE : View.GONE}"
@@ -328,8 +327,8 @@
 
         <ImageView
                 android:id="@+id/heart"
-                android:layout_width="@dimen/spacing_zero"
-                android:layout_height="@dimen/spacing_zero"
+                android:layout_width="@dimen/heart_size"
+                android:layout_height="@dimen/heart_size"
                 android:background="@color/backgroundLight"
                 android:contentDescription="@string/heart_desc"
                 app:layout_constraintBottom_toBottomOf="@id/current_health"
@@ -341,31 +340,30 @@
         <TextView
                 android:id="@+id/max_health"
                 style="@style/health_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/heart_size"
+                android:layout_height="@dimen/heart_size"
                 android:contentDescription="@string/max_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
-                android:textSize="@dimen/fontSize_text"
+                tools:text="@string/max_health"
                 android:textColor="@color/secondaryTextColor"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toEndOf="@id/heart"
-                app:layout_constraintTop_toBottomOf="@id/hero"
-                tools:text="@string/max_health" />
+                app:layout_constraintTop_toBottomOf="@id/hero" />
 
         <TextView
                 android:id="@+id/max_potential_health"
                 style="@style/health_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/heart_size"
+                android:layout_height="@dimen/heart_size"
+                android:layout_marginStart="@dimen/spacing_normal"
                 android:contentDescription="@string/max_health_desc"
                 android:text="@{Integer.toString(gameViewModel.heroPotentialMaxHealth)}"
-                android:textSize="@dimen/fontSize_text"
+                tools:text="@string/max_health"
                 android:textColor="@color/benefit"
                 android:visibility="@{gameViewModel.showHeroPotentialMaxHealth ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toEndOf="@id/heart"
-                app:layout_constraintTop_toBottomOf="@id/hero"
-                tools:text="@string/max_health" />
+                app:layout_constraintTop_toBottomOf="@id/hero" />
 
         <ImageView
                 android:id="@+id/equipright"
@@ -383,8 +381,7 @@
                 android:id="@+id/deal_new"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/spacing_zero"
-                android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_double"
                 android:layout_marginStart="@dimen/spacing_double"
                 android:layout_marginEnd="@dimen/spacing_double"
                 android:background="@drawable/button_custom"
@@ -505,11 +502,12 @@
 
         <include
                 android:id="@+id/card_backpack"
-                layout="@layout/backpack"
+                layout="@layout/card"
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
-                android:layout_marginTop="@dimen/spacing_normal"
-                app:layout_constraintDimensionRatio="@fraction/sixty_five_percent"
+                android:layout_marginTop="@dimen/spacing_half"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintStart_toEndOf="@id/equipright"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/equipright"
@@ -520,21 +518,15 @@
                 layout="@layout/discard"
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
-                android:layout_marginTop="@dimen/spacing_normal"
-                app:layout_constraintDimensionRatio="@fraction/sixty_percent"
-                app:layout_constraintTop_toBottomOf="@id/card_equip_left"
+                android:layout_marginTop="@dimen/spacing_half"
+                app:layout_constraintDimensionRatio="@fraction/card_ratio"
+                app:layout_constraintTop_toBottomOf="@id/equipleft"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/equipleft"
                 app:layout_constraintBottom_toBottomOf="parent"
                 bind:cardViewModel="@{gameViewModel.cardDiscard}" />
 
         <!--GUIDELINES-->
-        <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_hero"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="@fraction/sixty_eight_percent" />
-
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_dungeon_top"
                 android:layout_width="match_parent"
@@ -548,6 +540,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="@fraction/fifty_three_percent" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="@fraction/sixty_five_percent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

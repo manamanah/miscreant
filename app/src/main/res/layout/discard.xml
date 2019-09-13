@@ -16,7 +16,7 @@
     </data>
 
         <ImageView
-                android:id="@+id/card_image"
+                android:id="@+id/card_discard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/discard_desc"

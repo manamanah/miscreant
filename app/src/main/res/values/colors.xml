@@ -31,7 +31,9 @@
     <!--EFFECT-->
     <color name="aggressiveRed">#e20008</color>
     <color name="benefit">#3C9704</color>
+    <color name="equip">#3C9704</color>
     <color name="cardHighlight">#FFC107</color>
+    <color name="look_disabled">#96757575</color>
 
     <!--VIEW ELEMENTS-->
     <color name="progress">#ffa000</color>

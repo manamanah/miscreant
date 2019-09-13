@@ -124,5 +124,8 @@
     <string name="easy_deck_path">testdeck.json</string>
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
+    <string name="card_consumed_img_desc">This item is used up.</string>
+    <string name="card_disabled_desc">If you choose this action, this card will be moved to target location.</string>
+    <string name="card_equip_visual_desc">Your selected card will be placed here.</string>
 
 </resources>
