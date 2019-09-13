@@ -390,7 +390,8 @@
                 android:contentDescription="@string/deal_new_desc"
                 android:paddingStart="@dimen/spacing_normal"
                 android:paddingEnd="@dimen/spacing_normal"
-                android:text="@string/deal_new"
+                android:text='@{gameViewModel.dealNewPenalty == 0 ? @string/deal_new : @string/deal_new + ": -" + Integer.toString(gameViewModel.dealNewPenalty) + " HP"}'
+                tools:text="@string/deal_new"
                 android:textScaleX="@fraction/letter_spacing_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/card_backpack"

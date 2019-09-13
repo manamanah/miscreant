@@ -44,7 +44,7 @@
     <string name="back_button_desc">back button</string>
     <string name="credits">CREDITS</string>
     <string name="credits_button_desc">Credits button</string>
-    <string name="deal_new">deal new: -1 HP</string>
+    <string name="deal_new">deal new</string>
     <string name="deal_new_desc">deal new dungeon cards, suffer 1 damage</string>
     <string name="highscore">HIGHSCORES</string>
     <string name="highscore_button_desc">Highscores button</string>

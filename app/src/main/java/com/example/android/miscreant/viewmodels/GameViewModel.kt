@@ -171,6 +171,10 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     var heroSpecial  : String = ""
         private set
+
+    private var _dealNewPenalty = MutableLiveData<Int>()
+    val dealNewPenalty : LiveData<Int>
+        get() = _dealNewPenalty
     // endregion
 
     init {
@@ -203,6 +207,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
 
         // initialize start values
+        _dealNewPenalty.value = settings.dealCardsPenalty
         _heroCurrentHealth.value = settings.currentHealth
         _heroMaxHealth.value = settings.currentMaxHealth
         _cardsLeftInDeck.value = if (activeDeck.isEmpty()) 0 else activeDeck.size
@@ -333,6 +338,25 @@ class GameViewModel(context: Context?) : ViewModel() {
         moveBackrowCardsToDungeonFront()
     }
 
+    fun dealNewCards(){
+        // apply penalty
+        settings.updateHeroHealth(settings.currentHealth - settings.dealCardsPenalty)
+        _heroCurrentHealth.postValue(settings.currentHealth)
+
+        // existing cards back into deck
+        dungeonMap.forEach{( key, card ) ->
+            card.value?.let {
+                if (!it.isEmpty()){
+                    activeDeck.add(it)
+                    card.value = Card(location = it.location)
+                }
+            }
+        }
+
+        activeDeck.shuffle()
+        dealCards()
+    }
+
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath : String) : MutableList<Card> {
 
@@ -366,7 +390,7 @@ class GameViewModel(context: Context?) : ViewModel() {
                 else return@forEach
             }
         }
-        
+
         _cardsLeftInDeck.postValue(activeDeck.size)
     }
 

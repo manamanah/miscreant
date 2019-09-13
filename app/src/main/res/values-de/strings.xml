@@ -90,7 +90,7 @@
     <string name="language_title_desc">Spracheinstellung</string>
     <string name="normal">normal</string>
     <string name="normal_desc">Radiobutton für standard Spiel</string>
-    <string name="deal_new">neue Karten: -1 HP</string>
+    <string name="deal_new">neue Karten</string>
     <string name="deal_new_desc">neue Karten geben und 1 Schaden erleiden</string>
     <string name="special_use_desc">Anzeige für Kraftgebrauch</string>
     <string name="skull_desc">Totenkopfbild</string>

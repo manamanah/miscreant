@@ -30,8 +30,6 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     private lateinit var gestureDetector : GestureDetector
     private lateinit var selectedView : View
 
-    // todo listener on background -> tap somewhere = deselect
-
     // static access for setListener needed in bindingadapter when creating cards in Fragment
     companion object Listener  {
 
@@ -93,7 +91,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // region init game settings and hero stuff
         binding.gameBackground.setOnTouchListener(this)
 
-        gameViewModel.initializeGameSettings(Difficulty.easy, "hero", Hero.archer)
+        gameViewModel.initializeGameSettings(Difficulty.normal, "hero", Hero.archer)
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
         gameViewModel.specialsUsed.observe(this, Observer{
@@ -128,13 +126,17 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
-        // region menu buttons
+        // region buttons
         binding.backButton.setOnClickListener { view: View ->
             fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
         }
 
         binding.settingsButton.setOnClickListener { view: View ->
             view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToSettingsFragment())
+        }
+
+        binding.dealNew.setOnClickListener {
+            gameViewModel.dealNewCards()
         }
         // endregion
 
