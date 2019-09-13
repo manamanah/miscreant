@@ -17,7 +17,6 @@
     <!--RATIOS-->
     <fraction name="card_ratio">0.7</fraction>
     <fraction name="skull_ratio">3</fraction>
-    <fraction name="special_use_ratio">1.5</fraction>
 
     <!--PERCENTAGES-->
     <fraction name="twenty_percent">0.2</fraction>

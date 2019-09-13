@@ -68,4 +68,8 @@ class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: Strin
     fun updateHeroMaxHealth(addHealth: Int){
         currentMaxHealth = addHealth
     }
+
+    fun updateUsedSpecials(){
+        usedSpecials += 1
+    }
 }

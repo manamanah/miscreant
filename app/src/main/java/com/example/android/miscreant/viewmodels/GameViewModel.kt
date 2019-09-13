@@ -431,32 +431,58 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
         }
 
+        if (impactOutput.specialUsed){
+            val tempUsedSpecials = settings.usedSpecials + 1
+
+            if (!impactOutput.potentialSpecialUse){
+                settings.updateUsedSpecials()
+            }
+            _specialsUsed.postValue(tempUsedSpecials)
+        }
+
         // maybe monster was killed in front row
         moveBackrowCardsToDungeonFront()
     }
 
     private fun isValidFirstSelectedCard(cardType: CardType, location: Location): Boolean {
-
         val isEmptyBackpack = location == Location.backpack && cardBackpack.value?.isEmpty() ?: false
 
-        val validCard = cardType != CardType.none && cardType != CardType.hero &&
+        val isHeroChecked = if (settings.hero == Hero.archer) cardType != CardType.hero
+                                    else settings.usedSpecials < settings.maxSpecials
+
+        val validCard = cardType != CardType.none &&
                                 location != Location.dungeon_left_back &&
                                 location != Location.dungeon_middle_back &&
                                 location != Location.dungeon_right_back &&
                                 location != Location.none &&
                                 location != Location.discard
 
-        return validCard && !isEmptyBackpack
+        return validCard && !isEmptyBackpack && isHeroChecked
     }
 
     // region show drop locations
     // is called when a first card is selected
     private fun showDropLocations(){
         when(firstSelected.inArea){
+            Area.hero -> showDropLocationsForHero()
             Area.dungeon -> showDropLocationsForDungeonCard()
             Area.equipped -> showDropLocationsForEquippedCard()
             Area.backpack -> showDropLocationsForBackpackedCard()
             else -> return
+        }
+    }
+
+    // only viking -> to apply special on equipped weapon
+    private fun showDropLocationsForHero(){
+        heroMap.forEach{ (location, card) ->
+            card.value?.let {
+                if (!it.isEmpty() && it.type == CardType.weapon &&
+                    (location == Location.equip_left || location == Location.equip_right)){
+                    it.isHighlightOn = true
+                    card.postValue(it)
+                    highlightedCards.add(card)
+                }
+            }
         }
     }
 
@@ -469,7 +495,6 @@ class GameViewModel(context: Context?) : ViewModel() {
                     card.postValue(it)
                     highlightedCards.add(card)
                 }
-                else return@forEach
             }
         }
     }
@@ -605,7 +630,7 @@ class GameViewModel(context: Context?) : ViewModel() {
             if (!it.isEmpty()){
                 it.showRIP = false
                 it.showEquip = false
-                it.showHealth = true
+                it.showHealth = if (it.type == CardType.hero) false else true
                 it.showConsumed = false
                 it.showPotentialHealth = false
                 it.isLookActive = true
@@ -618,6 +643,8 @@ class GameViewModel(context: Context?) : ViewModel() {
         _showHeroPotentialHealth.postValue(_showHeroPotentialHealth.value)
         _showHeroPotentialMaxHealth.value = false
         _showHeroPotentialMaxHealth.postValue(_showHeroPotentialMaxHealth.value)
+
+        _specialsUsed.postValue(settings.usedSpecials)
 
         firstSelected = SelectedCard()
         secondSelected = SelectedCard()

@@ -91,7 +91,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // region init game settings and hero stuff
         binding.gameBackground.setOnTouchListener(this)
 
-        gameViewModel.initializeGameSettings(Difficulty.normal, "hero", Hero.archer)
+        gameViewModel.initializeGameSettings(Difficulty.normal, "hero", Hero.viking)
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
         gameViewModel.specialsUsed.observe(this, Observer{

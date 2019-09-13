@@ -7,4 +7,13 @@
 
 package com.example.android.miscreant.models
 
-data class ImpactOutput(var firstCard: Card = Card(), var secondCard: Card = Card(), var currentHealth: Int = -1, var maxHealth: Int = -1, var showPotentialHealth: Boolean = false, var showPotentialMaxHealth: Boolean = false)
+data class ImpactOutput(
+    var firstCard: Card = Card(),
+    var secondCard: Card = Card(),
+    var currentHealth: Int = -1,
+    var maxHealth: Int = -1,
+    var showPotentialHealth: Boolean = false,
+    var showPotentialMaxHealth: Boolean = false,
+    val specialUsed: Boolean = false,
+    val potentialSpecialUse: Boolean = false
+)

@@ -25,6 +25,10 @@ class CardResolver {
     // 1st backpack -> only equip
     // location backpack, discard, equip on empty
     fun showImpact(firstCard: Card, secondCard: Card, currentHealth: Int = -1, currentMaxHealth: Int = -1): ImpactOutput {
+        if (firstCard.type == CardType.hero){
+            return showHeroSpecial(firstCard, secondCard, true)
+        }
+
         // first card moving somewhere -> look inactive
         firstCard.isLookActive = false
 
@@ -63,6 +67,10 @@ class CardResolver {
     }
 
     fun resolveCardAction(firstSelected: SelectedCard, firstCard: Card, secondCard: Card, currentHealth: Int = -1, currentMaxHealth: Int = -1): ImpactOutput {
+        if (firstCard.type == CardType.hero){
+            return showHeroSpecial(firstCard, secondCard, false)
+        }
+
         // store card in backpack
         if (secondCard.location == Location.backpack){
             val firstCardLocation = firstCard.location
@@ -89,6 +97,20 @@ class CardResolver {
             }
             else -> throw InvalidParameterException("Firstcard in invalid area ${firstSelected.inArea}," +
                     " secondCardLocation ${secondCard.location}")
+        }
+    }
+
+    private fun showHeroSpecial(firstCard: Card, secondCard: Card, visualizeOnly: Boolean): ImpactOutput {
+        if (visualizeOnly){
+            secondCard.showHealth = false
+            secondCard.showPotentialHealth = true
+            secondCard.potentialHealth = secondCard.health + 1
+
+            return ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true, potentialSpecialUse = true)
+        }
+        else {
+            secondCard.health = secondCard.health + 1
+            return ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true)
         }
     }
 

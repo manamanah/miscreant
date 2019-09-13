@@ -242,33 +242,30 @@
 
         <ImageView
                 android:id="@+id/special_use_1"
-                android:layout_width="@dimen/spacing_zero"
-                android:layout_height="@dimen/spacing_zero"
+                android:layout_width="@dimen/max_special_size"
+                android:layout_height="@dimen/max_special_size"
                 android:contentDescription="@string/special_use_desc"
                 app:layout_constraintBottom_toTopOf="@id/hero_special"
-                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
                 app:layout_constraintEnd_toStartOf="@id/special_use_2"
                 app:layout_constraintStart_toStartOf="@id/hero"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <ImageView
                 android:id="@+id/special_use_2"
-                android:layout_width="@dimen/spacing_zero"
-                android:layout_height="@dimen/spacing_zero"
+                android:layout_width="@dimen/max_special_size"
+                android:layout_height="@dimen/max_special_size"
                 android:contentDescription="@string/special_use_desc"
                 app:layout_constraintBottom_toTopOf="@id/hero_special"
-                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
                 app:layout_constraintEnd_toStartOf="@id/special_use_3"
                 app:layout_constraintStart_toEndOf="@id/special_use_1"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <ImageView
                 android:id="@+id/special_use_3"
-                android:layout_width="@dimen/spacing_zero"
-                android:layout_height="@dimen/spacing_zero"
+                android:layout_width="@dimen/max_special_size"
+                android:layout_height="@dimen/max_special_size"
                 android:contentDescription="@string/special_use_desc"
                 app:layout_constraintBottom_toTopOf="@id/hero_special"
-                app:layout_constraintDimensionRatio="@fraction/special_use_ratio"
                 app:layout_constraintEnd_toEndOf="@id/hero"
                 app:layout_constraintStart_toEndOf="@id/special_use_2"
                 app:srcCompat="@android:drawable/btn_star_big_on" />

@@ -96,7 +96,7 @@
                     android:layout_marginStart="@dimen/spacing_half"
                     android:visibility="@{cardViewModel.showPotentialHealth ? View.VISIBLE : View.GONE}"
                     android:text="@{Integer.toString(cardViewModel.potentialHealth)}"
-                    android:textColor="@color/aggressiveRed"
+                    android:textColor="@{cardViewModel.health > cardViewModel.potentialHealth ? @color/aggressiveRed : @color/secondaryTextColor}"
                     android:textSize="@dimen/fontSize_card_values"
                     tools:text="@string/placeholder_card_value"
                     app:layout_constraintStart_toStartOf="@id/card_image"
