@@ -11,25 +11,24 @@ import com.example.android.miscreant.Enums.Location
 import com.example.android.miscreant.Enums.Area
 import com.example.android.miscreant.Enums.CardType
 
-data class SelectedCard(var location: Location = Location.none, val type: CardType = CardType.none, var area: Area = Area.none){
+data class SelectedCard(var location: Location = Location.none, val type: CardType = CardType.none, var inArea: Area = Area.none){
 
     init {
-        setArea(location)
+        inArea = getArea(location)
     }
 
-    fun isEmtpy() : Boolean {
+    fun isEmpty(): Boolean {
         return location == Location.none && type == CardType.none
     }
 
-    private fun setArea(location: Location){
-        if (isInDungeon(location)){
-            area = Area.dungeon
-        }
-        else if (isEquipped(location)){
-            area = Area.equipped
-        }
-        else if (location == Location.backpack){
-            area = Area.backpack
+    private fun getArea(location: Location): Area{
+        return when {
+            location == Location.backpack -> Area.backpack
+            location == Location.hero -> Area.hero
+            location == Location.discard -> Area.discard
+            isInDungeon(location) -> Area.dungeon
+            isEquipped(location) -> Area.equipped
+            else -> Area.none
         }
     }
 
