@@ -141,6 +141,10 @@ class GameViewModel(context: Context?) : ViewModel() {
     val cardsLeftInDeck  : LiveData<Int>
         get() = _cardsLeftInDeck
 
+    private var _cardsInDeck = MutableLiveData<Int>()
+    val cardsInDeck  : LiveData<Int>
+        get() = _cardsInDeck
+
     private var _heroMaxHealth = MutableLiveData<Int>()
     val heroMaxHealth  : LiveData<Int>
         get() = _heroMaxHealth
@@ -197,6 +201,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardDiscard.value = Card(location = Location.discard)
     }
 
+
     fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
         if (!::settings.isInitialized){
             settings = Settings(
@@ -211,6 +216,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         _heroCurrentHealth.value = settings.currentHealth
         _heroMaxHealth.value = settings.currentMaxHealth
         _cardsLeftInDeck.value = if (activeDeck.isEmpty()) 0 else activeDeck.size
+        _cardsInDeck.value = activeDeck.size
 
         // set hero stuff
         _cardHero.value = settings.getHeroCard()
@@ -234,7 +240,7 @@ class GameViewModel(context: Context?) : ViewModel() {
                 activeDeck.shuffle()
             }
 
-            // todo check decksize
+            _cardsInDeck.postValue(activeDeck.size)
         }
 
         // todo: ensure after game end - in scoring all left dungeon cards removed -> points

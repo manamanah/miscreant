@@ -131,7 +131,7 @@
                 android:layout_width="@dimen/spacing_zero"
                 android:layout_height="@dimen/spacing_zero"
                 android:contentDescription="@string/cards_in_deck_desc"
-                android:text="@string/cards_in_deck"
+                android:text='@{"/" + gameViewModel.cardsInDeck}'
                 android:textAlignment="viewStart"
                 android:textColor="@color/primaryTextColor"
                 android:textScaleX="@fraction/letter_spacing_normal"
