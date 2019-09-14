@@ -17,4 +17,8 @@
     <!--durations in ms-->
     <integer name="duration_short">300</integer>
     <integer name="duration_medium">400</integer>
+
+    <!--SCORING-->
+    <integer name="deckMultiplier">10</integer>
+    <integer name="maxHealthMultiplier">2</integer>
 </resources>

@@ -22,18 +22,33 @@
     <string name="cards_in_deck_left_desc">verbleibende Deckkarten</string>
     <string name="current_health">12</string>
     <string name="current_health_desc">derzeitige Heldenleben</string>
+    <string name="dead_hero_desc">Ruhe in Frieden, mein Held</string>
     <string name="default_name">Held</string>
     <string name="dungeon">DUNGEON</string>
+    <string name="dungeons_accomplished_desc">So viele Dungeons hast du geschafft</string>
     <string name="dungeon_desc">Dungeon</string>
+    <string name="dungeon_points_desc">So viele Punkte erhältst du für geschaffte Dungeons</string>
+    <string name="dungeons_title">Dungeons</string>
+    <string name="game_background">game_background</string>
     <string name="heart_desc">Herzbild</string>
     <string name="hero_archer_desc">der Bogenschützenheld</string>
+    <string name="hero_name_desc">So heißt dein Held</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
+    <string name="left_items">Gegenstände</string>
+    <string name="left_items_desc">Wert von Gegenständen zu Spielende</string>
+    <string name="lost_game_title">MIST !</string>
+    <string name="lost_game_title_desc">Das war wohl nichts. Du bist gestorben</string>
     <string name="max_health">12</string>
     <string name="max_health_desc">maximale Leben</string>
+    <string name="max_health_title">Max. Leben</string>
+    <string name="max_health_points_desc">Punkte für die max. Leben deines Helden</string>
     <string name="name">Heldenname</string>
     <string name="potential_health_desc">So viel Leben hat dein Held, wenn du diesen Zug spielst</string>
     <string name="pre_game">Auf geht\'s!</string>
     <string name="pre_game_desc">Wähle deinen Spielmodus</string>
+    <string name="rip">Viel Spaß in Walhalla,</string>
+    <string name="score_title">PUNKTE</string>
+    <string name="score_title_desc">Punkte Titel</string>
     <string name="settings_title_desc">Einstellungen</string>
     <string name="viking_power">SCHMIED</string>
     <string name="viking_power_desc">Die Fähigkeit des Wikingers ist SCHMIEDEN</string>
@@ -99,6 +114,9 @@
     <string name="attack">ANGRIFF</string>
     <string name="attack_desc">Ist das Monster in der ersten Reihe, greift es unmittelbar vor dem Austeilen neuer Dungeonkarten an.</string>
     <string name="backpack_desc">Im Rucksack kannst du einen Gegenstand aufbewahren</string>
+    <string name="card_consumed_img_desc">Der Gegenstand ist verbraucht.</string>
+    <string name="card_disabled_desc">Wenn du diese Aktion ausführst, wird diese Karte zum Zielort bewegt.</string>
+    <string name="card_equip_visual_desc">Die ausgewählte Karte wird hier abgelegt.</string>
     <string name="card_img_desc">Bild auf Karte</string>
     <string name="card_rip">R.I.P.</string>
     <string name="card_rip_desc">Das Monster ist tot: Ruhe in Frieden.</string>
@@ -125,9 +143,5 @@
     <string name="easy_deck_path">testdeck.json</string>
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
-    <string name="card_consumed_img_desc">Der Gegenstand ist verbraucht.</string>
-    <string name="card_disabled_desc">Wenn du diese Aktion ausführst, wird diese Karte zum Zielort bewegt.</string>
-    <string name="card_equip_visual_desc">Die ausgewählte Karte wird hier abgelegt.</string>
-    <string name="game_background">game_background</string>
 
 </resources>

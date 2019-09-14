@@ -31,6 +31,10 @@ class GameViewModel(context: Context?) : ViewModel() {
     private val gameBackground = context?.getString(R.string.game_background).orEmpty()
     private lateinit var settings: Settings
 
+    private var _navigateToLoseFragment = MutableLiveData<Boolean>()
+    val navigateToLoseFragement : LiveData<Boolean>
+        get() = _navigateToLoseFragment
+
     // region deck related
     // todo each difficulty consists of 3 different decks
     private val deckPaths : Map<Difficulty, List<String>> = mapOf(
@@ -183,6 +187,9 @@ class GameViewModel(context: Context?) : ViewModel() {
     // endregion
 
     init {
+        // navigation
+        _navigateToLoseFragment.value = false
+
         _showHeroPotentialHealth.value = false
         _showHeroPotentialMaxHealth.value = false
 
@@ -339,7 +346,12 @@ class GameViewModel(context: Context?) : ViewModel() {
 
     fun dealNewCards(){
         // apply penalty
-        settings.updateHeroHealth(settings.currentHealth - settings.dealCardsPenalty)
+        val newHealth = settings.currentHealth - settings.dealCardsPenalty
+        if (newHealth <= 0){
+            _navigateToLoseFragment.postValue(true)
+            return
+        }
+        settings.updateHeroHealth(newHealth)
         _heroCurrentHealth.postValue(settings.currentHealth)
 
         // existing cards back into deck
@@ -351,9 +363,12 @@ class GameViewModel(context: Context?) : ViewModel() {
                 }
             }
         }
-
         activeDeck.shuffle()
         dealCards()
+    }
+
+    fun navigatedToLoseFragment(){
+        _navigateToLoseFragment.postValue(false)
     }
 
     // better throw exception -> no game possible w/o deck
@@ -417,8 +432,10 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
         else _secondSelectedCard.postValue(impactOutput.secondCard)
 
-        // todo handle if secondCard Hero and RIP
-        // todo load according endscreen
+        // if hero dead -> go to lose game
+        if (impactOutput.secondCard.type == CardType.hero && impactOutput.secondCard.showRIP){
+            _navigateToLoseFragment.postValue(true)
+        }
 
         if (impactOutput.currentHealth != -1){
             if (impactOutput.showPotentialHealth){
@@ -426,6 +443,11 @@ class GameViewModel(context: Context?) : ViewModel() {
                 _showHeroPotentialHealth.postValue(true)
             }
             else{
+                // hero dead
+                if (impactOutput.currentHealth <= 0){
+                    _navigateToLoseFragment.postValue(true)
+                    return
+                }
                 _heroCurrentHealth.postValue(impactOutput.currentHealth)
                 settings.updateHeroHealth(impactOutput.currentHealth)
             }

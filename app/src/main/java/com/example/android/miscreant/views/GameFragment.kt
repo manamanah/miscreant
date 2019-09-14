@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.*
 import com.example.android.miscreant.viewmodels.GameViewModel
@@ -25,6 +26,7 @@ import com.example.android.miscreant.viewmodels.GameViewModelFactory
 class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener{
 
     private val gameArguments: GameFragmentArgs by navArgs()
+
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
     private lateinit var gestureDetector : GestureDetector
@@ -86,6 +88,20 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModelFactory = GameViewModelFactory(context)
         gameViewModel = ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
+
+        // observers for navigation
+        gameViewModel.navigateToLoseFragement.observe(this, Observer {
+            if (it != null && it){
+                findNavController().navigate(GameFragmentDirections.actionGameFragmentToLoseFragment(
+                    gameArguments.gameDifficulty,
+                    gameArguments.heroType,
+                    gameArguments.heroName,
+                    gameViewModel.currentDeckNumber.value ?: 0,
+                    gameViewModel.heroMaxHealth.value ?: 0))
+
+                gameViewModel.navigatedToLoseFragment()
+            }
+        })
 
         // region init game settings and hero stuff
         gameViewModel.initializeGameSettings(gameArguments.gameDifficulty, gameArguments.heroName, gameArguments.heroType)

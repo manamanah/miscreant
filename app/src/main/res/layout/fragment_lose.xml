@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".views.LoseFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/dead_hero_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/dead_hero_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/archer_dead" />
+
+        <TextView
+                android:id="@+id/game_lost_title"
+                style="@style/menu_title"
+                android:contentDescription="@string/lost_game_title_desc"
+                android:text="@string/lost_game_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/hero_goodbye"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_double"
+                android:contentDescription="@string/dead_hero_desc"
+                android:text="@string/rip"
+                android:textSize="@dimen/fontSize_endScreen_title"
+                app:layout_constraintBottom_toTopOf="@id/hero_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game_lost_title" />
+
+        <TextView
+                android:id="@+id/hero_name"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_double"
+                android:contentDescription="@string/hero_name_desc"
+                android:textSize="@dimen/fontSize_endScreen_title"
+                app:layout_constraintBottom_toTopOf="@id/score_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hero_goodbye"
+                tools:text="WWWWWWWWWW" />
+
+        <TextView
+                android:id="@+id/score_title"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xLarge"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:contentDescription="@string/score_title_desc"
+                android:text="@string/score_title"
+                android:textSize="@dimen/fontSize_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hero_goodbye" />
+
+        <View
+                android:id="@+id/divider_score_top"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_standard_height"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="@color/backgroundBlack"
+                app:layout_constraintTop_toBottomOf="@id/score_title" />
+
+        <TextView
+                android:id="@+id/dungeons"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:contentDescription="@string/dungeon"
+                android:text="@string/dungeons_title"
+                app:layout_constraintEnd_toStartOf="@id/dungeons_accomplished"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_score_top" />
+
+        <TextView
+                android:id="@+id/dungeons_accomplished"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/dungeons_accomplished_desc"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintBottom_toBottomOf="@id/dungeons"
+                app:layout_constraintEnd_toStartOf="@id/dungeon_points"
+                app:layout_constraintStart_toEndOf="@id/dungeons"
+                app:layout_constraintTop_toTopOf="@id/dungeons"
+                tools:text="1/3" />
+
+        <TextView
+                android:id="@+id/dungeon_points"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/dungeons_accomplished_desc"
+                android:text="@string/max_health_title"
+                app:layout_constraintBottom_toBottomOf="@id/dungeons"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dungeons_accomplished"
+                app:layout_constraintTop_toTopOf="@id/dungeons"
+                tools:text="@string/max_health" />
+
+        <TextView
+                android:id="@+id/max_health_title"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:contentDescription="@string/max_health_desc"
+                android:text="@string/max_health_title"
+                app:layout_constraintEnd_toEndOf="@id/dungeons"
+                app:layout_constraintStart_toStartOf="@id/dungeons"
+                app:layout_constraintTop_toBottomOf="@id/dungeons"
+                app:layout_constraintBottom_toTopOf="@id/divider_score_bottom"/>
+
+        <TextView
+                android:id="@+id/max_health"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/max_health_desc"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintBottom_toBottomOf="@id/max_health_title"
+                app:layout_constraintEnd_toEndOf="@id/dungeons_accomplished"
+                app:layout_constraintStart_toStartOf="@id/dungeons_accomplished"
+                app:layout_constraintTop_toTopOf="@id/max_health_title"
+                tools:text="@string/max_health" />
+
+        <TextView
+                android:id="@+id/max_health_points"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/max_health_points_desc"
+                app:layout_constraintBottom_toBottomOf="@id/max_health_title"
+                app:layout_constraintEnd_toEndOf="@+id/dungeon_points"
+                app:layout_constraintStart_toStartOf="@id/dungeon_points"
+                app:layout_constraintTop_toTopOf="@id/max_health_title"
+                tools:text="@string/max_health" />
+
+        <View
+                android:id="@+id/divider_score_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_standard_height"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="@color/backgroundBlack"
+                app:layout_constraintTop_toBottomOf="@id/max_health_title" />
+
+        <TextView
+                android:id="@+id/final_score"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_double"
+                android:contentDescription="@string/left_items_desc"
+                android:text="@string/max_health"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/fontSize_title"
+                app:layout_constraintEnd_toEndOf="@id/dungeon_points"
+                app:layout_constraintStart_toStartOf="@id/dungeon_points"
+                app:layout_constraintTop_toBottomOf="@id/divider_score_bottom"
+                tools:text="@string/max_health" />
+
+        <Button
+                android:id="@+id/ok_button"
+                style="@style/ok_button"
+                android:layout_marginTop="@dimen/spacing_xLarge"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:text="@string/ok"
+                app:layout_constraintTop_toBottomOf="@id/final_score"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
