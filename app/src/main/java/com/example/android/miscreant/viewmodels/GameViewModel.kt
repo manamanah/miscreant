@@ -19,6 +19,7 @@ import com.example.android.miscreant.models.Card
 import com.example.android.miscreant.models.ImpactOutput
 import com.example.android.miscreant.models.SelectedCard
 import com.example.android.miscreant.Settings
+import com.example.android.miscreant.models.Dungeonstatus
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.IllegalArgumentException
@@ -217,6 +218,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         _heroMaxHealth.value = settings.currentMaxHealth
         _cardsLeftInDeck.value = if (activeDeck.isEmpty()) 0 else activeDeck.size
         _cardsInDeck.value = activeDeck.size
+        _currentDeckNumber.value = 0
 
         // set hero stuff
         _cardHero.value = settings.getHeroCard()
@@ -229,24 +231,15 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     fun startGame(){
-        // todo: check, if still running
-        // todo: if running, check if monster attack
         if (activeDeck.isEmpty()){
             if (deckPaths.containsKey(settings.difficulty)){
-                val deckNumber = _currentDeckNumber.value ?: 0
-
-                val deckPath = deckPaths[settings.difficulty]?.get(deckNumber).orEmpty()
+                val deckPath = deckPaths[settings.difficulty]?.get(_currentDeckNumber.value ?: 0).orEmpty()
                 activeDeck = getDeck(deckPath)
                 activeDeck.shuffle()
             }
-
             _cardsInDeck.postValue(activeDeck.size)
         }
-
-        // todo: ensure after game end - in scoring all left dungeon cards removed -> points
-        // todo: ensure progress currentDeckNumber in Settings @gameEnd
         dealCards()
-        // update nr cardsLeft/in Deck
     }
 
     // 1st tap: select a 1st card and show potential drop locations
@@ -350,7 +343,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         _heroCurrentHealth.postValue(settings.currentHealth)
 
         // existing cards back into deck
-        dungeonMap.forEach{( key, card ) ->
+        dungeonMap.forEach{( _, card ) ->
             card.value?.let {
                 if (!it.isEmpty()){
                     activeDeck.add(it)
@@ -373,28 +366,40 @@ class GameViewModel(context: Context?) : ViewModel() {
         return Gson().fromJson(jsonString, type)
     }
 
-    private fun dealCards(){
-        // todo include check if deck empty: scoring etc.
+    private fun dealCards(dungeonStatus: Dungeonstatus = Dungeonstatus(dungeonMap.keys.toMutableList(), 0)) {
+        // deck is empty -> if no monsters & dungeon clear -> scoring & new deck
         if (activeDeck.isEmpty()){
-            // check, if monster left -> not over yet
-            // otherwise trigger end -> keep equipped, stored cards (button deal new-> new deck)
-            Log.i("GAME END", "TO BE DONE")
+            // if any monster left -> not over yet
+            if (dungeonStatus.monstersInDungeon > 0){
+                return
+            }
+
+            // if dungeon cleared -> continue with new deck
+            if (dungeonStatus.emptySpots.size == dungeonMap.size){
+                val deckNr = _currentDeckNumber.value ?: 0
+
+                if (deckNr + 1 > settings.maxDeckNumber){
+                    // todo gameEnd -> scoring
+                    // todo: ensure after game end - in scoring all left dungeon cards removed -> points
+                    Log.i("GAME END", "TO BE DONE")
+                }
+                else {
+                    _currentDeckNumber.value = deckNr + 1
+                    startGame()
+                }
+            }
             return
         }
+
         // fill dungeon
-        dungeonMap.forEach { (key, card)->
-            card.value?.let {
-                if (it.isEmpty()){
-                    if (activeDeck.isNotEmpty()){
-                        val dealtCard = activeDeck[0]
-                        dealtCard.location = key
-                        card.value = dealtCard
-                        activeDeck.removeAt(0)
-                    }
-                    else moveBackrowCardsToDungeonFront()
-                }
-                else return@forEach
+        dungeonStatus.emptySpots.forEach{ location ->
+            if (activeDeck.isNotEmpty()){
+                val dealtCard = activeDeck[0]
+                dealtCard.location = location
+                dungeonMap[location]?.value = dealtCard
+                activeDeck.removeAt(0)
             }
+            else moveBackrowCardsToDungeonFront()
         }
 
         _cardsLeftInDeck.postValue(activeDeck.size)
@@ -586,11 +591,27 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
         }
 
-        val emptyDungeonSpots = dungeonMap.count { it.value.value?.isEmpty() ?: true}
-        if (emptyDungeonSpots == 3){
+        val dungeonStatus = getDungeonStatus()
+        if (dungeonStatus.emptySpots.size >= 3){
             // todo trigger monster retaliate
-            dealCards()
+            dealCards(dungeonStatus)
         }
+    }
+
+    private fun getDungeonStatus(): Dungeonstatus {
+        val emptySpots: MutableList<Location> = mutableListOf()
+        var monstersInDungeon = 0
+
+        dungeonMap.forEach{(key, card) ->
+            card.value?.let {
+                when{
+                    it.isEmpty() -> emptySpots.add(key)
+                    it.type == CardType.monster -> monstersInDungeon += 1
+                    else -> return@forEach
+                }
+            }
+        }
+        return Dungeonstatus(emptySpots, monstersInDungeon)
     }
 
     private fun moveFromToCard(from: MutableLiveData<Card>, to: MutableLiveData<Card>){
