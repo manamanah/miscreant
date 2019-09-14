@@ -16,15 +16,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.*
-import com.example.android.miscreant.Enums.Difficulty
-import com.example.android.miscreant.Enums.Hero
 import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.databinding.FragmentGameBinding
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
 
 class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener{
 
+    private val gameArguments: GameFragmentArgs by navArgs()
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
     private lateinit var gestureDetector : GestureDetector
@@ -87,11 +87,8 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel = ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
 
-        // todo get navigation arguments from selection in pre-game-fragment
         // region init game settings and hero stuff
-        binding.gameBackground.setOnTouchListener(this)
-
-        gameViewModel.initializeGameSettings(Difficulty.normal, "hero", Hero.viking)
+        gameViewModel.initializeGameSettings(gameArguments.gameDifficulty, gameArguments.heroName, gameArguments.heroType)
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
         gameViewModel.specialsUsed.observe(this, Observer{
@@ -139,6 +136,8 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             gameViewModel.dealNewCards()
         }
         // endregion
+
+        binding.gameBackground.setOnTouchListener(this)
 
         startGame()
 

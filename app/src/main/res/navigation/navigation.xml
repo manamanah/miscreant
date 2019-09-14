@@ -66,5 +66,14 @@
                 app:enterAnim="@anim/slide_down"
                 app:popExitAnim="@anim/slide_up"
                 app:popUpTo="@+id/gameFragment" />
+        <argument
+                android:name="gameDifficulty"
+                app:argType="com.example.android.miscreant.Enums.Difficulty"/>
+        <argument
+                android:name="heroName"
+                app:argType="string"/>
+        <argument
+                android:name="heroType"
+                app:argType="com.example.android.miscreant.Enums.Hero" />
     </fragment>
 </navigation>
