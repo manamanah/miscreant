@@ -7,6 +7,9 @@
 
 package com.example.android.miscreant.Enums
 
+import androidx.annotation.Keep
+
+@Keep
 enum class Area(val area: String) {
     dungeon("dungeon"),
     equipped("equipped"),

@@ -7,6 +7,9 @@
 
 package com.example.android.miscreant.Enums
 
+import androidx.annotation.Keep
+
+@Keep
 enum class Hero(val imageName: String) {
     viking("viking"),
     archer("archer")

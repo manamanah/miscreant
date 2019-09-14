@@ -7,6 +7,9 @@
 
 package com.example.android.miscreant.Enums
 
+import androidx.annotation.Keep
+
+@Keep
 enum class CardType(val id: String) {
     none("none"),
     monster("monster"),
