@@ -27,6 +27,7 @@
     <color name="dungeonCard_border">#707070</color>
 
     <color name="transparent">#00000000</color>
+    <color name="backgroundLight_transparent">#96DDDDDD</color>
 
     <!--EFFECT-->
     <color name="aggressiveRed">#e20008</color>

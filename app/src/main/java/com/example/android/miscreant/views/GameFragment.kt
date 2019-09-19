@@ -89,19 +89,34 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel = ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
 
-        // observers for navigation
+        // region observers for navigation
         gameViewModel.navigateToLoseFragement.observe(this, Observer {
             if (it != null && it){
                 findNavController().navigate(GameFragmentDirections.actionGameFragmentToLoseFragment(
                     gameArguments.gameDifficulty,
                     gameArguments.heroType,
                     gameArguments.heroName,
-                    gameViewModel.currentDeckNumber.value ?: 0,
-                    gameViewModel.heroMaxHealth.value ?: 0))
+                    gameViewModel.heroMaxHealth.value ?: 0,
+                    gameViewModel.currentDeckNumber.value ?: 0))
 
                 gameViewModel.navigatedToLoseFragment()
             }
         })
+
+        gameViewModel.navigateToWinFragement.observe(this, Observer {
+            if (it != null && it){
+                findNavController().navigate(GameFragmentDirections.actionGameFragmentToWinFragment(
+                    gameArguments.gameDifficulty,
+                    gameArguments.heroType,
+                    gameArguments.heroName,
+                    gameViewModel.heroMaxHealth.value ?: 0,
+                    gameViewModel.currentDeckNumber.value ?: 0,
+                    gameViewModel.leftItemsValue))
+
+                gameViewModel.navigatedToWinFragment()
+            }
+        })
+        // endregion
 
         // region init game settings and hero stuff
         gameViewModel.initializeGameSettings(gameArguments.gameDifficulty, gameArguments.heroName, gameArguments.heroType)

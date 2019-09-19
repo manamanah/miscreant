@@ -28,12 +28,14 @@
     <string name="dungeon_desc">dungeon</string>
     <string name="dungeon_points_desc">You get that many points for finished dungeons</string>
     <string name="dungeons_title">Dungeons</string>
+    <string name="final_score_title">SCORE</string>
+    <string name="final_score_desc">Title final score</string>
     <string name="game_background">game_background</string>
     <string name="heart_desc">heart image</string>
     <string name="hero_archer_desc">the archer hero</string>
     <string name="hero_name_desc">This is you hero\'s name</string>
     <string name="hero_viking_desc">the viking hero</string>
-    <string name="left_items">Left items values</string>
+    <string name="left_items">Left items</string>
     <string name="left_items_desc">Value of left items at game\'s end</string>
     <string name="lost_game_title">OUCH !</string>
     <string name="lost_game_title_desc">Damn, you died...</string>
@@ -45,15 +47,18 @@
     <string name="potential_health_desc">Your hero\'s health, if you play this card</string>
     <string name="pre_game">Get ready!</string>
     <string name="pre_game_desc">Choose your play mode</string>
-    <string name="rip">"Party on in Walhalla, "</string>
-    <string name="score_title">SCORE</string>
+    <string name="rip">"Off to Walhalla, "</string>
+    <string name="score_title">PERFORMANCE</string>
     <string name="score_title_desc">Score title</string>
     <string name="settings_title_desc">Settings</string>
     <string name="skull_desc">skull image</string>
     <string name="special_use_desc">display for power uses</string>
+    <string name="victory_message">You are worthy,</string>
+    <string name="victory_message_desc">You are a worthy hero</string>
     <string name="viking_power">SMITH</string>
     <string name="viking_power_desc">Viking\'s special is SMITH</string>
     <string name="viking_power_detail">SMITH\nWeapon damage +1 \n(3 x per deck)</string>
+    <string name="won_game_title">VICTORY !!</string>
 
     <!--BUTTON & DESC-->
     <string name="back_button_desc">back button</string>

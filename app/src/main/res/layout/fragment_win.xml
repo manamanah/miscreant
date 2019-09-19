@@ -9,7 +9,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".views.LoseFragment">
+        tools:context=".views.WinFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,10 +17,10 @@
             android:background="@color/backgroundLight">
 
         <TextView
-                android:id="@+id/game_lost_title"
+                android:id="@+id/game_won_title"
                 style="@style/menu_title"
-                android:contentDescription="@string/lost_game_title_desc"
-                android:text="@string/lost_game_title"
+                android:contentDescription="@string/won_game_title"
+                android:text="@string/won_game_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
                 android:textSize="@dimen/fontSize_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/game_lost_title" />
+                app:layout_constraintTop_toBottomOf="@id/game_won_title" />
 
         <View
                 android:id="@+id/divider_score_top"
@@ -47,18 +47,31 @@
                 android:background="@color/backgroundBlack"
                 app:layout_constraintTop_toBottomOf="@id/score_title" />
 
+        <ImageView
+                android:id="@+id/victory_hero_img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_zero"
+                android:layout_margin="@dimen/spacing_normal"
+                android:contentDescription="@string/dead_hero_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/archer_victory"
+                app:layout_constraintTop_toTopOf="@id/dungeons"
+                app:layout_constraintBottom_toTopOf="@id/ok_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         <TextView
                 android:id="@+id/dungeons"
                 style="@style/basic_black_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_margin="@dimen/spacing_normal"
                 android:contentDescription="@string/dungeon"
                 android:text="@string/dungeons_title"
                 app:layout_constraintEnd_toStartOf="@id/dungeons_accomplished"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider_score_top" />
+                app:layout_constraintTop_toBottomOf="@id/divider_score_top"
+                app:layout_constraintBottom_toTopOf="@id/max_health_title"/>
 
         <TextView
                 android:id="@+id/dungeons_accomplished"
@@ -90,13 +103,13 @@
                 style="@style/basic_black_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_margin="@dimen/spacing_normal"
                 android:contentDescription="@string/max_health_desc"
                 android:text="@string/max_health_title"
                 app:layout_constraintEnd_toEndOf="@id/dungeons"
                 app:layout_constraintStart_toStartOf="@id/dungeons"
                 app:layout_constraintTop_toBottomOf="@id/dungeons"
-                app:layout_constraintBottom_toTopOf="@id/divider_score_bottom"/>
+                app:layout_constraintBottom_toTopOf="@id/left_cards_title"/>
 
         <TextView
                 android:id="@+id/max_health"
@@ -123,27 +136,51 @@
                 app:layout_constraintTop_toTopOf="@id/max_health_title"
                 tools:text="@string/max_health" />
 
+        <TextView
+                android:id="@+id/left_cards_title"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:text="@string/left_items"
+                android:contentDescription="@string/left_items_desc"
+                app:layout_constraintEnd_toEndOf="@id/max_health_title"
+                app:layout_constraintStart_toStartOf="@id/max_health_title"
+                app:layout_constraintTop_toBottomOf="@id/max_health_title"
+                app:layout_constraintBottom_toTopOf="@id/divider_score_bottom"/>
+
+        <TextView
+                android:id="@+id/left_cards_value"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/left_items_desc"
+                app:layout_constraintBottom_toBottomOf="@id/left_cards_title"
+                app:layout_constraintEnd_toEndOf="@+id/dungeon_points"
+                app:layout_constraintStart_toStartOf="@id/dungeon_points"
+                app:layout_constraintTop_toTopOf="@id/left_cards_title"
+                tools:text="@string/max_health"/>
+
         <View
                 android:id="@+id/divider_score_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider_standard_height"
                 android:layout_margin="@dimen/spacing_normal"
                 android:background="@color/backgroundBlack"
-                app:layout_constraintTop_toBottomOf="@id/max_health_title" />
+                app:layout_constraintTop_toBottomOf="@id/left_cards_title" />
 
         <TextView
                 android:id="@+id/final_score_title"
                 style="@style/basic_black_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:contentDescription="@string/final_score_desc"
                 android:text="@string/final_score_title"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/fontSize_title"
-                app:layout_constraintEnd_toEndOf="@id/max_health_title"
-                app:layout_constraintStart_toStartOf="@id/max_health_title"
+                app:layout_constraintStart_toStartOf="@id/dungeons"
+                app:layout_constraintEnd_toEndOf="@id/dungeons"
                 app:layout_constraintTop_toBottomOf="@id/divider_score_bottom"/>
 
         <TextView
@@ -160,20 +197,6 @@
                 app:layout_constraintTop_toBottomOf="@id/divider_score_bottom"
                 tools:text="@string/max_health" />
 
-        <ImageView
-                android:id="@+id/dead_hero_img"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_zero"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:layout_marginEnd="@dimen/spacing_normal"
-                android:contentDescription="@string/dead_hero_desc"
-                android:scaleType="fitCenter"
-                android:src="@drawable/archer_dead"
-                app:layout_constraintTop_toBottomOf="@id/divider_score_bottom"
-                app:layout_constraintBottom_toTopOf="@id/ok_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
         <TextView
                 android:id="@+id/hero_goodbye"
                 style="@style/basic_black_text"
@@ -181,21 +204,21 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/spacing_normal"
                 android:paddingBottom="@dimen/spacing_normal"
-                android:contentDescription="@string/dead_hero_desc"
-                android:text="@string/rip"
+                android:contentDescription="@string/victory_message_desc"
+                android:text="@string/victory_message"
                 android:textSize="@dimen/fontSize_endScreen_title"
                 android:background="@color/backgroundLight_transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/hero_name"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
                 android:id="@+id/hero_name"
                 style="@style/basic_black_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_normal"
                 android:paddingBottom="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
                 android:contentDescription="@string/hero_name_desc"
                 android:textSize="@dimen/fontSize_endScreen_title"
                 android:background="@color/backgroundLight_transparent"
@@ -210,6 +233,7 @@
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:layout_marginBottom="@dimen/spacing_normal"
                 android:text="@string/ok"
+                app:layout_constraintTop_toBottomOf="@id/victory_hero_img"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

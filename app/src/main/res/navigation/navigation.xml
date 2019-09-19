@@ -83,6 +83,14 @@
                 app:popEnterAnim="@anim/slide_in_right"
                 app:popExitAnim="@anim/slide_out_right"
                 app:popUpTo="@+id/preGameFragment" />
+        <action
+                android:id="@+id/action_gameFragment_to_winFragment"
+                app:destination="@id/winFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_right"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/preGameFragment" />
     </fragment>
     <fragment
             android:id="@+id/loseFragment"
@@ -99,13 +107,40 @@
                 android:name="heroName"
                 app:argType="string" />
         <argument
-                android:name="accomplished_decks"
+                android:name="maxHealth"
                 app:argType="integer" />
         <argument
-                android:name="maxHealth"
+                android:name="accomplished_decks"
                 app:argType="integer" />
         <action
                 android:id="@+id/action_loseFragment_to_preGameFragment"
                 app:destination="@id/preGameFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/winFragment"
+            android:name="com.example.android.miscreant.views.WinFragment"
+            android:label="fragment_win"
+            tools:layout="@layout/fragment_win" >
+        <action
+                android:id="@+id/action_winFragment_to_preGameFragment"
+                app:destination="@id/preGameFragment" />
+        <argument
+                android:name="gameDifficulty"
+                app:argType="com.example.android.miscreant.Enums.Difficulty" />
+        <argument
+                android:name="heroType"
+                app:argType="com.example.android.miscreant.Enums.Hero" />
+        <argument
+                android:name="heroName"
+                app:argType="string" />
+        <argument
+                android:name="maxHealth"
+                app:argType="integer" />
+        <argument
+                android:name="accomplished_decks"
+                app:argType="integer" />
+        <argument
+                android:name="leftItemsValue"
+                app:argType="integer" />
     </fragment>
 </navigation>

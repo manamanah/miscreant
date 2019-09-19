@@ -35,6 +35,16 @@ class GameViewModel(context: Context?) : ViewModel() {
     val navigateToLoseFragement : LiveData<Boolean>
         get() = _navigateToLoseFragment
 
+    private var _navigateToWinFragment = MutableLiveData<Boolean>()
+    val navigateToWinFragement : LiveData<Boolean>
+        get() = _navigateToWinFragment
+
+    var leftItemsValue = 0
+        private set
+    var gameOver = false
+        private set
+    val maxDecks: Int = if (::settings.isInitialized) settings.maxDeckNumber else 0
+
     // region deck related
     // todo each difficulty consists of 3 different decks
     private val deckPaths : Map<Difficulty, List<String>> = mapOf(
@@ -189,6 +199,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     init {
         // navigation
         _navigateToLoseFragment.value = false
+        _navigateToWinFragment.value = false
 
         _showHeroPotentialHealth.value = false
         _showHeroPotentialMaxHealth.value = false
@@ -202,21 +213,18 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardRightFront.value = Card(location = Location.dungeon_right_front)
 
         // init empty hero area cards
-        _cardEquipLeft.value = Card(location = Location.equip_left)
-        _cardHero.value = Card(location = Location.hero)
-        _cardEquipRight.value = Card(location = Location.equip_right)
-        _cardBackpack.value = Card(image = context?.resources?.getResourceName(R.drawable.backpack) ?: "", location = Location.backpack)
-        _cardDiscard.value = Card(location = Location.discard)
+        resetHeroAreaMap()
     }
 
-
     fun initializeGameSettings(difficulty: Difficulty, heroName: String, hero: Hero){
-        if (!::settings.isInitialized){
+        if (!::settings.isInitialized || gameOver){
             settings = Settings(
                 difficulty = difficulty,
                 heroName = heroName,
                 hero = hero
             )
+            leftItemsValue = 0
+            gameOver = false
         }
 
         // initialize start values
@@ -348,7 +356,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         // apply penalty
         val newHealth = settings.currentHealth - settings.dealCardsPenalty
         if (newHealth <= 0){
-            _navigateToLoseFragment.postValue(true)
+            gameLost()
             return
         }
         settings.updateHeroHealth(newHealth)
@@ -371,6 +379,10 @@ class GameViewModel(context: Context?) : ViewModel() {
         _navigateToLoseFragment.postValue(false)
     }
 
+    fun navigatedToWinFragment(){
+        _navigateToWinFragment.postValue(false)
+    }
+
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath : String) : MutableList<Card> {
 
@@ -390,17 +402,13 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
 
             // if dungeon cleared -> continue with new deck
-            if (dungeonStatus.emptySpots.size == dungeonMap.size){
+            if (dungeonStatus.emptySpots.size == dungeonMap.size && !gameOver){
                 val deckNr = _currentDeckNumber.value ?: 0
+                _currentDeckNumber.value = deckNr + 1
 
-                if (deckNr + 1 > settings.maxDeckNumber){
-                    // todo gameEnd -> scoring
-                    // todo: ensure after game end - in scoring all left dungeon cards removed -> points
-                    Log.i("GAME END", "TO BE DONE")
-                }
-                else {
-                    _currentDeckNumber.value = deckNr + 1
-                    startGame()
+               return when {
+                    deckNr + 1 > settings.maxDeckNumber -> gameWon()
+                    else -> startGame()
                 }
             }
             return
@@ -420,6 +428,38 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardsLeftInDeck.postValue(activeDeck.size)
     }
 
+    private fun gameWon(){
+        Log.i("GAME END", "TO BE DONE")
+
+        // values of equipped, stored cards
+        heroMap.forEach{(location, card) ->
+            card.value?.let {
+                if (!it.isEmpty() && it.type != CardType.hero){
+                    leftItemsValue += it.health
+                }
+            }
+        }
+
+        _navigateToWinFragment.postValue(true)
+        resetGame()
+    }
+
+    private fun gameLost(){
+        resetGame()
+
+        _navigateToLoseFragment.postValue(true)
+    }
+
+    private fun resetGame(){
+        // empty deck
+        activeDeck.clear()
+
+        // empty hero area
+        resetHeroAreaMap()
+
+        gameOver = true
+    }
+
     private fun applyImpact(impactOutput: ImpactOutput){
         // if different aka empty card returned - set new card, otherwise update
         if (_firstSelectedCard.value?.type != impactOutput.firstCard.type){
@@ -434,7 +474,7 @@ class GameViewModel(context: Context?) : ViewModel() {
 
         // if hero dead -> go to lose game
         if (impactOutput.secondCard.type == CardType.hero && impactOutput.secondCard.showRIP){
-            _navigateToLoseFragment.postValue(true)
+            gameLost()
         }
 
         if (impactOutput.currentHealth != -1){
@@ -445,7 +485,7 @@ class GameViewModel(context: Context?) : ViewModel() {
             else{
                 // hero dead
                 if (impactOutput.currentHealth <= 0){
-                    _navigateToLoseFragment.postValue(true)
+                    gameLost()
                     return
                 }
                 _heroCurrentHealth.postValue(impactOutput.currentHealth)
@@ -697,5 +737,13 @@ class GameViewModel(context: Context?) : ViewModel() {
 
         firstSelected = SelectedCard()
         secondSelected = SelectedCard()
+    }
+
+    private fun resetHeroAreaMap(){
+        _cardEquipLeft.value = Card(location = Location.equip_left)
+        _cardHero.value = Card(location = Location.hero)
+        _cardEquipRight.value = Card(location = Location.equip_right)
+        _cardBackpack.value = Card(image = context?.resources?.getResourceName(R.drawable.backpack) ?: "", location = Location.backpack)
+        _cardDiscard.value = Card(location = Location.discard)
     }
 }

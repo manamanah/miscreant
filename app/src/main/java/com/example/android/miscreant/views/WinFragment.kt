@@ -17,22 +17,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.Enums.Hero
 import com.example.android.miscreant.R
-import com.example.android.miscreant.databinding.FragmentLoseBinding
+import com.example.android.miscreant.databinding.FragmentWinBinding
 
 
-class LoseFragment : Fragment() {
+class WinFragment : Fragment() {
 
-    private val result: LoseFragmentArgs by navArgs()
+    private val result: WinFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentLoseBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_lose, container, false)
+        val binding: FragmentWinBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_win, container, false)
 
         binding.okButton.setOnClickListener {
-            findNavController().navigate(LoseFragmentDirections.actionLoseFragmentToPreGameFragment())
+            findNavController().navigate(WinFragmentDirections.actionWinFragmentToPreGameFragment())
         }
 
-        // set correct dead hero image
-        binding.deadHeroImg.setImageResource(if (result.heroType == Hero.viking) R.drawable.viking_dead else R.drawable.archer_dead)
+        // set correct victory hero image
+        binding.victoryHeroImg.setImageResource(if (result.heroType == Hero.viking) R.drawable.viking_victory else R.drawable.archer_victory)
 
         binding.heroName.text = result.heroName
 
@@ -44,11 +44,15 @@ class LoseFragment : Fragment() {
         binding.maxHealth.text = result.maxHealth.toString()
         binding.maxHealthPoints.text = maxHealthPoints.toString()
 
-        binding.finalScore.text = (deckPoints + maxHealthPoints).toString()
+        binding.leftCardsValue.text = result.leftItemsValue.toString()
+
+        binding.finalScore.text = (deckPoints + maxHealthPoints + result.leftItemsValue).toString()
 
         // game difficulty for saving to db later needed
         // todo save
 
         return binding.root
     }
+
+
 }
