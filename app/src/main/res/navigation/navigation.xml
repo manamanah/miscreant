@@ -34,6 +34,14 @@
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"
                 app:popUpTo="@id/mainFragment" />
+        <action
+                android:id="@+id/action_mainFragment_to_creditsFragment"
+                app:destination="@id/creditsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/mainFragment" />
     </fragment>
 
     <fragment
@@ -146,4 +154,9 @@
                 android:name="leftItemsValue"
                 app:argType="integer" />
     </fragment>
+    <fragment
+            android:id="@+id/creditsFragment"
+            android:name="com.example.android.miscreant.views.CreditsFragment"
+            android:label="fragment_credits"
+            tools:layout="@layout/fragment_credits" />
 </navigation>

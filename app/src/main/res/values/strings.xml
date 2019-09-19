@@ -13,12 +13,20 @@
     <string name="archer_power">RANGED</string>
     <string name="archer_power_desc">Archer\'s power is ranged attack</string>
     <string name="archer_power_detail">RANGED\nAttack monsters \nin 2nd row.</string>
+    <string name="art">Art</string>
+    <string name="art_title_desc">Art sources</string>
+    <string name="artists_1">Graphics by Firas Najar, Graphic Goodies, Mike Mac, Zuhria</string>
+    <string name="artists_1_desc">Artists Zuhria, Firas Najar, Mike Mac, Graphic Goodies, Olga Bikmullina</string>
+    <string name="artist_olga">\"Free Game Items Pack #1\" \nAdapted color</string>
     <string name="audio">Audio</string>
     <string name="audio_title_desc">Audio settings</string>
+    <string name="audio_text">No Audio yet.</string>
+    <string name="audio_text_desc">These are the audio sources...</string>
     <string name="cards_in_deck">/56</string>
     <string name="cards_in_deck_desc">cards in deck</string>
     <string name="cards_in_deck_left">XX</string>
     <string name="cards_in_deck_left_desc">left cards in deck</string>
+    <string name="credits_desc">Credits Page</string>
     <string name="current_health">12</string>
     <string name="current_health_desc">current hero health value</string>
     <string name="dead_hero_desc">Rest in peace, my hero</string>
@@ -31,12 +39,22 @@
     <string name="final_score_title">SCORE</string>
     <string name="final_score_desc">Title final score</string>
     <string name="game_background">game_background</string>
+    <string name="gamedesign_text">Gamedesign by Birgit Schönauer</string>
+    <string name="gamedesign_desc">Gamedesign by Birgit Schönauer</string>
     <string name="heart_desc">heart image</string>
     <string name="hero_archer_desc">the archer hero</string>
     <string name="hero_name_desc">This is you hero\'s name</string>
     <string name="hero_viking_desc">the viking hero</string>
+    <string name="inspiration_card_crawl">Card Crawl by Tinytouchtales</string>
+    <string name="inspiration_card_crawl_desc">This game was inspired by Card Crawl.</string>
+    <string name="inspiration_scoundrel">Scoundrel by Zach Gage, Kurt Bieg</string>
+    <string name="inspiration_scoundrel_desc">This game was inspired by Scoundrel.</string>
+    <string name="inspiration_title">Inspiration</string>
+    <string name="inspiration_text_desc">This game was inspired by Scoundrel and Card Crawl.</string>
     <string name="left_items">Left items</string>
     <string name="left_items_desc">Value of left items at game\'s end</string>
+    <string name="license_cc3"><a href="https://creativecommons.org/licenses/by/3.0/">License CC 3.0</a></string>
+    <string name="license_desc">Creative Commons License 3.0</string>
     <string name="lost_game_title">OUCH !</string>
     <string name="lost_game_title_desc">Damn, you died...</string>
     <string name="max_health">12</string>
@@ -147,5 +165,6 @@
     <string name="easy_deck_path">testdeck.json</string>
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
+    <string name="artist_olga_desc">Free Game Item Pack</string>
 
 </resources>

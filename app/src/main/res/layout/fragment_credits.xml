@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".views.CreditsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundLight">
+
+        <TextView
+                android:id="@+id/credits_title"
+                style="@style/menu_title"
+                android:text="@string/credits"
+                android:contentDescription="@string/credits_desc"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@color/primaryColor"
+                android:contentDescription="@string/back_button_desc"
+                app:srcCompat="@drawable/ic_chevron_left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/credits_title"
+                app:layout_constraintBottom_toBottomOf="@id/credits_title"/>
+
+        <TextView
+                android:id="@+id/art_title"
+                style="@style/within_menu_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:text="@string/art"
+                android:contentDescription="@string/art_title_desc"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@id/credits_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+                android:id="@+id/gamedesign"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:text="@string/gamedesign_text"
+                android:contentDescription="@string/gamedesign_desc"
+                app:layout_constraintTop_toBottomOf="@id/art_title"
+                app:layout_constraintBottom_toTopOf="@id/artists_1_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/artists_1_text"
+            style="@style/basic_black_text_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_half"
+            android:text="@string/artists_1"
+            android:contentDescription="@string/artists_1_desc"
+            android:textAlignment="center"
+            android:lineSpacingMultiplier="@fraction/linespacing_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gamedesign"
+            app:layout_constraintBottom_toTopOf="@id/olga_text"/>
+
+        <TextView
+                android:id="@+id/olga_text"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/artist_olga"
+                android:contentDescription="@string/artist_olga_desc"
+                android:textAlignment="center"
+                android:lineSpacingMultiplier="@fraction/linespacing_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/artists_1_text"
+                app:layout_constraintBottom_toTopOf="@id/license_text"/>
+
+        <TextView
+                android:id="@+id/license_text"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:text="@string/license_cc3"
+                android:contentDescription="@string/license_desc"
+                android:textAlignment="center"
+                android:linksClickable="true"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/olga_text"
+                app:layout_constraintBottom_toTopOf="@id/art_divider"/>
+
+        <TextView
+                android:id="@+id/audio_title"
+                style="@style/within_menu_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:contentDescription="@string/audio_title_desc"
+                android:text="@string/audio"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/art_divider" />
+
+        <TextView
+                android:id="@+id/audio_text"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_double"
+                android:contentDescription="@string/audio_text_desc"
+                android:text="@string/audio_text"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/inspiration_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/audio_title" />
+
+        <TextView
+                android:id="@+id/inspiration_title"
+                style="@style/within_menu_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:text="@string/inspiration_title"
+                android:contentDescription="@string/inspiration_text_desc"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/inspiration_scoundrel"/>
+
+        <TextView
+                android:id="@+id/inspiration_scoundrel"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_half"
+                android:text="@string/inspiration_scoundrel"
+                android:contentDescription="@string/inspiration_scoundrel_desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/inspiration_card_crawl"/>
+
+        <TextView
+                android:id="@+id/inspiration_card_crawl"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_double"
+                android:text="@string/inspiration_card_crawl"
+                android:contentDescription="@string/inspiration_card_crawl_desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!--DIVIDERS-->
+        <View
+                android:id="@+id/art_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_standard_height"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/license_text"
+                app:layout_constraintBottom_toTopOf="@id/audio_title"/>
+
+        <View
+                android:id="@+id/inspiration_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_standard_height"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@id/audio_text"
+                app:layout_constraintBottom_toTopOf="@id/inspiration_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

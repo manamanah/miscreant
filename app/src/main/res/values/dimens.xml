@@ -50,6 +50,7 @@
     <dimen name="fontSize_switch">20sp</dimen>
     <dimen name="fontSize_edit">20sp</dimen>
     <dimen name="fontSize_text">18sp</dimen>
+    <dimen name="fontSize_text_credits">16sp</dimen>
     <dimen name="fontSize_text_small">12sp</dimen>
     <dimen name="fontSize_card_values">16sp</dimen>
     <dimen name="fontSize_card_title">10sp</dimen>
