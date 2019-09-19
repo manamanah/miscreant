@@ -29,8 +29,10 @@
         <action
                 android:id="@+id/action_mainFragment_to_settingsFragment"
                 app:destination="@id/settingsFragment"
-                app:enterAnim="@anim/slide_down"
-                app:popExitAnim="@anim/slide_up"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 app:popUpTo="@id/mainFragment" />
     </fragment>
 
@@ -42,10 +44,10 @@
         <action
                 android:id="@+id/action_preGameFragment_to_gameFragment"
                 app:destination="@id/gameFragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_right"
-                app:popExitAnim="@anim/slide_out_left"
+                app:enterAnim="@anim/nav_default_pop_enter_anim"
+                app:exitAnim="@anim/nav_default_pop_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/preGameFragment" />
     </fragment>
 
@@ -64,6 +66,7 @@
                 android:id="@+id/action_gameFragment_to_settingsFragment"
                 app:destination="@id/settingsFragment"
                 app:enterAnim="@anim/slide_down"
+                app:exitAnim="@anim/nav_default_exit_anim"
                 app:popExitAnim="@anim/slide_up"
                 app:popUpTo="@+id/gameFragment" />
         <argument

@@ -15,7 +15,7 @@
     <fraction name="linespacing_normal">1.2</fraction>
 
     <!--RATIOS-->
-    <fraction name="card_ratio">0.7</fraction>
+    <fraction name="card_ratio">0.69</fraction>
     <fraction name="skull_ratio">3</fraction>
 
     <!--PERCENTAGES-->
