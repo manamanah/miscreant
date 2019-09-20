@@ -17,6 +17,8 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.android.miscreant.R
 import com.example.android.miscreant.databinding.FragmentSettingsBinding
+import java.util.*
+
 
 class SettingsFragment : Fragment() {
 
@@ -28,6 +30,25 @@ class SettingsFragment : Fragment() {
 
         // button onClickListeners
         binding.okButton.setOnClickListener { view: View ->
+
+            val configuration = resources.configuration
+
+            // simply returns first two letters of language, e.g. "en"
+            val selectedLanguage = when (binding.languageGroup.checkedRadioButtonId){
+                                                binding.germanRadioButton.id -> resources.getString(R.string.language_de)
+                                                else -> resources.getString(R.string.language_en)
+                                            }
+
+            val currentLocale =
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) resources.configuration.locale
+                else resources.configuration.locales.get(0)
+
+            if (!currentLocale.language.startsWith(selectedLanguage)){
+                configuration.setLocale(Locale(selectedLanguage))
+
+                @Suppress("DEPRECATION")
+                resources.updateConfiguration(configuration, resources.displayMetrics)
+            }
             fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName, "${getString(R.string.fragmentManager_null)} ${(view as Button).text}")
         }
 
