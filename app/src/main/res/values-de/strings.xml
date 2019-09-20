@@ -18,8 +18,8 @@
     <string name="art_title_desc">Artquellen</string>
     <string name="artists_1">Grafiken von Firas Najar, Graphic Goodies, Mike Mac, Zuhria</string>
     <string name="artists_1_desc">Künstler Zuhria, Firas Najar, Mike Mac, Graphic Goodies, Olga Bikmullina</string>
-    <string name="artist_olga">\"Free Game Items Pack #1\" \nFarbe adaptiert</string>
-    <string name="artist_olga_desc">Free Game Item Pack</string>
+    <string name="artists_2">Free Game Items Pack #1 und #2</string>
+    <string name="artists_2_desc">Free Game Item Pack</string>
     <string name="audio">Audio</string>
     <string name="audio_title_desc">Audio Einstellungen</string>
     <string name="audio_text">No Audio yet.</string>
@@ -41,12 +41,14 @@
     <string name="final_score_title">PUNKTE</string>
     <string name="final_score_desc">Schriftzug Gesamtpunkte</string>
     <string name="game_background">game_background</string>
-    <string name="gamedesign_text">Gamedesign von Birgit Schönauer</string>
+    <string name="gamedesign_text">Gamekonzept, -design und Code \nBirgit Schönauer</string>
     <string name="gamedesign_desc">Gamedesign von Birgit Schönauer</string>
     <string name="heart_desc">Herzbild</string>
     <string name="hero_archer_desc">der Bogenschützenheld</string>
     <string name="hero_name_desc">So heißt dein Held</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
+    <string name="icons_text">Icons \'Arrow Down\', \'Settings\' <a href="https://icons8.de/">icons8.de</a></string>
+    <string name="icons_text_desc">Einige Icons stammen von icons8.de</string>
     <string name="inspiration_card_crawl">Card Crawl von Tinytouchtales</string>
     <string name="inspiration_card_crawl_desc">Dieses Spiel wurde von Card Crawl inspiriert.</string>
     <string name="inspiration_scoundrel">Scoundrel von Zach Gage, Kurt Bieg</string>
@@ -55,7 +57,7 @@
     <string name="inspiration_title">Inspiration</string>
     <string name="left_items">Gegenstände</string>
     <string name="left_items_desc">Wert von Gegenständen zu Spielende</string>
-    <string name="license_cc3"><a href="https://creativecommons.org/licenses/by/3.0/">License CC 3.0</a></string>
+    <string name="license_cc3">Farbe adaptiert <a href="https://creativecommons.org/licenses/by/3.0/">License CC 3.0</a></string>
     <string name="license_desc">Creative Commons License 3.0</string>
     <string name="lost_game_title">AUTSCH !</string>
     <string name="lost_game_title_desc">Das war wohl nichts. Du bist gestorben</string>

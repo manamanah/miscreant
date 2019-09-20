@@ -38,6 +38,20 @@
                 app:layout_constraintBottom_toBottomOf="@id/credits_title"/>
 
         <TextView
+                android:id="@+id/gamedesign"
+                style="@style/basic_black_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:lineSpacingMultiplier="@fraction/linespacing_normal"
+                android:text="@string/gamedesign_text"
+                android:contentDescription="@string/gamedesign_desc"
+                app:layout_constraintTop_toBottomOf="@id/credits_title"
+                app:layout_constraintBottom_toTopOf="@id/top_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
                 android:id="@+id/art_title"
                 style="@style/within_menu_title"
                 android:layout_width="match_parent"
@@ -46,20 +60,7 @@
                 android:text="@string/art"
                 android:contentDescription="@string/art_title_desc"
                 android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@id/credits_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-                android:id="@+id/gamedesign"
-                style="@style/basic_black_text_small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
-                android:text="@string/gamedesign_text"
-                android:contentDescription="@string/gamedesign_desc"
-                app:layout_constraintTop_toBottomOf="@id/art_title"
-                app:layout_constraintBottom_toTopOf="@id/artists_1_text"
+                app:layout_constraintTop_toBottomOf="@id/top_divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -75,16 +76,16 @@
             android:lineSpacingMultiplier="@fraction/linespacing_normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gamedesign"
-            app:layout_constraintBottom_toTopOf="@id/olga_text"/>
+            app:layout_constraintTop_toBottomOf="@id/art_title"
+            app:layout_constraintBottom_toTopOf="@id/artists_2_text"/>
 
         <TextView
-                android:id="@+id/olga_text"
+                android:id="@+id/artists_2_text"
                 style="@style/basic_black_text_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/artist_olga"
-                android:contentDescription="@string/artist_olga_desc"
+                android:text="@string/artists_2"
+                android:contentDescription="@string/artists_2_desc"
                 android:textAlignment="center"
                 android:lineSpacingMultiplier="@fraction/linespacing_normal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +107,24 @@
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/olga_text"
+                app:layout_constraintTop_toBottomOf="@id/artists_2_text"
+                app:layout_constraintBottom_toTopOf="@id/icons_text"/>
+
+        <TextView
+                android:id="@+id/icons_text"
+                style="@style/basic_black_text_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:text="@string/icons_text"
+                android:contentDescription="@string/icons_text_desc"
+                android:textAlignment="center"
+                android:linksClickable="true"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/license_text"
                 app:layout_constraintBottom_toTopOf="@id/art_divider"/>
 
         <TextView
@@ -174,6 +192,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <!--DIVIDERS-->
+        <View
+                android:id="@+id/top_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_standard_height"
+                android:layout_margin="@dimen/spacing_normal"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@id/gamedesign"
+                app:layout_constraintBottom_toTopOf="@id/art_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         <View
                 android:id="@+id/art_divider"
                 android:layout_width="match_parent"

@@ -25,6 +25,7 @@ class CreditsFragment : Fragment() {
         val binding : FragmentCreditsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_credits, container, false)
 
         binding.licenseText.movementMethod = LinkMovementMethod.getInstance()
+        binding.iconsText.movementMethod = LinkMovementMethod.getInstance()
 
         // button onClickListeners
         binding.backButton.setOnClickListener{ view: View ->
@@ -33,6 +34,4 @@ class CreditsFragment : Fragment() {
 
         return binding.root
     }
-
-
 }
