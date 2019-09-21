@@ -39,6 +39,7 @@ class SettingsFragment : Fragment() {
                                                 else -> resources.getString(R.string.language_en)
                                             }
 
+            @Suppress("DEPRECATION")
             val currentLocale =
                 if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) resources.configuration.locale
                 else resources.configuration.locales.get(0)

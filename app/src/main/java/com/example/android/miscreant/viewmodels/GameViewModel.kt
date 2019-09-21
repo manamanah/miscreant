@@ -432,7 +432,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         Log.i("GAME END", "TO BE DONE")
 
         // values of equipped, stored cards
-        heroMap.forEach{(location, card) ->
+        heroMap.forEach{(_, card) ->
             card.value?.let {
                 if (!it.isEmpty() && it.type != CardType.hero){
                     leftItemsValue += it.health
@@ -743,7 +743,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         _cardEquipLeft.value = Card(location = Location.equip_left)
         _cardHero.value = Card(location = Location.hero)
         _cardEquipRight.value = Card(location = Location.equip_right)
-        _cardBackpack.value = Card(image = context?.resources?.getResourceName(R.drawable.backpack) ?: "", location = Location.backpack)
+        _cardBackpack.value = Card(image = context.resources?.getResourceName(R.drawable.backpack) ?: "", location = Location.backpack)
         _cardDiscard.value = Card(location = Location.discard)
     }
 }
