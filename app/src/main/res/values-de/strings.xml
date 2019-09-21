@@ -47,6 +47,7 @@
     <string name="hero_archer_desc">der Bogenschützenheld</string>
     <string name="hero_name_desc">So heißt dein Held</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
+    <string name="highscores_title_desc">Du bist im Highscore Menü</string>
     <string name="icons_text">Icons \'Arrow Down\', \'Settings\' <a href="https://icons8.de/">icons8.de</a></string>
     <string name="icons_text_desc">Einige Icons stammen von icons8.de</string>
     <string name="inspiration_card_crawl">Card Crawl von Tinytouchtales</string>
@@ -124,7 +125,7 @@
     <string name="game_difficulty_title_desc">Spielschwierigkeitsgrad</string>
     <string name="german">deutsch</string>
     <string name="german_button_desc">Radiobutton um Deutsch als Sprache zu wählen</string>
-    <string name="hard">echt?</string>
+    <string name="hard">brutal</string>
     <string name="hard_desc">Radiobutton für schweres Spiel</string>
     <string name="language">Sprache</string>
     <string name="language_group_desc">Radiobuttons zur Sprachwahl</string>

@@ -8,9 +8,8 @@
 
 <resources>
     <integer name="seekbar_max">@integer/game_decks_max</integer>
-    <integer name="edittext_ems_length">12</integer>
-    <integer name="edittext_max_length">15</integer>
     <integer name="game_decks_max">3</integer>
+    <integer name="game_difficulties">3</integer>
     <integer name="upside_down">90</integer>
 
     <!--ANIMATION-->
@@ -21,4 +20,9 @@
     <!--SCORING-->
     <integer name="deckMultiplier">10</integer>
     <integer name="maxHealthMultiplier">2</integer>
+
+    <!--EDITTEXT-->
+    <integer name="edittext_ems_length">12</integer>
+    <integer name="edittext_max_length">15</integer>
+
 </resources>

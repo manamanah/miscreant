@@ -46,6 +46,7 @@
     <string name="hero_archer_desc">the archer hero</string>
     <string name="hero_name_desc">This is you hero\'s name</string>
     <string name="hero_viking_desc">the viking hero</string>
+    <string name="highscores_title_desc">This is the highscore menu</string>
     <string name="icons_text">Icons \'Arrow Down\', \'Settings\' <a href="https://icons8.de/">icons8.de</a></string>
     <string name="icons_text_desc">Some icons from icons8.de</string>
     <string name="inspiration_card_crawl">Card Crawl by Tinytouchtales</string>
@@ -128,7 +129,7 @@
     <string name="game_difficulty_group_desc">Radiobuttons for game difficulty selection</string>
     <string name="german">german</string>
     <string name="german_button_desc">Radiobutton to select german as language</string>
-    <string name="hard">u sure?</string>
+    <string name="hard">badass</string>
     <string name="hard_desc">Radiobutton for hard game</string>
     <string name="normal">normal</string>
     <string name="normal_desc">Radiobutton for normal game</string>

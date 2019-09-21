@@ -35,6 +35,10 @@ class MainFragment : Fragment() {
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToSettingsFragment())
         }
 
+        binding.highscoreButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHighscoresFragment())
+        }
+
         binding.creditsButton.setOnClickListener { view: View ->
             view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToCreditsFragment())
         }
