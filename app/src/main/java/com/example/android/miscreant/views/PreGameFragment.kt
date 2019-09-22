@@ -46,7 +46,7 @@ class PreGameFragment : Fragment() {
         }
 
         binding.backButton.setOnClickListener{ view: View ->
-            fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
+            view.findNavController().navigate(PreGameFragmentDirections.actionPreGameFragmentToMainFragment2())
         }
 
         binding.okButton.setOnClickListener{ view: View ->
