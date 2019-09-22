@@ -429,7 +429,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     private fun gameWon(){
-        Log.i("GAME END", "TO BE DONE")
+        Log.i(this.javaClass.simpleName, "GameWON - Entered")
 
         // values of equipped, stored cards
         heroMap.forEach{(_, card) ->
@@ -472,11 +472,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
         else _secondSelectedCard.postValue(impactOutput.secondCard)
 
-        // if hero dead -> go to lose game
-        if (impactOutput.secondCard.type == CardType.hero && impactOutput.secondCard.showRIP){
-            gameLost()
-        }
-
+        // hero life values
         if (impactOutput.currentHealth != -1){
             if (impactOutput.showPotentialHealth){
                 _heroPotentialHealth.postValue(impactOutput.currentHealth)
