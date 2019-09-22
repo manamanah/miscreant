@@ -16,11 +16,24 @@
     <TextView
             android:id="@+id/highscores_title"
             style="@style/menu_title"
+            android:textSize="@dimen/fontSize_smaller_title"
             android:text="@string/highscore"
             android:contentDescription="@string/highscores_title_desc"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/primaryColor"
+            android:contentDescription="@string/back_button_desc"
+            app:srcCompat="@drawable/ic_chevron_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/highscores_title"
+            app:layout_constraintBottom_toBottomOf="@id/highscores_title"/>
 
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -42,5 +55,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_layout"/>
+
+    <Button
+            android:id="@+id/keep_best_button"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            android:text="@string/button_keep_best"
+            android:contentDescription="@string/button_keep_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/delete_all_button"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+            android:id="@+id/delete_all_button"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            android:text="@string/button_delete_all"
+            android:contentDescription="@string/button_delete_desc"
+            app:layout_constraintStart_toEndOf="@id/keep_best_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

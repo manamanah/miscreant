@@ -44,6 +44,7 @@
     <string name="gamedesign_desc">Gamedesign by Birgit Schönauer</string>
     <string name="heart_desc">heart image</string>
     <string name="hero_archer_desc">the archer hero</string>
+    <string name="hero_desc">Your hero\'s type</string>
     <string name="hero_name_desc">This is you hero\'s name</string>
     <string name="hero_viking_desc">the viking hero</string>
     <string name="highscores_title_desc">This is the highscore menu</string>
@@ -55,6 +56,8 @@
     <string name="inspiration_scoundrel_desc">This game was inspired by Scoundrel.</string>
     <string name="inspiration_title">Inspiration</string>
     <string name="inspiration_text_desc">This game was inspired by Scoundrel and Card Crawl.</string>
+    <string name="language_en" translatable="false">en</string>
+    <string name="language_de" translatable="false">de</string>
     <string name="left_items">Left items</string>
     <string name="left_items_desc">Value of left items at game\'s end</string>
     <string name="license_cc3">Adapted Color<a href="https://creativecommons.org/licenses/by/3.0/">License CC 3.0</a></string>
@@ -66,6 +69,7 @@
     <string name="max_health_title">Max. Health</string>
     <string name="max_health_points_desc">Points for your hero\'s max health value</string>
     <string name="name">Hero\'s name</string>
+    <string name="position_desc">highscore rank</string>
     <string name="potential_health_desc">Your hero\'s health, if you play this card</string>
     <string name="pre_game">Get ready!</string>
     <string name="pre_game_desc">Choose your play mode</string>
@@ -88,8 +92,12 @@
     <string name="credits_button_desc">Credits button</string>
     <string name="deal_new">deal new</string>
     <string name="deal_new_desc">deal new dungeon cards, suffer 1 damage</string>
+    <string name="button_delete_all">Delete All</string>
+    <string name="button_delete_desc">Press this button to delete this highscore list.</string>
     <string name="highscore">HIGHSCORES</string>
     <string name="highscore_button_desc">Highscores button</string>
+    <string name="button_keep_best">Keep Best 15</string>
+    <string name="button_keep_desc">Press this button and only the 15 best highscores in this list are kept</string>
     <string name="ok">OK</string>
     <string name="ok_button_desc">Submit button</string>
     <string name="play">PLAY</string>
@@ -164,12 +172,11 @@
     <!--DESIGN PLACEHOLDER-->
     <string name="placeholder_card_title">CARD TITLE</string>
     <string name="placeholder_card_value">10</string>
+    <string name="placeholder_name">WWWWWWWWWW</string>
 
     <!--DECK PATHS-->
     <string name="easy_deck_path">testdeck.json</string>
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
-    <string name="language_en" translatable="false">en</string>
-    <string name="language_de" translatable="false">de</string>
 
 </resources>

@@ -17,7 +17,7 @@ import com.example.android.miscreant.views.HighscoreNormalFragment
 import com.example.android.miscreant.views.HighscoresFragment
 
 
-class PageAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter (fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+class PageAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
     override fun getItem(position: Int): Fragment {
         return when (position){
@@ -34,7 +34,7 @@ class PageAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter 
         if (position < HighscoresFragment.difficultyNames.size){
             return HighscoresFragment.difficultyNames[position]
         }
-        Log.e("PageAdapter", "Position higher $position than size of difficultyNames ${HighscoresFragment.difficultyNames.size}")
+        Log.e(this.javaClass.simpleName, "Position higher $position than size of difficultyNames ${HighscoresFragment.difficultyNames.size}")
         return "TITLE"
     }
 }

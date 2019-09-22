@@ -19,6 +19,7 @@ import com.example.android.miscreant.models.Card
 import com.example.android.miscreant.models.ImpactOutput
 import com.example.android.miscreant.models.SelectedCard
 import com.example.android.miscreant.Settings
+import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.models.Dungeonstatus
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -27,16 +28,18 @@ import java.lang.IllegalArgumentException
 class GameViewModel(context: Context?) : ViewModel() {
 
     // needed for loading decks
-    private val context: Context = context ?: throw IllegalArgumentException("${this.javaClass.simpleName}: context is NULL" )
+    private val context: Context = context ?: throw IllegalArgumentException("Context is null")
+    private  var repository = HighscoreRepository(this.context)
+
     private val gameBackground = context?.getString(R.string.game_background).orEmpty()
     private lateinit var settings: Settings
 
     private var _navigateToLoseFragment = MutableLiveData<Boolean>()
-    val navigateToLoseFragement : LiveData<Boolean>
+    val navigateToLoseFragment : LiveData<Boolean>
         get() = _navigateToLoseFragment
 
     private var _navigateToWinFragment = MutableLiveData<Boolean>()
-    val navigateToWinFragement : LiveData<Boolean>
+    val navigateToWinFragment : LiveData<Boolean>
         get() = _navigateToWinFragment
 
     var leftItemsValue = 0
@@ -394,7 +397,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     private fun dealCards(dungeonStatus: Dungeonstatus = Dungeonstatus(dungeonMap.keys.toMutableList(), 0)) {
-        // deck is empty -> if no monsters & dungeon clear -> scoring & new deck
+        // deck is empty -> if no monsters & dungeon clearDifficulty -> scoring & new deck
         if (activeDeck.isEmpty()){
             // if any monster left -> not over yet
             if (dungeonStatus.monstersInDungeon > 0){
@@ -440,15 +443,39 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
         }
 
+        val deckpoints = (currentDeckNumber.value ?: 0).times(context.resources.getInteger(R.integer.deckMultiplier))
+        val maxHealthPoints = (heroMaxHealth.value ?: 0).times(context.resources.getInteger(R.integer.maxHealthMultiplier))
+
+        val highscore = Highscore(
+                difficulty = settings.difficulty.title,
+                heroName = settings.heroName,
+                heroType = settings.hero.imageName,
+                points = deckpoints + maxHealthPoints + leftItemsValue
+        )
+        repository.insert(highscore)
+
         _navigateToWinFragment.postValue(true)
         resetGame()
     }
 
     private fun gameLost(){
-        resetGame()
+        Log.i(this.javaClass.simpleName, "GameLOST Entered")
+
+        val deckpoints = (currentDeckNumber.value ?: 0).times(context.resources.getInteger(R.integer.deckMultiplier))
+        val maxHealthPoints = (heroMaxHealth.value ?: 0).times(context.resources.getInteger(R.integer.maxHealthMultiplier))
+
+        val highscore = Highscore(
+            difficulty = settings.difficulty.title,
+            heroName = settings.heroName,
+            heroType = settings.hero.imageName,
+            points = deckpoints + maxHealthPoints
+        )
+        repository.insert(highscore)
 
         _navigateToLoseFragment.postValue(true)
+        resetGame()
     }
+
 
     private fun resetGame(){
         // empty deck

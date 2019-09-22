@@ -45,6 +45,7 @@
     <string name="gamedesign_desc">Gamedesign von Birgit Schönauer</string>
     <string name="heart_desc">Herzbild</string>
     <string name="hero_archer_desc">der Bogenschützenheld</string>
+    <string name="hero_desc">Dein gewählter Heldentypus</string>
     <string name="hero_name_desc">So heißt dein Held</string>
     <string name="hero_viking_desc">der Wikingerheld</string>
     <string name="highscores_title_desc">Du bist im Highscore Menü</string>
@@ -67,6 +68,7 @@
     <string name="max_health_title">Max. Leben</string>
     <string name="max_health_points_desc">Punkte für die max. Leben deines Helden</string>
     <string name="name">Heldenname</string>
+    <string name="position_desc">Highscore Rang</string>
     <string name="potential_health_desc">So viel Leben hat dein Held, wenn du diesen Zug spielst</string>
     <string name="pre_game">Auf geht\'s!</string>
     <string name="pre_game_desc">Wähle deinen Spielmodus</string>
@@ -85,8 +87,12 @@
     <string name="back_button_desc">zurück button</string>
     <string name="credits">CREDITS</string>
     <string name="credits_button_desc">Credits Button</string>
+    <string name="button_delete_all">Lösche Liste</string>
+    <string name="button_delete_desc">Diese Highscoreliste wird auf Knopfdruck gelöscht.</string>
     <string name="highscore">HIGHSCORES</string>
     <string name="highscore_button_desc">Highscore Button</string>
+    <string name="button_keep_best">Behalte Top 15</string>
+    <string name="button_keep_desc">Auf Knopfdruck werden nur die top 15 Highscoreeinträge behalten.</string>
     <string name="ok">OK</string>
     <string name="ok_button_desc">OK Button</string>
     <string name="play">START</string>
@@ -165,6 +171,7 @@
     <!--DESIGN PLACEHOLDER-->
     <string name="placeholder_card_title" translatable="false">CARD TITLE</string>
     <string name="placeholder_card_value" translatable="false">10</string>
+    <string name="placeholder_name">WWWWWWWWWW</string>
 
     <!--DECK PATHS-->
     <string name="easy_deck_path">testdeck.json</string>

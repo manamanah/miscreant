@@ -65,6 +65,12 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/preGameFragment" />
+        <action
+                android:id="@+id/action_preGameFragment_to_mainFragment2"
+                app:destination="@id/mainFragment"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/mainFragment" />
     </fragment>
 
     <fragment

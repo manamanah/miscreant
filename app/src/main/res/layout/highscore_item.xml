@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <import type="com.example.android.miscreant.Enums.Hero"/>
+        <variable
+                name="highscore"
+                type="com.example.android.miscreant.database.Highscore" />
+    </data>
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_min">
+
+        <TextView
+                android:id="@+id/position"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:contentDescription="@string/position_desc"
+                android:text="@{Integer.toString(highscore.position) + '.'}"
+                tools:text="@string/placeholder_card_value" />
+
+        <TextView
+                android:id="@+id/heroName"
+                style="@style/basic_black_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:contentDescription="@string/name"
+                android:text="@{highscore.heroName}"
+                tools:text="@string/placeholder_name" />
+
+        <ImageView
+                android:id="@+id/heroType"
+                android:layout_width="@dimen/highscore_item_height"
+                android:layout_height="@dimen/highscore_item_height"
+                android:contentDescription="@string/hero_desc"
+                android:padding="@dimen/spacing_min"
+                android:scaleType="centerCrop"
+                android:src='@{highscore.heroType == Hero.viking.imageName ? @drawable/viking : @drawable/archer}'
+                tools:src="@drawable/archer" />
+
+        <TextView
+                android:id="@+id/difficulty"
+                style="@style/basic_black_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:layout_weight="1"
+                android:contentDescription="@string/game_difficulty_title_desc"
+                android:text="@{highscore.difficulty}"
+                android:textColor="@color/primaryLightColor"
+                tools:text="@string/easy" />
+
+        <TextView
+                android:id="@+id/points"
+                style="@style/basic_black_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:layout_weight="1"
+                android:contentDescription="@string/final_score_desc"
+                android:text="@{Integer.toString(highscore.points)}"
+                tools:text="@string/placeholder_card_value" />
+
+    </LinearLayout>
+
+</layout>

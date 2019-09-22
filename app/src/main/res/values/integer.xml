@@ -23,6 +23,6 @@
 
     <!--EDITTEXT-->
     <integer name="edittext_ems_length">12</integer>
-    <integer name="edittext_max_length">15</integer>
+    <integer name="edittext_max_length">10</integer>
 
 </resources>

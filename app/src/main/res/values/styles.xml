@@ -97,6 +97,14 @@
         <item name="android:background">@drawable/button_custom</item>
     </style>
 
+    <style name="button">
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textSize">@dimen/fontSize_homeButton</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textScaleX">@fraction/letter_spacing_min</item>
+        <item name="android:background">@drawable/button_custom</item>
+    </style>
+
     <style name="radiobutton">
         <item name="android:padding">@dimen/spacing_normal</item>
         <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
