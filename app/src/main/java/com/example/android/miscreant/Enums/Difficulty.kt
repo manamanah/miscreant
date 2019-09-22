@@ -10,8 +10,8 @@ package com.example.android.miscreant.Enums
 import androidx.annotation.Keep
 
 @Keep
-enum class Difficulty {
-    easy,
-    normal,
-    hard
+enum class Difficulty(val title: String) {
+    easy("easy"),
+    normal("normal"),
+    hard("hard")
 }
