@@ -13,7 +13,7 @@ import com.example.android.miscreant.Enums.Hero
 import com.example.android.miscreant.Enums.Location
 import com.example.android.miscreant.models.Card
 
-class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking, val maxDeckNumber: Int = 3, val maxSpecials: Int = 3){
+class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking, val maxDeckNumber: Int = 2, val maxSpecials: Int = 3){
 
     var usedSpecials: Int = 0
         private set
