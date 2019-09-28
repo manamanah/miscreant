@@ -10,6 +10,7 @@ package com.example.android.miscreant.viewmodels
 import android.content.Context
 import android.util.Log
 import android.view.View
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,16 +24,23 @@ import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.models.Dungeonstatus
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
 class GameViewModel(context: Context?) : ViewModel() {
 
-    // needed for loading decks
-    private val context: Context = context ?: throw IllegalArgumentException("Context is null")
-    private  var repository = HighscoreRepository(this.context)
+    var heroSpecial: String = ""
+        private set
 
-    private val gameBackground = context?.getString(R.string.game_background).orEmpty()
-    private lateinit var settings: Settings
+    var leftItemsValue = 0
+        private set
+
+    var gameOver = false
+        private set
+
+    val maxDecks: Int = if (::settings.isInitialized) settings.maxDeckNumber else 0
+
+    var counterAttackRunning: Boolean = false
+        private set
 
     private var _navigateToLoseFragment = MutableLiveData<Boolean>()
     val navigateToLoseFragment : LiveData<Boolean>
@@ -42,46 +50,6 @@ class GameViewModel(context: Context?) : ViewModel() {
     val navigateToWinFragment : LiveData<Boolean>
         get() = _navigateToWinFragment
 
-    var leftItemsValue = 0
-        private set
-    var gameOver = false
-        private set
-    val maxDecks: Int = if (::settings.isInitialized) settings.maxDeckNumber else 0
-
-    // region deck related
-    // todo each difficulty consists of 3 different decks
-    private val deckPaths : Map<Difficulty, List<String>> = mapOf(
-        Difficulty.easy to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty()),
-        Difficulty.normal to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty()),
-        Difficulty.hard to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty())
-    )
-
-    private var _currentDeckNumber = MutableLiveData<Int>()
-    val currentDeckNumber : LiveData<Int>
-        get() = _currentDeckNumber
-
-    private var activeDeck: MutableList<Card> = mutableListOf()
-    // endregion
-
-    // region selected, highlighted cards, cardresolver
-    private var cardResolver = CardResolver()
-    private var firstSelected = SelectedCard()
-    private var secondSelected= SelectedCard()
-    private var _firstSelectedCard = MutableLiveData<Card>()
-    private var _secondSelectedCard = MutableLiveData<Card>()
-    private var highlightedCards = mutableListOf<MutableLiveData<Card>>()
-    // endregion
-
-    // region cards in play
     // region dungeon area cards
     private var _cardLeftBack = MutableLiveData<Card>()
     val cardLeftBack : LiveData<Card>
@@ -132,28 +100,6 @@ class GameViewModel(context: Context?) : ViewModel() {
         get() = _cardBackpack
     // endregion
 
-    // region game area dungeon & hero card mapping
-    private var dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
-        mutableMapOf(
-            Location.dungeon_left_back to _cardLeftBack,
-            Location.dungeon_middle_back to _cardMiddleBack,
-            Location.dungeon_right_back to _cardRightBack,
-            Location.dungeon_left_front to _cardLeftFront,
-            Location.dungeon_middle_front to _cardMiddleFront,
-            Location.dungeon_right_front to _cardRightFront
-        )
-
-    private var heroMap: MutableMap<Location, MutableLiveData<Card>> =
-        mutableMapOf(
-            Location.equip_left to _cardEquipLeft,
-            Location.equip_right to _cardEquipRight,
-            Location.backpack to _cardBackpack,
-            Location.hero to _cardHero,
-            Location.discard to _cardDiscard
-        )
-    // endregion
-    // endregion
-
     // region displayed non-card values on screen
     private var _cardsLeftInDeck = MutableLiveData<Int>()
     val cardsLeftInDeck  : LiveData<Int>
@@ -191,12 +137,73 @@ class GameViewModel(context: Context?) : ViewModel() {
     val specialsUsed  : LiveData<Int>
         get() = _specialsUsed
 
-    var heroSpecial  : String = ""
-        private set
-
     private var _dealNewPenalty = MutableLiveData<Int>()
     val dealNewPenalty : LiveData<Int>
         get() = _dealNewPenalty
+    // endregion
+
+    // region deck related
+    private var _currentDeckNumber = MutableLiveData<Int>()
+    val currentDeckNumber : LiveData<Int>
+        get() = _currentDeckNumber
+
+    // todo each difficulty consists of 3 different decks
+    private val deckPaths : Map<Difficulty, List<String>> = mapOf(
+        Difficulty.easy to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty()),
+        Difficulty.normal to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty()),
+        Difficulty.hard to listOf(
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty(),
+            context?.getString(R.string.easy_deck_path).orEmpty())
+    )
+
+    private var activeDeck: MutableList<Card> = mutableListOf()
+    // endregion
+
+    // needed for loading decks
+    private val context: Context = context ?: throw IllegalArgumentException("${this.javaClass.simpleName } CONTEXT is null")
+    private  var repository = HighscoreRepository(this.context)
+
+    private val gameBackground = context?.getString(R.string.game_background).orEmpty()
+    private lateinit var settings: Settings
+
+    private val dungeonRowSize = context?.resources?.getInteger(R.integer.dungeon_row_size) ?: 3
+    private var counterAttackImpact = ImpactOutput()
+
+    // region selected & highlighted cards, cardresolver
+    private var cardResolver = CardResolver()
+    private var firstSelected = SelectedCard()
+    private var secondSelected= SelectedCard()
+    private var _firstSelectedCard = MutableLiveData<Card>()
+    private var _secondSelectedCard = MutableLiveData<Card>()
+    private var highlightedCards = mutableListOf<MutableLiveData<Card>>()
+    // endregion
+
+    // region game area dungeon & hero card mapping
+    private var dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
+        mutableMapOf(
+            Location.dungeon_left_back to _cardLeftBack,
+            Location.dungeon_middle_back to _cardMiddleBack,
+            Location.dungeon_right_back to _cardRightBack,
+            Location.dungeon_left_front to _cardLeftFront,
+            Location.dungeon_middle_front to _cardMiddleFront,
+            Location.dungeon_right_front to _cardRightFront
+        )
+
+    private var heroMap: MutableMap<Location, MutableLiveData<Card>> =
+        mutableMapOf(
+            Location.equip_left to _cardEquipLeft,
+            Location.equip_right to _cardEquipRight,
+            Location.backpack to _cardBackpack,
+            Location.hero to _cardHero,
+            Location.discard to _cardDiscard
+        )
     // endregion
 
     init {
@@ -369,6 +376,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         dungeonMap.forEach{( _, card ) ->
             card.value?.let {
                 if (!it.isEmpty()){
+                    it.startCounterAttack = false
                     activeDeck.add(it)
                     card.value = Card(location = it.location)
                 }
@@ -386,6 +394,40 @@ class GameViewModel(context: Context?) : ViewModel() {
         _navigateToWinFragment.postValue(false)
     }
 
+    fun onClawEnd(view: CardView){
+        Log.i(this.javaClass.simpleName, "Counter attack claw animation ENDED")
+
+        val location = view.getCardLocationByName()
+        if (heroMap.containsKey(location)) {
+            val card = heroMap[location]?.value ?: Card()
+            card.startClawAnimation = false
+            heroMap[location]?.postValue(card)
+        }
+        else {
+            val heroCard = _cardHero.value ?: Card()
+            heroCard.startClawAnimation = false
+            _cardHero.postValue(heroCard)
+        }
+    }
+
+    fun counterAttackAnimationEnded(view: CardView){
+        val location = view.getCardLocationByName()
+        if (dungeonMap.containsKey(location)){
+            val card = dungeonMap[location]?.value ?: Card()
+            card.startCounterAttack = false
+            dungeonMap[location]?.postValue(card)
+
+            val dungeonStatus = getDungeonStatus()
+            if (dungeonStatus.counterAttackOpen == 0){
+                // update card values
+                applyCounterAttackImpact(counterAttackImpact)
+
+                counterAttackRunning = false
+                dealCards(dungeonStatus)
+            }
+        }
+    }
+
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath : String) : MutableList<Card> {
 
@@ -396,7 +438,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         return Gson().fromJson(jsonString, type)
     }
 
-    private fun dealCards(dungeonStatus: Dungeonstatus = Dungeonstatus(dungeonMap.keys.toMutableList(), 0)) {
+    private fun dealCards(dungeonStatus: Dungeonstatus = Dungeonstatus(emptySpots = dungeonMap.keys.toMutableList(), monstersInDungeon = 0)) {
         // deck is empty -> if no monsters & dungeon clearDifficulty -> scoring & new deck
         if (activeDeck.isEmpty()){
             // if any monster left -> not over yet
@@ -428,6 +470,7 @@ class GameViewModel(context: Context?) : ViewModel() {
             else moveBackrowCardsToDungeonFront()
         }
 
+        // update values
         _cardsLeftInDeck.postValue(activeDeck.size)
     }
 
@@ -476,7 +519,6 @@ class GameViewModel(context: Context?) : ViewModel() {
         resetGame()
     }
 
-
     private fun resetGame(){
         // empty deck
         activeDeck.clear()
@@ -488,6 +530,7 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     private fun applyImpact(impactOutput: ImpactOutput){
+
         // if different aka empty card returned - set new card, otherwise update
         if (_firstSelectedCard.value?.type != impactOutput.firstCard.type){
             _firstSelectedCard.value = impactOutput.firstCard
@@ -499,6 +542,24 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
         else _secondSelectedCard.postValue(impactOutput.secondCard)
 
+        updateHeroValues(impactOutput)
+
+        // maybe monster was killed in front row
+        moveBackrowCardsToDungeonFront()
+    }
+
+    private fun applyCounterAttackImpact(impactOutput: ImpactOutput){
+        Log.i(this.javaClass.simpleName, "counter attack impact APPLIED")
+
+        if (impactOutput.secondCard.type == CardType.shield ||
+            impactOutput.secondCard.type == CardType.none){
+            heroMap[impactOutput.secondCard.location]?.postValue(impactOutput.secondCard)
+        }
+
+        updateHeroValues(impactOutput)
+    }
+
+    private fun updateHeroValues(impactOutput: ImpactOutput) {
         // hero life values
         if (impactOutput.currentHealth != -1){
             if (impactOutput.showPotentialHealth){
@@ -535,9 +596,6 @@ class GameViewModel(context: Context?) : ViewModel() {
             }
             _specialsUsed.postValue(tempUsedSpecials)
         }
-
-        // maybe monster was killed in front row
-        moveBackrowCardsToDungeonFront()
     }
 
     private fun isValidFirstSelectedCard(cardType: CardType, location: Location): Boolean {
@@ -677,26 +735,104 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
 
         val dungeonStatus = getDungeonStatus()
-        if (dungeonStatus.emptySpots.size >= 3){
-            // todo trigger monster retaliate
+        if (dungeonStatus.emptySpots.size >= dungeonRowSize && !counterAttackRunning){
+            monsterCounterAttack(dungeonStatus)
+        }
+    }
+
+    private fun monsterCounterAttack(dungeonStatus: Dungeonstatus){
+        // check, if any monsters at front
+        val frontCards = listOf(_cardLeftFront, _cardMiddleFront, _cardRightFront)
+        val monstersAttacking = frontCards.any{ it.value?.type == CardType.monster}
+        Log.i(this.javaClass.simpleName, "monster counterAttack: $monstersAttacking")
+
+        if (!monstersAttacking){
             dealCards(dungeonStatus)
+            return
+        }
+
+        // otherwise monster counterAttack
+        counterAttackRunning = true
+        var attackValue: Int = 0
+
+        frontCards.forEach { card: MutableLiveData<Card> ->
+            card.value?.let {
+                if (it.type == CardType.monster){
+                    attackValue += it.counterAttackValue
+                    it.startCounterAttack = true
+                    card.postValue(it)
+                }
+            }
+        }
+
+        // create fictive monsterCard with combined attackValue
+        val monsterCard = Card(type = CardType.monster, health = attackValue)
+        // if shield equipped, target it - otherwise hero
+        val targetCard = getCounterAttackTarget()
+
+        counterAttackImpact = cardResolver.resolveCounterAttack(monsterCard, targetCard, settings.currentHealth)
+        triggerCounterAttackClawAnimation()
+    }
+
+    // returns shield, if equipped or hero
+    // if 2 shields are equipped, higher shield is returned unless Difficulty.hard
+    private fun getCounterAttackTarget(): Card {
+        val leftCard = _cardEquipLeft.value?.copy() ?: Card()
+        val rightCard= _cardEquipRight.value?.copy() ?: Card()
+
+        if (leftCard.type == CardType.shield) {
+            // 2 shields equipped
+            return if (rightCard.type == CardType.shield){
+                if (leftCard.health >= rightCard.health){
+                    // return lower shield if Difficulty.hard
+                    if (settings.difficulty == Difficulty.hard) rightCard else leftCard
+                } else if (settings.difficulty == Difficulty.hard) leftCard else rightCard
+            }
+            else return leftCard
+        }
+
+        return if (rightCard.type == CardType.shield) rightCard
+        else _cardHero.value ?: throw IllegalArgumentException("${this.javaClass.simpleName } HERO-CARD is null")
+    }
+
+    private fun triggerCounterAttackClawAnimation(){
+        Log.i(this.javaClass.simpleName, "counter attack claw animation TRIGGERED")
+
+        if (counterAttackImpact.secondCard.location != Location.hero){
+            val card = heroMap[counterAttackImpact.secondCard.location]?.value ?: Card()
+            if (!card.startClawAnimation){
+                card.startClawAnimation = true
+                heroMap[counterAttackImpact.secondCard.location]?.postValue(card)
+            }
+        }
+
+        if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.startClawAnimation == false){
+            _cardHero.value?.let {
+                it.startClawAnimation = true
+                _cardHero.postValue(it)
+            }
         }
     }
 
     private fun getDungeonStatus(): Dungeonstatus {
-        val emptySpots: MutableList<Location> = mutableListOf()
-        var monstersInDungeon = 0
+        val dungeonStatus = Dungeonstatus()
 
         dungeonMap.forEach{(key, card) ->
             card.value?.let {
-                when{
-                    it.isEmpty() -> emptySpots.add(key)
-                    it.type == CardType.monster -> monstersInDungeon += 1
+                when {
+                    it.isEmpty() -> dungeonStatus.emptySpots.add(key)
+                    it.type == CardType.monster -> {
+                        dungeonStatus.monstersInDungeon += 1
+                        if (it.startCounterAttack) {
+                            dungeonStatus.counterAttackOpen += 1
+                        }
+                        else return@forEach
+                    }
                     else -> return@forEach
                 }
             }
         }
-        return Dungeonstatus(emptySpots, monstersInDungeon)
+        return dungeonStatus
     }
 
     private fun moveFromToCard(from: MutableLiveData<Card>, to: MutableLiveData<Card>){
@@ -742,7 +878,7 @@ class GameViewModel(context: Context?) : ViewModel() {
             if (!it.isEmpty()){
                 it.showRIP = false
                 it.showEquip = false
-                it.showHealth = if (it.type == CardType.hero) false else true
+                it.showHealth = it.type != CardType.hero
                 it.showConsumed = false
                 it.showPotentialHealth = false
                 it.isLookActive = true

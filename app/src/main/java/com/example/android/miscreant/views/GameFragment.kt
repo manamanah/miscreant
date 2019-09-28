@@ -10,6 +10,7 @@ package com.example.android.miscreant.views
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -23,7 +24,8 @@ import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.databinding.FragmentGameBinding
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
 
-class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener{
+
+class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener {
 
     private val gameArguments: GameFragmentArgs by navArgs()
 
@@ -44,14 +46,25 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         fun setListeners(view: View){
             view.setOnTouchListener(gameFragment)
         }
+
+        fun onClawEnd(view: CardView){
+            gameFragment.onClawEnd(view)
+        }
+
+        fun onCounterAttackAnimationEnd(view: CardView){
+            gameFragment.onCounterAttackAnimationEnd(view)
+        }
     }
 
     // region touch interactions
     override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
-        // don't bother if view not valid
-        selectedView = view ?: return true
-        gestureDetector.onTouchEvent(motionEvent)
-        view.performClick()
+        if (!gameViewModel.counterAttackRunning){
+
+            // don't bother if view not valid
+            selectedView = view ?: return true
+            gestureDetector.onTouchEvent(motionEvent)
+            view.performClick()
+        }
         return true
     }
 
@@ -70,16 +83,18 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     }
     // endregion
 
+    fun onClawEnd(view: CardView){
+        gameViewModel.onClawEnd(view)
+    }
+
+    fun onCounterAttackAnimationEnd(view: CardView) {
+        gameViewModel.counterAttackAnimationEnded(view)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val binding: FragmentGameBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_game, container, false)
-
-        // set up listeners for card touch interaction
-        setFragmentInstance(this)
-        gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
-        gestureDetector.setOnDoubleTapListener(this)
-        selectedView = View(context)
 
         // allows data binding to observe LiveData in fragment lifecycle
         binding.lifecycleOwner = this
@@ -90,7 +105,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         binding.gameViewModel = gameViewModel
 
         // region observers for navigation
-        gameViewModel.navigateToLoseFragement.observe(this, Observer {
+        gameViewModel.navigateToLoseFragment.observe(this, Observer {
             if (it != null && it){
                 findNavController().navigate(GameFragmentDirections.actionGameFragmentToLoseFragment(
                     gameArguments.gameDifficulty,
@@ -103,7 +118,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             }
         })
 
-        gameViewModel.navigateToWinFragement.observe(this, Observer {
+        gameViewModel.navigateToWinFragment.observe(this, Observer {
             if (it != null && it){
                 findNavController().navigate(GameFragmentDirections.actionGameFragmentToWinFragment(
                     gameArguments.gameDifficulty,
@@ -117,6 +132,12 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             }
         })
         // endregion
+
+        // set up listeners for card touch interaction
+        setFragmentInstance(this)
+        gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
+        gestureDetector.setOnDoubleTapListener(this)
+        selectedView = View(context)
 
         // region init game settings and hero stuff
         gameViewModel.initializeGameSettings(gameArguments.gameDifficulty, gameArguments.heroName, gameArguments.heroType)

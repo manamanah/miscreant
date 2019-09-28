@@ -9,4 +9,4 @@ package com.example.android.miscreant.models
 
 import com.example.android.miscreant.Enums.Location
 
-data class Dungeonstatus(val emptySpots: MutableList<Location>, val monstersInDungeon: Int = 0)
+data class Dungeonstatus(val emptySpots: MutableList<Location> = mutableListOf(), var monstersInDungeon: Int = 0, var counterAttackOpen: Int = 0)

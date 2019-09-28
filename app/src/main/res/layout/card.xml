@@ -24,6 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:tag="@{cardViewModel.type.id}"
+            app:startAnimation="@{cardViewModel.startCounterAttack}"
+            app:startClawAnimation="@{cardViewModel.startClawAnimation}"
+            app:startHitAnimation="@{cardViewModel.startHitAnimation}"
             app:setListeners="@{cardViewModel.type.id}"
             android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}">
 

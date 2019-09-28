@@ -100,6 +100,10 @@ class CardResolver {
         }
     }
 
+    fun resolveCounterAttack(firstCard: Card, secondCard: Card, currentHealth: Int = - 1): ImpactOutput {
+        return takeDungeonCard(firstCard, secondCard, currentHealth)
+    }
+
     private fun showHeroSpecial(firstCard: Card, secondCard: Card, visualizeOnly: Boolean): ImpactOutput {
         if (visualizeOnly){
             secondCard.showHealth = false
