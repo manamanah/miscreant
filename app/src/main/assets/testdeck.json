@@ -4,391 +4,415 @@
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Hungry Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Nasty Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Hungry Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Nasty Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": "true"
+    "showHealth": true,
+    "showCounterAttackIntent": true
   },
   {
     "type": "weapon",
     "name": "Small Sword",
     "health": 3,
-    "image": "sword_small",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_small"
   },
   {
     "type": "weapon",
     "name": "Small Sword",
     "health": 3,
-    "image": "sword_small",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_small"
   },
   {
     "type": "weapon",
     "name": "Sword",
     "health": 4,
-    "image": "sword_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_normal"
   },
   {
     "type": "weapon",
     "name": "Sword",
     "health": 4,
-    "image": "sword_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_normal"
   },
   {
     "type": "weapon",
     "name": "Sword",
     "health": 4,
-    "image": "sword_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_normal"
   },
   {
     "type": "weapon",
     "name": "Sword",
     "health": 4,
-    "image": "sword_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_normal"
   },
   {
     "type": "weapon",
     "name": "Long Sword",
     "health": 5,
-    "image": "sword_long",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_long"
   },
   {
     "type": "weapon",
     "name": "Long Sword",
     "health": 5,
-    "image": "sword_long",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "sword_long"
   },
   {
     "type": "weapon",
     "name": "Axe",
     "health": 6,
-    "image": "axe",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "axe"
   },
   {
     "type": "weapon",
     "name": "Axe",
     "health": 6,
-    "image": "axe",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "axe"
   },
   {
     "type": "weapon",
     "name": "Axe",
     "health": 6,
-    "image": "axe",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "axe"
   },
   {
     "type": "weapon",
     "name": "Axe",
     "health": 6,
-    "image": "axe",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "axe"
   },
   {
     "type": "shield",
     "name": "Small Shield",
     "health": 3,
-    "image": "round_shield_small",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_small"
   },
   {
     "type": "shield",
     "name": "Small Shield",
     "health": 3,
-    "image": "round_shield_small",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_small"
   },
   {
     "type": "shield",
     "name": "Shield",
     "health": 4,
-    "image": "round_shield_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_normal"
   },
   {
     "type": "shield",
     "name": "Shield",
     "health": 4,
-    "image": "round_shield_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_normal"
   },
   {
     "type": "shield",
     "name": "Robust Shield",
     "health": 5,
-    "image": "round_shield_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_big"
   },
   {
     "type": "shield",
     "name": "Robust Shield",
     "health": 5,
-    "image": "round_shield_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "round_shield_big"
   },
   {
     "type": "shield",
     "name": "Feel Edgy",
     "health": 6,
-    "image": "corner_shield_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "corner_shield_normal"
   },
   {
     "type": "shield",
     "name": "Feel Edgy",
     "health": 6,
-    "image": "corner_shield_normal",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "corner_shield_normal"
   },
   {
     "type": "potion",
     "name": "Black Potion",
     "health": 2,
-    "image": "black_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "black_potion"
   },
   {
     "type": "potion",
     "name": "Black Potion",
     "health": 2,
-    "image": "black_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "black_potion"
   },
   {
     "type": "potion",
     "name": "Breakfast!",
     "health": 3,
-    "image": "pink_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion"
   },
   {
     "type": "potion",
     "name": "Breakfast!",
     "health": 3,
-    "image": "pink_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion"
   },
   {
     "type": "potion",
     "name": "Breakfast!",
     "health": 3,
-    "image": "pink_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion"
   },
   {
     "type": "potion",
     "name": "Breakfast!",
     "health": 3,
-    "image": "pink_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion"
   },
   {
     "type": "potion",
     "name": "Better Potion",
     "health": 4,
-    "image": "blue_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "blue_potion"
   },
   {
     "type": "potion",
     "name": "Better Potion",
     "health": 4,
-    "image": "blue_potion",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "blue_potion"
   },
   {
     "type": "potion",
     "name": "STRONGER",
     "health": 5,
-    "image": "black_potion_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "black_potion_big"
   },
   {
     "type": "potion",
     "name": "STRONGER",
     "health": 5,
-    "image": "black_potion_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "black_potion_big"
   },
   {
     "type": "potion",
     "name": "The Special",
     "health": 6,
-    "image": "pink_potion_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion_big"
   },
   {
     "type": "potion",
     "name": "The Special",
     "health": 6,
-    "image": "pink_potion_big",
-    "showHealth": "true"
+    "showHealth": true,
+    "image": "pink_potion_big"
   }
 ]

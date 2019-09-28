@@ -14,16 +14,20 @@ data class Card(val type: CardType = CardType.none,
                 val name: String = "",
                 var health: Int = 0,
                 val image: String = "",
+                val counterAttackValue: Int = 1,
                 var potentialHealth: Int = 0,
+                var location: Location = Location.none,
                 var showHealth: Boolean = false,
                 var showRIP: Boolean = false,
                 var showConsumed: Boolean = false,
                 var showPotentialHealth: Boolean = false,
                 var isHighlightOn: Boolean = false,
-                var isAttackVisible: Boolean = false,
+                var showCounterAttackIntent: Boolean = false,
+                var startCounterAttack: Boolean = false,
                 var isLookActive: Boolean = true,
                 var showEquip: Boolean = false,
-                var location: Location = Location.none){
+                var startClawAnimation: Boolean = false,
+                var startHitAnimation: Boolean = false){
 
     fun isEmpty(): Boolean {
         return type == CardType.none

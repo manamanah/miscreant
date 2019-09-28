@@ -47,19 +47,35 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/attack_text"
+                    android:id="@+id/counter_attack_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_zero"
-                    android:paddingTop="@dimen/spacing_normal"
-                    android:visibility="@{cardViewModel.isAttackVisible ? View.VISIBLE : View.GONE}"
+                    android:padding="@dimen/spacing_half"
+                    android:visibility="@{cardViewModel.showCounterAttackIntent ? View.VISIBLE : View.GONE}"
                     android:contentDescription="@string/attack_desc"
                     android:text="@string/attack"
-                    android:textColor="@color/aggressiveRed"
+                    android:textColor="@color/cardHighlight"
                     android:textSize="@dimen/fontSize_card_values"
-                    app:layout_constraintEnd_toEndOf="@+id/card_image"
-                    app:layout_constraintStart_toStartOf="@+id/card_image"
-                    app:layout_constraintTop_toTopOf="@+id/card_image"/>
+                    android:shadowColor="@color/secondaryTextColor"
+                    android:shadowRadius="@integer/shadow_radius"
+                    app:layout_constraintEnd_toEndOf="@id/card_image"
+                    app:layout_constraintStart_toStartOf="@id/card_image"
+                    app:layout_constraintBottom_toTopOf="@id/card_title"/>
+
+            <TextView
+                    android:id="@+id/counter_attack_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_half"
+                    android:visibility="@{cardViewModel.type == CardType.monster ? View.VISIBLE : View.GONE}"
+                    android:text="@{Integer.toString(cardViewModel.counterAttackValue)}"
+                    android:textColor="@color/cardHighlight"
+                    android:textSize="@dimen/fontSize_card_values"
+                    android:shadowColor="@color/secondaryTextColor"
+                    android:shadowRadius="@integer/shadow_radius_value"
+                    tools:text="@string/placeholder_card_value"
+                    app:layout_constraintEnd_toEndOf="@id/card_image"
+                    app:layout_constraintTop_toTopOf="@id/card_image"/>
 
             <TextView
                     android:id="@+id/card_title"
@@ -67,10 +83,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
                     android:contentDescription="@string/card_title_desc"
+                    android:visibility="@{cardViewModel.type == CardType.hero ? View.GONE : View.VISIBLE}"
                     android:text="@{cardViewModel.name}"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@{cardViewModel.location == Location.backpack ? @dimen/fontSize_card_in_backpack : @dimen/fontSize_card_title}"
                     android:textScaleX="@fraction/letter_spacing_cards"
+                    android:shadowColor="@color/secondaryTextColor"
+                    android:shadowRadius="@integer/shadow_radius_value"
                     tools:text="@string/placeholder_card_title"
                     app:layout_constraintBottom_toBottomOf="@id/card_image"
                     app:layout_constraintEnd_toEndOf="@id/card_image"
@@ -120,10 +139,10 @@
                     android:textColor="@color/aggressiveRed"
                     android:textSize="@dimen/fontSize_card_RIP"
                     android:visibility="@{cardViewModel.showRIP ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintBottom_toBottomOf="@+id/card_image"
-                    app:layout_constraintEnd_toEndOf="@+id/card_image"
-                    app:layout_constraintStart_toStartOf="@+id/card_image"
-                    app:layout_constraintTop_toTopOf="@+id/card_image"/>
+                    app:layout_constraintBottom_toBottomOf="@id/card_image"
+                    app:layout_constraintEnd_toEndOf="@id/card_image"
+                    app:layout_constraintStart_toStartOf="@id/card_image"
+                    app:layout_constraintTop_toTopOf="@id/card_image"/>
 
             <ImageView
                     android:id="@+id/consumed_image"
@@ -135,6 +154,34 @@
                     android:tint="@color/aggressiveRed"
                     android:src="@drawable/trash"
                     tools:src="@drawable/trash"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/claw_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_half"
+                    android:contentDescription="@string/attack"
+                    android:src="@drawable/claw"
+                    android:tint="@color/aggressiveRed"
+                    android:alpha="@fraction/alpha_zero"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                    android:id="@+id/hit_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_half"
+                    android:contentDescription="@string/attack"
+                    android:src="@drawable/hit"
+                    android:tint="@color/aggressiveRed"
+                    android:alpha="@fraction/alpha_zero"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
