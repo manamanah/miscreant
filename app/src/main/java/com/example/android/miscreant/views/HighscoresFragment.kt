@@ -52,13 +52,13 @@ class HighscoresFragment : Fragment() {
 
         // button onClickListeners
         val backButton = view.findViewById<ImageView>(R.id.back_button)
-        backButton.setOnClickListener{ view: View ->
-            fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
+        backButton.setOnClickListener{
+            fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${it.contentDescription}")
         }
 
         // button listeners
         val keepButton = view.findViewById<Button>(R.id.keep_best_button)
-        keepButton.setOnClickListener { view: View ->
+        keepButton.setOnClickListener {
             when (viewPager.currentItem){
                 0 -> repository.deleteButBest(Difficulty.easy.title)
                 1 -> repository.deleteButBest(Difficulty.normal.title)
@@ -67,7 +67,7 @@ class HighscoresFragment : Fragment() {
         }
 
         val deleteButton = view.findViewById<Button>(R.id.delete_all_button)
-        deleteButton.setOnClickListener { view: View ->
+        deleteButton.setOnClickListener {
             when (viewPager.currentItem){
                 0 -> repository.deleteDifficultyList(Difficulty.easy.title)
                 1 -> repository.deleteDifficultyList(Difficulty.normal.title)
