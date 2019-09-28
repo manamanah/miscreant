@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="@integer/duration_counter_forwards"
+        android:interpolator="@android:anim/anticipate_overshoot_interpolator">
+
+    <propertyValuesHolder
+            android:propertyName="@string/translationY"
+            android:valueFrom="@integer/origin_zero"
+            android:valueTo="@integer/translationY_offset"
+            android:valueType="floatType"/>
+
+</objectAnimator>

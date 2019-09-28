@@ -24,4 +24,9 @@
     <fraction name="fourty_five_percent">0.45</fraction>
     <fraction name="fifty_three_percent">0.53</fraction>
     <fraction name="sixty_five_percent">0.65</fraction>
+
+    <!--ANIMATION-->
+    <fraction name="alpha_zero">0.0</fraction>
+    <fraction name="alpha_one">1.0</fraction>
+
 </resources>

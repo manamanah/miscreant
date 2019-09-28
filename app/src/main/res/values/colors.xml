@@ -30,7 +30,7 @@
     <color name="backgroundLight_transparent">#96DDDDDD</color>
 
     <!--EFFECT-->
-    <color name="aggressiveRed">#e20008</color>
+    <color name="aggressiveRed">#DB2A2A</color>
     <color name="benefit">#3C9704</color>
     <color name="equip">#3C9704</color>
     <color name="cardHighlight">#FFC107</color>

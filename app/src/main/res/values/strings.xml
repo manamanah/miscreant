@@ -179,4 +179,9 @@
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
 
+    <!--ANIMATION PROPERTIES-->
+    <string name="translationY">translationY</string>
+    <string name="rotationX">rotationX</string>
+    <string name="alpha">alpha</string>
+
 </resources>

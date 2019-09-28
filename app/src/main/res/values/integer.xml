@@ -10,12 +10,25 @@
     <integer name="seekbar_max">@integer/game_decks_max</integer>
     <integer name="game_decks_max">3</integer>
     <integer name="game_difficulties">3</integer>
+    <integer name="dungeon_row_size">3</integer>
     <integer name="upside_down">90</integer>
+    <integer name="shadow_radius">8</integer>
+    <integer name="shadow_radius_value">2</integer>
 
     <!--ANIMATION-->
     <!--durations in ms-->
     <integer name="duration_short">300</integer>
     <integer name="duration_medium">400</integer>
+    <integer name="duration_counter_forwards">500</integer>
+    <integer name="duration_counter_backwards">250</integer>
+    <integer name="duration_counter_hit">100</integer>
+    <integer name="attack_offset">550</integer>
+    <integer name="duration_attack">100</integer>
+
+    <integer name="origin_zero">0</integer>
+    <integer name="translationY_offset">100</integer>
+    <integer name="rotationX_offset">-40</integer>
+    <integer name="single_repeat">1</integer>
 
     <!--SCORING-->
     <integer name="deckMultiplier">10</integer>
