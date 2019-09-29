@@ -45,55 +45,17 @@ fun setPotMaxView(view: TextView, isVisible: Boolean) {
     view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
-@BindingAdapter("startAnimation")
-fun startCounterAttackAnimation(view: CardView, startAnimation: Boolean) {
-    if (startAnimation){
-        // render into off-screen buffer to avoid laggy animation
-        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-
-        view.counter_attack_value.setTextColor(view.context.getColor(R.color.aggressiveRed))
-
-        val startMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.start_move_counterattack)
-        val endMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.end_move_counterattack)
-        val hitAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.hit_counterattack)
-
-        hitAnimator.setTarget(view)
-        hitAnimator.doOnEnd {
-            endMoveAnimator.start()
-        }
-
-        startMoveAnimator.setTarget(view)
-        startMoveAnimator.doOnEnd {
-            hitAnimator.start()
-        }
-
-        endMoveAnimator.setTarget(view)
-        endMoveAnimator.doOnEnd {
-            view.counter_attack_value.setTextColor(view.context.getColor(R.color.cardHighlight))
-            GameFragment.onCounterAttackAnimationEnd(view)
-
-            // reset to default layer
-            view.setLayerType(View.LAYER_TYPE_NONE, null)
-        }
-
-        startMoveAnimator.start()
-    }
+@BindingAdapter("triggerCounterAttackAnimation")
+fun triggerCounterAttackAnimation(view: CardView, startAnimation: Boolean) {
+    ViewAnimator.triggerCounterAttackAnimation(view, startAnimation)
 }
 
-@BindingAdapter("startClawAnimation")
-fun startClawAnimation(view: CardView, start: Boolean){
-    if (start){
-        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        Log.i("BindingAdapter", "CLAW ANIMATION")
+@BindingAdapter("triggerClawAnimation")
+fun triggerClawAnimation(view: CardView, start: Boolean){
+    ViewAnimator.triggerClawAnimation(view, start)
+}
 
-        val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.attack)
-        attackAnimator.setTarget(view.claw_image)
-        attackAnimator.doOnEnd {
-            GameFragment.onClawEnd(view)
-
-            // reset to default layer
-            view.setLayerType(View.LAYER_TYPE_NONE, null)
-        }
-        attackAnimator.start()
-    }
+@BindingAdapter("triggerHitAnimation")
+fun triggerHitAnimation(view: CardView, start: Boolean){
+    ViewAnimator.triggerHitAnimation(view, start)
 }

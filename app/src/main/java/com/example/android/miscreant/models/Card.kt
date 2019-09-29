@@ -23,11 +23,11 @@ data class Card(val type: CardType = CardType.none,
                 var showPotentialHealth: Boolean = false,
                 var isHighlightOn: Boolean = false,
                 var showCounterAttackIntent: Boolean = false,
-                var startCounterAttack: Boolean = false,
+                var triggerCounterAttack: Boolean = false,
                 var isLookActive: Boolean = true,
                 var showEquip: Boolean = false,
-                var startClawAnimation: Boolean = false,
-                var startHitAnimation: Boolean = false){
+                var triggerClawAnimation: Boolean = false,
+                var triggerHitAnimation: Boolean = false){
 
     fun isEmpty(): Boolean {
         return type == CardType.none

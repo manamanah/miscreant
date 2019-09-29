@@ -51,6 +51,10 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             gameFragment.onClawEnd(view)
         }
 
+        fun onHitEnd(view: CardView){
+            gameFragment.onHitEnd(view)
+        }
+
         fun onCounterAttackAnimationEnd(view: CardView){
             gameFragment.onCounterAttackAnimationEnd(view)
         }
@@ -87,6 +91,10 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel.onClawEnd(view)
     }
 
+    fun onHitEnd(view: CardView){
+        gameViewModel.onHitEnd(view)
+    }
+
     fun onCounterAttackAnimationEnd(view: CardView) {
         gameViewModel.counterAttackAnimationEnded(view)
     }
@@ -100,7 +108,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         binding.lifecycleOwner = this
 
         // viewModelFactory & viewModel
-        gameViewModelFactory = GameViewModelFactory(context)
+        gameViewModelFactory = GameViewModelFactory(context ?: throw IllegalArgumentException("${this.javaClass.simpleName } CONTEXT is null"))
         gameViewModel = ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
 
@@ -175,7 +183,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
-        // region buttons
+        // region in-game buttons
         binding.backButton.setOnClickListener { view: View ->
             fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
         }

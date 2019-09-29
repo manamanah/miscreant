@@ -26,7 +26,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.IllegalArgumentException
 
-class GameViewModel(context: Context?) : ViewModel() {
+class GameViewModel(private val context: Context) : ViewModel() {
 
     var heroSpecial: String = ""
         private set
@@ -150,30 +150,29 @@ class GameViewModel(context: Context?) : ViewModel() {
     // todo each difficulty consists of 3 different decks
     private val deckPaths : Map<Difficulty, List<String>> = mapOf(
         Difficulty.easy to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty()),
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty()),
         Difficulty.normal to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty()),
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty()),
         Difficulty.hard to listOf(
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty(),
-            context?.getString(R.string.easy_deck_path).orEmpty())
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty(),
+            context.getString(R.string.easy_deck_path).orEmpty())
     )
 
     private var activeDeck: MutableList<Card> = mutableListOf()
     // endregion
 
     // needed for loading decks
-    private val context: Context = context ?: throw IllegalArgumentException("${this.javaClass.simpleName } CONTEXT is null")
     private  var repository = HighscoreRepository(this.context)
 
-    private val gameBackground = context?.getString(R.string.game_background).orEmpty()
+    private val gameBackground = context.getString(R.string.game_background)
     private lateinit var settings: Settings
 
-    private val dungeonRowSize = context?.resources?.getInteger(R.integer.dungeon_row_size) ?: 3
+    private val dungeonRowSize = context.resources?.getInteger(R.integer.dungeon_row_size) ?: 3
     private var counterAttackImpact = ImpactOutput()
 
     // region selected & highlighted cards, cardresolver
@@ -376,7 +375,7 @@ class GameViewModel(context: Context?) : ViewModel() {
         dungeonMap.forEach{( _, card ) ->
             card.value?.let {
                 if (!it.isEmpty()){
-                    it.startCounterAttack = false
+                    it.triggerCounterAttack = false
                     activeDeck.add(it)
                     card.value = Card(location = it.location)
                 }
@@ -395,26 +394,30 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     fun onClawEnd(view: CardView){
-        Log.i(this.javaClass.simpleName, "Counter attack claw animation ENDED")
+        Log.i(this.javaClass.simpleName, "Claw animation ENDED")
 
         val location = view.getCardLocationByName()
         if (heroMap.containsKey(location)) {
             val card = heroMap[location]?.value ?: Card()
-            card.startClawAnimation = false
+            card.triggerClawAnimation = false
             heroMap[location]?.postValue(card)
         }
         else {
             val heroCard = _cardHero.value ?: Card()
-            heroCard.startClawAnimation = false
+            heroCard.triggerClawAnimation = false
             _cardHero.postValue(heroCard)
         }
+    }
+
+    fun onHitEnd(view: CardView){
+        Log.i(this.javaClass.simpleName, "Hit animation ENDED")
     }
 
     fun counterAttackAnimationEnded(view: CardView){
         val location = view.getCardLocationByName()
         if (dungeonMap.containsKey(location)){
             dungeonMap[location]?.value?.let {
-                it.startCounterAttack = false
+                it.triggerCounterAttack = false
                 it.showCounterAttackIntent = false
                 dungeonMap[location]?.postValue(it)
             }
@@ -522,12 +525,8 @@ class GameViewModel(context: Context?) : ViewModel() {
     }
 
     private fun resetGame(){
-        // empty deck
         activeDeck.clear()
-
-        // empty hero area
         resetHeroAreaMap()
-
         gameOver = true
     }
 
@@ -763,7 +762,7 @@ class GameViewModel(context: Context?) : ViewModel() {
                 if (it.type == CardType.monster){
                     attackValue += it.counterAttackValue
                     it.showCounterAttackIntent = true
-                    it.startCounterAttack = true
+                    it.triggerCounterAttack = true
                     card.postValue(it)
                 }
             }
@@ -804,15 +803,15 @@ class GameViewModel(context: Context?) : ViewModel() {
 
         if (counterAttackImpact.secondCard.location != Location.hero){
             val card = heroMap[counterAttackImpact.secondCard.location]?.value ?: Card()
-            if (!card.startClawAnimation){
-                card.startClawAnimation = true
+            if (!card.triggerClawAnimation){
+                card.triggerClawAnimation = true
                 heroMap[counterAttackImpact.secondCard.location]?.postValue(card)
             }
         }
 
-        if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.startClawAnimation == false){
+        if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.triggerClawAnimation == false){
             _cardHero.value?.let {
-                it.startClawAnimation = true
+                it.triggerClawAnimation = true
                 _cardHero.postValue(it)
             }
         }
@@ -827,7 +826,7 @@ class GameViewModel(context: Context?) : ViewModel() {
                     it.isEmpty() -> dungeonStatus.emptySpots.add(key)
                     it.type == CardType.monster -> {
                         dungeonStatus.monstersInDungeon += 1
-                        if (it.startCounterAttack) {
+                        if (it.triggerCounterAttack) {
                             dungeonStatus.counterAttackOpen += 1
                         }
                         else return@forEach
@@ -891,10 +890,8 @@ class GameViewModel(context: Context?) : ViewModel() {
         }
 
         // disable potential impact visualization for hero values
-        _showHeroPotentialHealth.value = false
-        _showHeroPotentialHealth.postValue(_showHeroPotentialHealth.value)
-        _showHeroPotentialMaxHealth.value = false
-        _showHeroPotentialMaxHealth.postValue(_showHeroPotentialMaxHealth.value)
+        _showHeroPotentialHealth.postValue(false)
+        _showHeroPotentialMaxHealth.postValue(false)
 
         _specialsUsed.postValue(settings.usedSpecials)
 
