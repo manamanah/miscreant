@@ -381,7 +381,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         dungeonMap.forEach{( _, card ) ->
             card.value?.let {
                 if (!it.isEmpty()){
-                    it.triggerCounterAttack = false
+                    it.triggerCounterAttackAnimation = false
                     activeDeck.add(it)
                     card.value = Card(location = it.location)
                 }
@@ -406,13 +406,15 @@ class GameViewModel(private val context: Context) : ViewModel() {
         if (heroMap.containsKey(location)) {
             val card = heroMap[location]?.value ?: Card()
             card.triggerClawAnimation = false
+            card.triggerCounterHitAnimation = false
             heroMap[location]?.postValue(card)
         }
-        else {
-            val heroCard = _cardHero.value ?: Card()
+
+        // if damage through shield/weapon on hero
+        val heroCard = _cardHero.value ?: Card()
             heroCard.triggerClawAnimation = false
+            heroCard.triggerCounterHitAnimation = false
             _cardHero.postValue(heroCard)
-        }
     }
 
     fun onHitEnd(view: CardView){
@@ -423,7 +425,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         val location = view.getCardLocationByName()
         if (dungeonMap.containsKey(location)){
             dungeonMap[location]?.value?.let {
-                it.triggerCounterAttack = false
+                it.triggerCounterAttackAnimation = false
                 it.showCounterAttackIntent = false
                 dungeonMap[location]?.postValue(it)
             }
@@ -768,7 +770,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                 if (it.type == CardType.monster){
                     attackValue += it.counterAttackValue
                     it.showCounterAttackIntent = true
-                    it.triggerCounterAttack = true
+                    it.triggerCounterAttackAnimation = true
                     card.postValue(it)
                 }
             }
@@ -804,20 +806,39 @@ class GameViewModel(private val context: Context) : ViewModel() {
         else _cardHero.value ?: throw IllegalArgumentException("${this.javaClass.simpleName } HERO-CARD is null")
     }
 
+    private fun triggerResolveAnimations(output: ImpactOutput){
+        Log.i(this.javaClass.simpleName, "Resolve animations TRIGGERED")
+
+        if (output.secondCard.location != Location.hero){
+            val card = heroMap[output.secondCard.location]?.value ?: Card()
+            if (card.triggerClawAnimation != output.secondCard.triggerClawAnimation){
+                card.triggerClawAnimation = output.secondCard.triggerClawAnimation
+                heroMap[output.secondCard.location]?.postValue(card)
+            }
+        }
+
+        if (output.currentHealth != -1 && _cardHero.value?.triggerClawAnimation == false){
+            _cardHero.value?.let {
+                it.triggerClawAnimation = true
+                _cardHero.postValue(it)
+            }
+        }
+    }
+
     private fun triggerCounterAttackClawAnimation(){
         Log.i(this.javaClass.simpleName, "counter attack claw animation TRIGGERED")
 
         if (counterAttackImpact.secondCard.location != Location.hero){
             val card = heroMap[counterAttackImpact.secondCard.location]?.value ?: Card()
-            if (!card.triggerClawAnimation){
-                card.triggerClawAnimation = true
+            if (!card.triggerCounterHitAnimation){
+                card.triggerCounterHitAnimation = true
                 heroMap[counterAttackImpact.secondCard.location]?.postValue(card)
             }
         }
 
-        if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.triggerClawAnimation == false){
+        if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.triggerCounterHitAnimation == false){
             _cardHero.value?.let {
-                it.triggerClawAnimation = true
+                it.triggerCounterHitAnimation = true
                 _cardHero.postValue(it)
             }
         }
@@ -832,7 +853,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                     it.isEmpty() -> dungeonStatus.emptySpots.add(key)
                     it.type == CardType.monster -> {
                         dungeonStatus.monstersInDungeon += 1
-                        if (it.triggerCounterAttack) {
+                        if (it.triggerCounterAttackAnimation) {
                             dungeonStatus.counterAttackOpen += 1
                         }
                         else return@forEach

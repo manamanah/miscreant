@@ -101,7 +101,7 @@ class CardResolver {
     }
 
     fun resolveCounterAttack(firstCard: Card, secondCard: Card, currentHealth: Int = - 1): ImpactOutput {
-        return takeDungeonCard(firstCard, secondCard, currentHealth)
+        return takeDungeonCard(firstCard, secondCard, currentHealth, true)
     }
 
     private fun showHeroSpecial(firstCard: Card, secondCard: Card, visualizeOnly: Boolean): ImpactOutput {
@@ -242,17 +242,22 @@ class CardResolver {
     }
 
     // either card being equipped or monster (other cases already handled)
-    private fun takeDungeonCard(firstCard: Card, secondCard: Card, currentHealth: Int): ImpactOutput {
+    private fun takeDungeonCard(firstCard: Card, secondCard: Card, currentHealth: Int, isCounterAttackResolve: Boolean = false): ImpactOutput {
         if (firstCard.type != CardType.monster){
             val firstLocation = firstCard.location
             firstCard.location = secondCard.location
             return ImpactOutput(firstCard = Card(location = firstLocation), secondCard = firstCard)
         }
 
-        // monster
+        // monster attack
         val monsterValue = firstCard.health
         val attackResult = if (secondCard.type == CardType.hero) currentHealth - monsterValue
                                 else secondCard.health - monsterValue
+
+        // trigger claw animation unless counter attacker
+        if (!isCounterAttackResolve){
+            secondCard.triggerClawAnimation = true
+        }
 
         val output = ImpactOutput(firstCard = Card(location = firstCard.location), secondCard = secondCard)
 

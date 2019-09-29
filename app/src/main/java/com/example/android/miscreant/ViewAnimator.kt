@@ -18,11 +18,12 @@ import kotlinx.android.synthetic.main.card.view.*
 
 object ViewAnimator {
 
-    fun triggerCounterAttackAnimation(view: CardView, trigger: Boolean){
+    fun triggerCounterAttack(view: CardView, trigger: Boolean){
         if (trigger){
             // render into off-screen buffer to avoid laggy animation
             view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
             view.counter_attack_value.setTextColor(view.context.getColor(R.color.aggressiveRed))
+            Log.i(this.javaClass.simpleName, "Counter attack animation TRIGGERED")
 
             val startMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.start_move_counterattack)
             val endMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.end_move_counterattack)
@@ -50,9 +51,27 @@ object ViewAnimator {
         }
     }
 
-    fun triggerClawAnimation(view: CardView, trigger: Boolean){
+    fun triggerCounterAttackHit(view: CardView, trigger: Boolean){
         if (trigger){
             view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            Log.i(this.javaClass.simpleName, "Counter attack hit animation TRIGGERED")
+
+            val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.counter_attack_hit)
+            attackAnimator.setTarget(view.claw_image)
+            attackAnimator.doOnEnd {
+                GameFragment.onClawEnd(view)
+
+                // reset to default layer
+                view.setLayerType(View.LAYER_TYPE_NONE, null)
+            }
+            attackAnimator.start()
+        }
+    }
+
+    fun triggerClaw(view: CardView, trigger: Boolean){
+        if (trigger){
+            view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            Log.i(this.javaClass.simpleName, "Claw animation TRIGGERED")
 
             val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.attack)
             attackAnimator.setTarget(view.claw_image)
@@ -69,6 +88,7 @@ object ViewAnimator {
     fun triggerHitAnimation(view: CardView, trigger: Boolean){
         if (trigger){
             view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            Log.i(this.javaClass.simpleName, "Hit animation TRIGGERED")
 
             val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.attack)
             attackAnimator.setTarget(view.hit_image)

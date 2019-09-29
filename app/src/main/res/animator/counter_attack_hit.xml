@@ -9,7 +9,8 @@
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:duration="@integer/duration_attack"
         android:repeatMode="reverse"
-        android:repeatCount="@integer/single_repeat">
+        android:repeatCount="@integer/single_repeat"
+        android:startOffset="@integer/attack_offset">
 
     <propertyValuesHolder
             android:propertyName="@string/alpha"

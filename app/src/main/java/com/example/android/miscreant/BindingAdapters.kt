@@ -7,16 +7,12 @@
 
 package com.example.android.miscreant
 
-import android.animation.AnimatorInflater
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.animation.doOnEnd
 import androidx.databinding.BindingAdapter
 import com.example.android.miscreant.views.GameFragment
-import kotlinx.android.synthetic.main.card.view.*
 
 
 // workaround to be able to set listeners on included layouts in fragment
@@ -45,17 +41,24 @@ fun setPotMaxView(view: TextView, isVisible: Boolean) {
     view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
-@BindingAdapter("triggerCounterAttackAnimation")
-fun triggerCounterAttackAnimation(view: CardView, startAnimation: Boolean) {
-    ViewAnimator.triggerCounterAttackAnimation(view, startAnimation)
+@BindingAdapter("triggerCounterAttack")
+fun triggerCounterAttack(view: CardView, startAnimation: Boolean) {
+    ViewAnimator.triggerCounterAttack(view, startAnimation)
 }
 
-@BindingAdapter("triggerClawAnimation")
-fun triggerClawAnimation(view: CardView, start: Boolean){
-    ViewAnimator.triggerClawAnimation(view, start)
+@BindingAdapter("triggerCounterHit")
+fun triggerCounterHitAnimation(view: CardView, start: Boolean){
+    ViewAnimator.triggerCounterAttackHit(view, start)
 }
 
-@BindingAdapter("triggerHitAnimation")
+@BindingAdapter("triggerClaw")
+fun triggerClaw(view: CardView, start: Boolean){
+    ViewAnimator.triggerClaw(view, start)
+}
+
+@BindingAdapter("triggerHit")
 fun triggerHitAnimation(view: CardView, start: Boolean){
     ViewAnimator.triggerHitAnimation(view, start)
 }
+
+
