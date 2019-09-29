@@ -332,6 +332,12 @@ class GameViewModel(private val context: Context) : ViewModel() {
             return
         }
 
+        // if clicked somewhere else on game screen reset
+        if (view.tag == gameBackground){
+            resetSelectedCards()
+            return
+        }
+
         val cardType = view.getCardTypeFromTag()
         val location = view.getCardLocationByName()
 
@@ -754,7 +760,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
 
         // otherwise monster counterAttack
         counterAttackRunning = true
-        var attackValue: Int = 0
+        var attackValue = 0
 
         // display attack text and trigger animation
         frontCards.forEach { card: MutableLiveData<Card> ->
