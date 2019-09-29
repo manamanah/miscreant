@@ -57,7 +57,7 @@
                     android:visibility="@{cardViewModel.showCounterAttackIntent ? View.VISIBLE : View.GONE}"
                     android:contentDescription="@string/attack_desc"
                     android:text="@string/attack"
-                    android:textColor="@color/cardHighlight"
+                    android:textColor="@color/aggressiveRed"
                     android:textSize="@dimen/fontSize_card_values"
                     android:shadowColor="@color/secondaryTextColor"
                     android:shadowRadius="@integer/shadow_radius"

@@ -4,192 +4,168 @@
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Snake",
     "health": 2,
     "image": "snake",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Bzzzzz",
     "health": 3,
     "image": "bzzzzz",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Hungry Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Nasty Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Hungry Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Nasty Plant",
     "health": 4,
     "image": "plant",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "U snack?",
     "health": 5,
     "image": "snack",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Grumpy Pig",
     "health": 6,
     "image": "pig",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "monster",
     "name": "Zombie",
     "health": 7,
     "image": "zombie",
-    "showHealth": true,
-    "showCounterAttackIntent": true
+    "showHealth": true
   },
   {
     "type": "weapon",

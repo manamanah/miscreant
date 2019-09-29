@@ -413,9 +413,11 @@ class GameViewModel(context: Context?) : ViewModel() {
     fun counterAttackAnimationEnded(view: CardView){
         val location = view.getCardLocationByName()
         if (dungeonMap.containsKey(location)){
-            val card = dungeonMap[location]?.value ?: Card()
-            card.startCounterAttack = false
-            dungeonMap[location]?.postValue(card)
+            dungeonMap[location]?.value?.let {
+                it.startCounterAttack = false
+                it.showCounterAttackIntent = false
+                dungeonMap[location]?.postValue(it)
+            }
 
             val dungeonStatus = getDungeonStatus()
             if (dungeonStatus.counterAttackOpen == 0){
@@ -755,10 +757,12 @@ class GameViewModel(context: Context?) : ViewModel() {
         counterAttackRunning = true
         var attackValue: Int = 0
 
+        // display attack text and trigger animation
         frontCards.forEach { card: MutableLiveData<Card> ->
             card.value?.let {
                 if (it.type == CardType.monster){
                     attackValue += it.counterAttackValue
+                    it.showCounterAttackIntent = true
                     it.startCounterAttack = true
                     card.postValue(it)
                 }

@@ -51,7 +51,6 @@ fun startCounterAttackAnimation(view: CardView, startAnimation: Boolean) {
         // render into off-screen buffer to avoid laggy animation
         view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
-        view.counter_attack_text.setTextColor(view.context.getColor(R.color.aggressiveRed))
         view.counter_attack_value.setTextColor(view.context.getColor(R.color.aggressiveRed))
 
         val startMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.start_move_counterattack)
@@ -70,7 +69,6 @@ fun startCounterAttackAnimation(view: CardView, startAnimation: Boolean) {
 
         endMoveAnimator.setTarget(view)
         endMoveAnimator.doOnEnd {
-            view.counter_attack_text.setTextColor(view.context.getColor(R.color.cardHighlight))
             view.counter_attack_value.setTextColor(view.context.getColor(R.color.cardHighlight))
             GameFragment.onCounterAttackAnimationEnd(view)
 
