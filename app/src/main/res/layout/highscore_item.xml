@@ -27,54 +27,54 @@
                 android:id="@+id/position"
                 style="@style/basic_black_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_half"
+                android:gravity="bottom"
+                android:textAlignment="gravity"
                 android:contentDescription="@string/position_desc"
+                android:minWidth="@dimen/min_width_position"
                 android:text="@{Integer.toString(highscore.position) + '.'}"
                 tools:text="@string/placeholder_card_value" />
-
-        <TextView
-                android:id="@+id/heroName"
-                style="@style/basic_black_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
-                android:contentDescription="@string/name"
-                android:text="@{highscore.heroName}"
-                tools:text="@string/placeholder_name" />
 
         <ImageView
                 android:id="@+id/heroType"
                 android:layout_width="@dimen/highscore_item_height"
                 android:layout_height="@dimen/highscore_item_height"
                 android:contentDescription="@string/hero_desc"
-                android:padding="@dimen/spacing_min"
+                android:layout_margin="@dimen/spacing_normal"
                 android:scaleType="centerCrop"
-                android:src='@{highscore.heroType == Hero.viking.imageName ? @drawable/viking : @drawable/archer}'
+                android:textAlignment="textStart"
+                android:src='@{highscore.heroType.equalsIgnoreCase(Hero.viking.imageName) ? @drawable/viking : @drawable/archer}'
                 tools:src="@drawable/archer" />
 
         <TextView
-                android:id="@+id/difficulty"
+                android:id="@+id/heroName"
                 style="@style/basic_black_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
-                android:layout_weight="1"
-                android:contentDescription="@string/game_difficulty_title_desc"
-                android:text="@{highscore.difficulty}"
-                android:textColor="@color/primaryLightColor"
-                tools:text="@string/easy" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginBottom="@dimen/spacing_half"
+                android:gravity="bottom"
+                android:textAlignment="gravity"
+                android:contentDescription="@string/name"
+                android:text="@{highscore.heroName}"
+                tools:text="@string/placeholder_name" />
 
         <TextView
                 android:id="@+id/points"
                 style="@style/basic_black_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_half"
                 android:layout_weight="1"
                 android:contentDescription="@string/final_score_desc"
+                android:gravity="bottom"
                 android:text="@{Integer.toString(highscore.points)}"
-                tools:text="@string/placeholder_card_value" />
+                android:textAlignment="viewEnd"
+                tools:text="@string/placeholder_card_value"
+                tools:ignore="RtlCompat" />
 
     </LinearLayout>
 

@@ -35,7 +35,7 @@ class HighscoresAdapter(lifecycleOwner: LifecycleOwner, private var highscores: 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
         if (position < itemCount){
             val item = highscores.value?.get(position) ?: Highscore()
-            item.position = position
+            item.position = position + 1 // don't start at 0th position
             holder.bind(item)
         }
     }
