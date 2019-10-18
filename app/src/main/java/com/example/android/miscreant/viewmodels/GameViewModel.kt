@@ -419,6 +419,13 @@ class GameViewModel(private val context: Context) : ViewModel() {
 
     fun onHitEnd(view: CardView){
         Log.i(this.javaClass.simpleName, "Hit animation ENDED")
+
+        val location = view.getCardLocationByName()
+        if (dungeonMap.containsKey(location)){
+            val card = dungeonMap[location]?.value ?: Card()
+            card.triggerHitAnimation = false
+            dungeonMap[location]?.postValue(card)
+        }
     }
 
     fun counterAttackAnimationEnded(view: CardView){

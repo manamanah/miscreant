@@ -96,6 +96,8 @@ object ViewAnimator {
             if (isMonsterClaw){
                 GameFragment.onClawEnd(view)
             }
+            else GameFragment.onHitEnd(view)
+
             // reset to default layer
             view.setLayerType(View.LAYER_TYPE_NONE, null)
         }

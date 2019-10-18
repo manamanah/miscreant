@@ -229,6 +229,7 @@ class CardResolver {
 
         if (monsterSurvives){
             output.secondCard.health = monsterHealth - weaponValue
+            output.secondCard.triggerHitAnimation = true
         }
         else {
             output.secondCard = Card(location = secondCard.location)
