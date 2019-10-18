@@ -45,6 +45,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tutorial"
                 android:contentDescription="@string/tutorial_button_desc"
+                android:enabled="false"
+                android:textColor="@color/disabledTextColor"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintTop_toBottomOf="@id/play_button"
                 app:layout_constraintBottom_toTopOf="@id/settings_button"

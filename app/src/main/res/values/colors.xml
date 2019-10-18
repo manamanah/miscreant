@@ -13,21 +13,28 @@
     <color name="secondaryColor">#ffa000</color>
     <color name="secondaryLightColor">#ffd149</color>
     <color name="secondaryDarkColor">#c67100</color>
+
+    <!--TEXT COLORS-->
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#000000</color>
-    <color name="buttonBorderColor">#000000</color>
+    <color name="disabledTextColor">#2E2E2E</color>
 
     <!--BACKGROUNDS-->
     <color name="backgroundWhite">#ffffff</color>
     <color name="backgroundLight">#DDDDDD</color>
+    <color name="backgroundDisabled">#7E7A6E</color>
     <color name="backgroundBlack">#000000</color>
     <color name="backgroundDungeon">#221F1F</color>
     <color name="backgroundSelected">#ffa000</color>
     <color name="dungeonCard_center">#292828</color>
-    <color name="dungeonCard_border">#707070</color>
 
     <color name="transparent">#00000000</color>
     <color name="backgroundLight_transparent">#96DDDDDD</color>
+
+    <!--BORDER COLORS-->
+    <color name="dungeonCard_border">#707070</color>
+    <color name="buttonBorderColor">#000000</color>
+    <color name="disabledBorder">#313131</color>
 
     <!--EFFECT-->
     <color name="aggressiveRed">#DB2A2A</color>
