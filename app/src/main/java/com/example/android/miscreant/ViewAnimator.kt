@@ -23,11 +23,11 @@ object ViewAnimator {
             // render into off-screen buffer to avoid laggy animation
             view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
             view.counter_attack_value.setTextColor(view.context.getColor(R.color.aggressiveRed))
-            Log.i(this.javaClass.simpleName, "Counter attack animation TRIGGERED")
+            Log.i(this.javaClass.simpleName, "Counter fade_in_out animation TRIGGERED")
 
             val startMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.start_move_counterattack)
             val endMoveAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.end_move_counterattack)
-            val hitAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.hit_counterattack)
+            val hitAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.counterattack)
 
             hitAnimator.setTarget(view)
             hitAnimator.doOnEnd {
@@ -53,52 +53,52 @@ object ViewAnimator {
 
     fun triggerCounterAttackHit(view: CardView, trigger: Boolean){
         if (trigger){
-            view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            Log.i(this.javaClass.simpleName, "Counter attack hit animation TRIGGERED")
+            // set image resource for animation
+            view.animation_image.setImageResource(R.drawable.claw)
+            Log.i(this.javaClass.simpleName, "Claw animation image set")
 
-            val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.counter_attack_hit)
-            attackAnimator.setTarget(view.claw_image)
-            attackAnimator.doOnEnd {
-                GameFragment.onClawEnd(view)
-
-                // reset to default layer
-                view.setLayerType(View.LAYER_TYPE_NONE, null)
-            }
-            attackAnimator.start()
+            triggerAnimation(view, isMonsterClaw = true, isDelayed = true)
         }
     }
 
     fun triggerClaw(view: CardView, trigger: Boolean){
         if (trigger){
-            view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            Log.i(this.javaClass.simpleName, "Claw animation TRIGGERED")
+            // set image resource for animation
+            view.animation_image.setImageResource(R.drawable.claw)
+            Log.i(this.javaClass.simpleName, "Claw animation image set")
 
-            val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.attack)
-            attackAnimator.setTarget(view.claw_image)
-            attackAnimator.doOnEnd {
-                GameFragment.onClawEnd(view)
-
-                // reset to default layer
-                view.setLayerType(View.LAYER_TYPE_NONE, null)
-            }
-            attackAnimator.start()
+            triggerAnimation(view, true)
         }
     }
 
     fun triggerHitAnimation(view: CardView, trigger: Boolean){
         if (trigger){
-            view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            Log.i(this.javaClass.simpleName, "Hit animation TRIGGERED")
+            // set image resource for animation
+            view.animation_image.setImageResource(R.drawable.hit)
+            Log.i(this.javaClass.simpleName, "Hit animation image set")
 
-            val attackAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.attack)
-            attackAnimator.setTarget(view.hit_image)
-            attackAnimator.doOnEnd {
-                GameFragment.onHitEnd(view)
-
-                // reset to default layer
-                view.setLayerType(View.LAYER_TYPE_NONE, null)
-            }
-            attackAnimator.start()
+            triggerAnimation(view)
         }
+    }
+
+    private fun triggerAnimation(view: CardView, isMonsterClaw: Boolean = false, isDelayed: Boolean = false){
+        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        Log.i(this.javaClass.simpleName, "Attack animation TRIGGERED")
+
+        val attackAnimator = AnimatorInflater.loadAnimator(
+                                            view.context,
+                                            if (!isDelayed) R.animator.fade_in_out
+                                            else R.animator.delayed_fade_in_out_counterattack_hit
+        )
+
+        attackAnimator.setTarget(view.animation_image)
+        attackAnimator.doOnEnd {
+            if (isMonsterClaw){
+                GameFragment.onClawEnd(view)
+            }
+            // reset to default layer
+            view.setLayerType(View.LAYER_TYPE_NONE, null)
+        }
+        attackAnimator.start()
     }
 }

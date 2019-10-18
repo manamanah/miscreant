@@ -164,7 +164,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
-                    android:id="@+id/claw_image"
+                    android:id="@+id/animation_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/spacing_half"
@@ -176,20 +176,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                    android:id="@+id/hit_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_half"
-                    android:contentDescription="@string/attack"
-                    android:src="@drawable/hit"
-                    android:tint="@color/aggressiveRed"
-                    android:alpha="@fraction/alpha_zero"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                     android:id="@+id/equip_image"
