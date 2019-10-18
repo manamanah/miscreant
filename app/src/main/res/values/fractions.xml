@@ -28,5 +28,7 @@
     <!--ANIMATION-->
     <fraction name="alpha_zero">0.0</fraction>
     <fraction name="alpha_one">1.0</fraction>
+    <fraction name="scale_one">1.0</fraction>
+    <fraction name="scale_point_three">1.2</fraction>
 
 </resources>

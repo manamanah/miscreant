@@ -205,6 +205,10 @@ class GameViewModel(private val context: Context) : ViewModel() {
         )
     // endregion
 
+    private var _triggerHealing = MutableLiveData<Boolean>()
+    val triggerHealing : LiveData<Boolean>
+    get() = _triggerHealing
+
     init {
         // navigation
         _navigateToLoseFragment.value = false
@@ -221,6 +225,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         _cardMiddleFront.value = Card(location = Location.dungeon_middle_front)
         _cardRightFront.value = Card(location = Location.dungeon_right_front)
 
+        _triggerHealing.value = false
         // init empty hero area cards
         resetHeroAreaMap()
     }
@@ -411,10 +416,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         }
 
         // if damage through shield/weapon on hero
-        val heroCard = _cardHero.value ?: Card()
-            heroCard.triggerClawAnimation = false
-            heroCard.triggerCounterHitAnimation = false
-            _cardHero.postValue(heroCard)
+        resetHeroAnimationTriggers()
     }
 
     fun onHitEnd(view: CardView){
@@ -426,6 +428,19 @@ class GameViewModel(private val context: Context) : ViewModel() {
             card.triggerHitAnimation = false
             dungeonMap[location]?.postValue(card)
         }
+
+        resetHeroAnimationTriggers()
+    }
+
+    fun healingDone(){
+        _triggerHealing.postValue(false)
+    }
+
+    private fun resetHeroAnimationTriggers(){
+        val heroCard = _cardHero.value ?: Card()
+        heroCard.triggerClawAnimation = false
+        heroCard.triggerCounterHitAnimation = false
+        _cardHero.postValue(heroCard)
     }
 
     fun counterAttackAnimationEnded(view: CardView){
@@ -588,6 +603,11 @@ class GameViewModel(private val context: Context) : ViewModel() {
                     gameLost()
                     return
                 }
+
+                if (impactOutput.currentHealth >= settings.currentHealth){
+                    _triggerHealing.postValue(true)
+                }
+
                 _heroCurrentHealth.postValue(impactOutput.currentHealth)
                 settings.updateHeroHealth(impactOutput.currentHealth)
             }

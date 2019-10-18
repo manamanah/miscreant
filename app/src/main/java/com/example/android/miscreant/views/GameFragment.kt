@@ -171,6 +171,13 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
+        gameViewModel.triggerHealing.observe(this, Observer {
+            if (it != null && it){
+                ViewAnimator.triggerHealing(binding.heart, it)
+                gameViewModel.healingDone()
+            }
+        })
+
         // region game progress in seekbar
         // don't allow user interaction with game progress seekbar
         // custom seekbar takes care of correct look

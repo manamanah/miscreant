@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Birgit Schoenauer
+  ~
+  ~ Licensed under the Creative Commons Attribution-NonCommercial-NonDerivatives 4.0 International License.
+  ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
+  -->
+
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="@integer/duration_healing"
+        android:repeatMode="reverse"
+        android:repeatCount="@integer/double_repeat">
+
+    <propertyValuesHolder
+            android:propertyName="@string/scaleX"
+            android:valueFrom="@fraction/scale_one"
+            android:valueTo="@fraction/scale_point_three"
+            android:valueType="floatType"/>
+
+    <propertyValuesHolder
+            android:propertyName="@string/scaleY"
+            android:valueFrom="@fraction/scale_one"
+            android:valueTo="@fraction/scale_point_three"
+            android:valueType="floatType"/>
+
+    <propertyValuesHolder
+            android:propertyName="@string/scaleX"
+            android:valueTo="@fraction/scale_one"
+            android:valueFrom="@fraction/scale_point_three"
+            android:valueType="floatType" />
+
+    <propertyValuesHolder
+            android:propertyName="@string/scaleY"
+            android:valueFrom="@fraction/scale_point_three"
+            android:valueTo="@fraction/scale_one"
+            android:valueType="floatType"/>
+
+</objectAnimator>

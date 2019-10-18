@@ -183,5 +183,7 @@
     <string name="translationY">translationY</string>
     <string name="rotationX">rotationX</string>
     <string name="alpha">alpha</string>
+    <string name="scaleX">scaleX</string>
+    <string name="scaleY">scaleY</string>
 
 </resources>

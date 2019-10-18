@@ -296,73 +296,88 @@
                 app:layout_constraintWidth_percent="@fraction/twenty_percent"
                 app:srcCompat="@color/backgroundWhite" />
 
-        <TextView
-                android:id="@+id/current_health"
-                style="@style/health_text"
-                android:layout_width="@dimen/heart_size"
-                android:layout_height="@dimen/heart_size"
-                android:contentDescription="@string/current_health_desc"
-                android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
-                tools:text="@string/max_health"
-                android:textColor="@color/secondaryTextColor"
-                app:layout_constraintEnd_toStartOf="@id/heart"
-                app:layout_constraintStart_toStartOf="@id/hero"
-                app:layout_constraintTop_toBottomOf="@id/hero" />
 
-        <TextView
-                android:id="@+id/potential_health"
-                style="@style/health_text"
-                android:layout_width="@dimen/heart_size"
-                android:layout_height="@dimen/heart_size"
-                android:layout_marginEnd="@dimen/spacing_normal"
-                android:contentDescription="@string/potential_health_desc"
-                android:text="@{Integer.toString(gameViewModel.heroPotentialHealth)}"
-                tools:text="@string/max_health"
-                android:textColor="@{gameViewModel.heroPotentialHealth &lt; gameViewModel.heroCurrentHealth ? @color/aggressiveRed : @color/benefit}"
-                android:visibility="@{gameViewModel.showHeroPotentialHealth ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toStartOf="@id/heart"
-                app:layout_constraintStart_toStartOf="@id/hero"
-                app:layout_constraintTop_toBottomOf="@id/hero" />
-
-        <ImageView
-                android:id="@+id/heart"
-                android:layout_width="@dimen/heart_size"
-                android:layout_height="@dimen/heart_size"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/health_container"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/heart_size_container"
                 android:background="@color/backgroundLight"
-                android:contentDescription="@string/heart_desc"
-                app:layout_constraintBottom_toBottomOf="@id/current_health"
-                app:layout_constraintEnd_toStartOf="@id/max_health"
-                app:layout_constraintStart_toEndOf="@id/current_health"
+                app:layout_constraintEnd_toStartOf="@id/equipright"
+                app:layout_constraintStart_toEndOf="@id/equipleft"
                 app:layout_constraintTop_toBottomOf="@id/hero"
-                app:srcCompat="@drawable/heart" />
+                android:elevation="@dimen/elevation_min">
 
-        <TextView
-                android:id="@+id/max_health"
-                style="@style/health_text"
-                android:layout_width="@dimen/heart_size"
-                android:layout_height="@dimen/heart_size"
-                android:contentDescription="@string/max_health_desc"
-                android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
-                tools:text="@string/max_health"
-                android:textColor="@color/secondaryTextColor"
-                app:layout_constraintEnd_toEndOf="@id/hero"
-                app:layout_constraintStart_toEndOf="@id/heart"
-                app:layout_constraintTop_toBottomOf="@id/hero" />
+            <TextView
+                    android:id="@+id/current_health"
+                    style="@style/health_text"
+                    android:layout_width="@dimen/heart_size"
+                    android:layout_height="@dimen/heart_size"
+                    android:contentDescription="@string/current_health_desc"
+                    android:text="@{Integer.toString(gameViewModel.heroCurrentHealth)}"
+                    android:textColor="@color/secondaryTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/health_container"
+                    app:layout_constraintBottom_toBottomOf="@id/health_container"
+                    tools:text="@string/max_health" />
 
-        <TextView
-                android:id="@+id/max_potential_health"
-                style="@style/health_text"
-                android:layout_width="@dimen/heart_size"
-                android:layout_height="@dimen/heart_size"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:contentDescription="@string/max_health_desc"
-                android:text="@{Integer.toString(gameViewModel.heroPotentialMaxHealth)}"
-                tools:text="@string/max_health"
-                android:textColor="@color/benefit"
-                android:visibility="@{gameViewModel.showHeroPotentialMaxHealth ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="@id/hero"
-                app:layout_constraintStart_toEndOf="@id/heart"
-                app:layout_constraintTop_toBottomOf="@id/hero" />
+            <TextView
+                    android:id="@+id/potential_health"
+                    style="@style/health_text"
+                    android:layout_width="@dimen/heart_size"
+                    android:layout_height="@dimen/heart_size"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:background="@color/backgroundLight"
+                    android:contentDescription="@string/potential_health_desc"
+                    android:text="@{Integer.toString(gameViewModel.heroPotentialHealth)}"
+                    android:textColor="@{gameViewModel.heroPotentialHealth &lt; gameViewModel.heroCurrentHealth ? @color/aggressiveRed : @color/benefit}"
+                    android:visibility="@{gameViewModel.showHeroPotentialHealth ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@id/current_health"
+                    app:layout_constraintTop_toTopOf="@id/health_container"
+                    app:layout_constraintBottom_toBottomOf="@id/health_container"
+                    tools:text="@string/max_health" />
+
+            <ImageView
+                    android:id="@+id/heart"
+                    android:layout_width="@dimen/heart_size"
+                    android:layout_height="@dimen/heart_size"
+                    android:background="@color/backgroundLight"
+                    android:contentDescription="@string/heart_desc"
+                    app:layout_constraintEnd_toStartOf="@id/max_health"
+                    app:layout_constraintStart_toEndOf="@id/current_health"
+                    app:layout_constraintTop_toTopOf="@id/health_container"
+                    app:layout_constraintBottom_toBottomOf="@id/health_container"
+                    app:srcCompat="@drawable/heart" />
+
+            <TextView
+                    android:id="@+id/max_health"
+                    style="@style/health_text"
+                    android:layout_width="@dimen/heart_size"
+                    android:layout_height="@dimen/heart_size"
+                    android:contentDescription="@string/max_health_desc"
+                    android:text="@{Integer.toString(gameViewModel.heroMaxHealth)}"
+                    android:textColor="@color/secondaryTextColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/health_container"
+                    app:layout_constraintBottom_toBottomOf="@id/health_container"
+                    tools:text="@string/max_health" />
+
+            <TextView
+                    android:id="@+id/max_potential_health"
+                    style="@style/health_text"
+                    android:layout_width="@dimen/heart_size"
+                    android:layout_height="@dimen/heart_size"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:background="@color/backgroundLight"
+                    android:contentDescription="@string/max_health_desc"
+                    android:text="@{Integer.toString(gameViewModel.heroPotentialMaxHealth)}"
+                    android:textColor="@color/benefit"
+                    android:visibility="@{gameViewModel.showHeroPotentialMaxHealth ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/health_container"
+                    app:layout_constraintBottom_toBottomOf="@id/health_container"
+                    tools:text="@string/max_health" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
                 android:id="@+id/equipright"
@@ -394,7 +409,7 @@
                 app:layout_constraintEnd_toStartOf="@id/card_backpack"
                 app:layout_constraintHeight_max="@dimen/button_height_slim"
                 app:layout_constraintStart_toEndOf="@id/card_discard"
-                app:layout_constraintTop_toBottomOf="@id/heart" />
+                app:layout_constraintTop_toBottomOf="@id/health_container" />
 
         <!--DISPLAYED CARDS-->
         <!--DUNGEON-->

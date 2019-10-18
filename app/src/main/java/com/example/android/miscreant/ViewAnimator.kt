@@ -10,6 +10,7 @@ package com.example.android.miscreant
 import android.animation.AnimatorInflater
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.core.animation.doOnEnd
 import com.example.android.miscreant.views.GameFragment
@@ -57,7 +58,7 @@ object ViewAnimator {
             view.animation_image.setImageResource(R.drawable.claw)
             Log.i(this.javaClass.simpleName, "Claw animation image set")
 
-            triggerAnimation(view, isMonsterClaw = true, isDelayed = true)
+            triggerAnimation(view, isMonsterClaw = true, animatorID = R.animator.delayed_fade_in_out_counterattack_hit)
         }
     }
 
@@ -67,7 +68,7 @@ object ViewAnimator {
             view.animation_image.setImageResource(R.drawable.claw)
             Log.i(this.javaClass.simpleName, "Claw animation image set")
 
-            triggerAnimation(view, true)
+            triggerAnimation(view, isMonsterClaw = true, animatorID = R.animator.fade_in_out)
         }
     }
 
@@ -77,19 +78,30 @@ object ViewAnimator {
             view.animation_image.setImageResource(R.drawable.hit)
             Log.i(this.javaClass.simpleName, "Hit animation image set")
 
-            triggerAnimation(view)
+            triggerAnimation(view, animatorID = R.animator.fade_in_out)
         }
     }
 
-    private fun triggerAnimation(view: CardView, isMonsterClaw: Boolean = false, isDelayed: Boolean = false){
+    fun triggerHealing(view: ImageView, trigger: Boolean){
+        if (trigger){
+            view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            Log.i(this.javaClass.simpleName, "Healing animation TRIGGERED")
+
+            val healingAnimator = AnimatorInflater.loadAnimator(view.context, R.animator.scale_twice)
+            healingAnimator.setTarget(view)
+            healingAnimator.doOnEnd {
+                // reset to default layer
+                view.setLayerType(View.LAYER_TYPE_NONE, null)
+            }
+            healingAnimator.start()
+        }
+    }
+
+    private fun triggerAnimation(view: CardView, isMonsterClaw: Boolean = false, animatorID: Int){
         view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         Log.i(this.javaClass.simpleName, "Attack animation TRIGGERED")
 
-        val attackAnimator = AnimatorInflater.loadAnimator(
-                                            view.context,
-                                            if (!isDelayed) R.animator.fade_in_out
-                                            else R.animator.delayed_fade_in_out_counterattack_hit
-        )
+        val attackAnimator = AnimatorInflater.loadAnimator(view.context, animatorID)
 
         attackAnimator.setTarget(view.animation_image)
         attackAnimator.doOnEnd {

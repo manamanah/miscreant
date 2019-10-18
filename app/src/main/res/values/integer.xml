@@ -24,11 +24,13 @@
     <integer name="duration_counter_hit">100</integer>
     <integer name="attack_offset">550</integer>
     <integer name="duration_attack">100</integer>
+    <integer name="duration_healing">200</integer>
 
     <integer name="origin_zero">0</integer>
     <integer name="translationY_offset">100</integer>
     <integer name="rotationX_offset">-40</integer>
     <integer name="single_repeat">1</integer>
+    <integer name="double_repeat">2</integer>
 
     <!--SCORING-->
     <integer name="deckMultiplier">10</integer>

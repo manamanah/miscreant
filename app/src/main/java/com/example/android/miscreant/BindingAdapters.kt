@@ -52,7 +52,7 @@ fun triggerCounterHitAnimation(view: CardView, start: Boolean){
 }
 
 @BindingAdapter("triggerClaw")
-fun triggerClaw(view: CardView, start: Boolean){
+fun triggerClawAnimation(view: CardView, start: Boolean){
     ViewAnimator.triggerClaw(view, start)
 }
 
