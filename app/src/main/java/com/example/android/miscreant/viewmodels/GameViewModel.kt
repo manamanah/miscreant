@@ -150,9 +150,9 @@ class GameViewModel(private val context: Context) : ViewModel() {
     // todo each difficulty consists of 3 different decks
     private val deckPaths : Map<Difficulty, List<String>> = mapOf(
         Difficulty.easy to listOf(
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty()),
+            context.getString(R.string.easy_deck_path_one).orEmpty(),
+            context.getString(R.string.easy_deck_path_two).orEmpty(),
+            context.getString(R.string.easy_deck_path_three).orEmpty()),
         Difficulty.normal to listOf(
             context.getString(R.string.easy_deck_path).orEmpty(),
             context.getString(R.string.easy_deck_path).orEmpty(),

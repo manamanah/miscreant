@@ -168,7 +168,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:textScaleX">@fraction/letter_spacing_normal</item>
-        <item name="android:padding">@dimen/spacing_half</item>
+        <item name="android:padding">@dimen/spacing_min</item>
         <item name="android:textSize">@dimen/fontSize_text</item>
     </style>
 

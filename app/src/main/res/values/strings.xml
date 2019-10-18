@@ -179,6 +179,10 @@
     <string name="medium_deck_path">testdeck.json</string>
     <string name="hard_deck_path">testdeck.json</string>
 
+    <string name="easy_deck_path_one">easy_deck_1.json</string>
+    <string name="easy_deck_path_two">easy_deck_2.json</string>
+    <string name="easy_deck_path_three">easy_deck_3.json</string>
+
     <!--ANIMATION PROPERTIES-->
     <string name="translationY">translationY</string>
     <string name="rotationX">rotationX</string>
