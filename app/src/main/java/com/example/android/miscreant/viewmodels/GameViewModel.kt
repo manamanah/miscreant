@@ -597,15 +597,22 @@ class GameViewModel(private val context: Context) : ViewModel() {
                 _heroPotentialHealth.postValue(impactOutput.currentHealth)
                 _showHeroPotentialHealth.postValue(true)
             }
-            else{
+            else {
                 // hero dead
                 if (impactOutput.currentHealth <= 0){
                     gameLost()
                     return
                 }
 
-                if (impactOutput.currentHealth >= settings.currentHealth){
+                if (impactOutput.currentHealth >= settings.currentHealth) {
                     _triggerHealing.postValue(true)
+                }
+                else { // if damage goes through shield/weapon visualize claw on hero
+                    if (impactOutput.secondCard.type != CardType.hero && _cardHero.value?.triggerClawAnimation != true){
+                        val card = _cardHero.value ?: Card()
+                        card.triggerClawAnimation = true
+                        _cardHero.postValue(card)
+                    }
                 }
 
                 _heroCurrentHealth.postValue(impactOutput.currentHealth)
