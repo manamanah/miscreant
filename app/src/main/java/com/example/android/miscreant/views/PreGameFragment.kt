@@ -25,12 +25,12 @@ import java.lang.IllegalArgumentException
 
 class PreGameFragment : Fragment() {
 
-    private var heroType: Hero = Hero.viking
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val binding: FragmentPreGameBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_pre_game, container, false)
+
+        var heroType: Hero = Hero.viking
 
         // button onClickListeners
         binding.archerButton.setOnClickListener { view: View ->
