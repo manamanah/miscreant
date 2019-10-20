@@ -637,8 +637,11 @@ class GameViewModel(private val context: Context) : ViewModel() {
     private fun isValidFirstSelectedCard(cardType: CardType, location: Location): Boolean {
         val isEmptyBackpack = location == Location.backpack && cardBackpack.value?.isEmpty() ?: false
 
-        val isHeroChecked = if (settings.hero == Hero.archer) cardType != CardType.hero
-                                    else settings.usedSpecials < settings.maxSpecials
+        val isHeroSelectionChecked= if (settings.hero == Hero.viking) {
+                                                if (cardType == CardType.hero) settings.usedSpecials < settings.maxSpecials
+                                                else true
+                                            }
+                                            else cardType != CardType.hero
 
         val validCard = cardType != CardType.none &&
                                 location != Location.dungeon_left_back &&
@@ -647,7 +650,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                                 location != Location.none &&
                                 location != Location.discard
 
-        return validCard && !isEmptyBackpack && isHeroChecked
+        return validCard && !isEmptyBackpack && isHeroSelectionChecked
     }
 
     // region show drop locations

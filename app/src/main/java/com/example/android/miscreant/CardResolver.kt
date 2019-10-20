@@ -105,16 +105,15 @@ class CardResolver {
     }
 
     private fun showHeroSpecial(firstCard: Card, secondCard: Card, visualizeOnly: Boolean): ImpactOutput {
-        if (visualizeOnly){
+        return if (visualizeOnly){
             secondCard.showHealth = false
             secondCard.showPotentialHealth = true
             secondCard.potentialHealth = secondCard.health + 1
 
-            return ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true, potentialSpecialUse = true)
-        }
-        else {
+            ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true, potentialSpecialUse = true)
+        } else {
             secondCard.health = secondCard.health + 1
-            return ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true)
+            ImpactOutput(firstCard = firstCard, secondCard = secondCard, specialUsed = true)
         }
     }
 
