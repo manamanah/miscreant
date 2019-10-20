@@ -785,6 +785,9 @@ class GameViewModel(private val context: Context) : ViewModel() {
         val monstersAttacking = frontCards.any{ it.value?.type == CardType.monster}
         Log.i(this.javaClass.simpleName, "monster counterAttack: $monstersAttacking")
 
+        // reset any selected cards
+        resetSelectedCards()
+
         if (!monstersAttacking){
             dealCards(dungeonStatus)
             return
