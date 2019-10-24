@@ -12,6 +12,7 @@
         tools:context=".views.CreditsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/backgroundLight">
@@ -42,7 +43,7 @@
                 style="@style/basic_black_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_margin="@dimen/spacing_half"
                 android:lineSpacingMultiplier="@fraction/linespacing_normal"
                 android:text="@string/gamedesign_text"
                 android:contentDescription="@string/gamedesign_desc"
@@ -56,11 +57,12 @@
                 style="@style/within_menu_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_half"
                 android:text="@string/art"
                 android:contentDescription="@string/art_title_desc"
                 android:textAlignment="center"
                 app:layout_constraintTop_toBottomOf="@id/top_divider"
+                app:layout_constraintBottom_toTopOf="@id/artists_1_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -115,7 +117,7 @@
                 style="@style/basic_black_text_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_half"
                 android:text="@string/icons_text"
                 android:contentDescription="@string/icons_text_desc"
                 android:textAlignment="center"
@@ -132,20 +134,21 @@
                 style="@style/within_menu_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_half"
                 android:contentDescription="@string/audio_title_desc"
                 android:text="@string/audio"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/art_divider" />
+                app:layout_constraintTop_toBottomOf="@id/art_divider"
+                app:layout_constraintBottom_toTopOf="@id/audio_text"/>
 
         <TextView
                 android:id="@+id/audio_text"
                 style="@style/basic_black_text_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_half"
                 android:contentDescription="@string/audio_text_desc"
                 android:text="@string/audio_text"
                 android:textAlignment="center"
@@ -159,12 +162,13 @@
                 style="@style/within_menu_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_half"
                 android:text="@string/inspiration_title"
                 android:contentDescription="@string/inspiration_text_desc"
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inspiration_divider"
                 app:layout_constraintBottom_toTopOf="@id/inspiration_scoundrel"/>
 
         <TextView
@@ -177,6 +181,7 @@
                 android:contentDescription="@string/inspiration_scoundrel_desc"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inspiration_title"
                 app:layout_constraintBottom_toTopOf="@id/inspiration_card_crawl"/>
 
         <TextView
@@ -184,11 +189,12 @@
                 style="@style/basic_black_text_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_double"
+                android:layout_marginBottom="@dimen/spacing_normal"
                 android:text="@string/inspiration_card_crawl"
                 android:contentDescription="@string/inspiration_card_crawl_desc"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inspiration_scoundrel"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <!--DIVIDERS-->
@@ -196,7 +202,8 @@
                 android:id="@+id/top_divider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider_standard_height"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintTop_toBottomOf="@id/gamedesign"
                 app:layout_constraintBottom_toTopOf="@id/art_title"
@@ -207,18 +214,20 @@
                 android:id="@+id/art_divider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider_standard_height"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/license_text"
+                app:layout_constraintTop_toBottomOf="@id/icons_text"
                 app:layout_constraintBottom_toTopOf="@id/audio_title"/>
 
         <View
                 android:id="@+id/inspiration_divider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider_standard_height"
-                android:layout_margin="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintTop_toBottomOf="@id/audio_text"
                 app:layout_constraintBottom_toTopOf="@id/inspiration_title"

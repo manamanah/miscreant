@@ -47,7 +47,7 @@
 
     <!--FONT SIZES-->
     <dimen name="fontSize_homeButton">22sp</dimen>
-    <dimen name="fontSize_title">28sp</dimen>
+    <dimen name="fontSize_title">24sp</dimen>
     <dimen name="fontSize_endScreen_title">22sp</dimen>
     <dimen name="fontSize_main_title">60sp</dimen>
     <dimen name="fontSize_smaller_title">50sp</dimen>
