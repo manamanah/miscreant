@@ -42,117 +42,117 @@ class GameViewModel(private val context: Context) : ViewModel() {
     var counterAttackRunning: Boolean = false
         private set
 
-    private var _navigateToLoseFragment = MutableLiveData<Boolean>()
+    private val _navigateToLoseFragment = MutableLiveData<Boolean>()
     val navigateToLoseFragment : LiveData<Boolean>
         get() = _navigateToLoseFragment
 
-    private var _navigateToWinFragment = MutableLiveData<Boolean>()
+    private val _navigateToWinFragment = MutableLiveData<Boolean>()
     val navigateToWinFragment : LiveData<Boolean>
         get() = _navigateToWinFragment
 
     // region dungeon area cards
-    private var _cardLeftBack = MutableLiveData<Card>()
+    private val _cardLeftBack = MutableLiveData<Card>()
     val cardLeftBack : LiveData<Card>
         get() = _cardLeftBack
 
-    private var _cardMiddleBack = MutableLiveData<Card>()
+    private val _cardMiddleBack = MutableLiveData<Card>()
     val cardMiddleBack : LiveData<Card>
         get() = _cardMiddleBack
 
-    private var _cardRightBack = MutableLiveData<Card>()
+    private val _cardRightBack = MutableLiveData<Card>()
 
     val cardRightBack : LiveData<Card>
         get() = _cardRightBack
 
-    private var _cardLeftFront = MutableLiveData<Card>()
+    private val _cardLeftFront = MutableLiveData<Card>()
     val cardLeftFront : LiveData<Card>
         get() = _cardLeftFront
 
-    private var _cardMiddleFront = MutableLiveData<Card>()
+    private val _cardMiddleFront = MutableLiveData<Card>()
     val cardMiddleFront : LiveData<Card>
         get() = _cardMiddleFront
 
-    private var _cardRightFront = MutableLiveData<Card>()
+    private val _cardRightFront = MutableLiveData<Card>()
     val cardRightFront : LiveData<Card>
         get() = _cardRightFront
 
     // endregion
 
     // region hero area cards
-    private var _cardEquipLeft = MutableLiveData<Card>()
+    private val _cardEquipLeft = MutableLiveData<Card>()
     val cardEquipLeft : LiveData<Card>
         get() = _cardEquipLeft
 
-    private var _cardHero = MutableLiveData<Card>()
+    private val _cardHero = MutableLiveData<Card>()
     val cardHero : LiveData<Card>
         get() = _cardHero
 
-    private var _cardEquipRight = MutableLiveData<Card>()
+    private val _cardEquipRight = MutableLiveData<Card>()
     val cardEquipRight : LiveData<Card>
         get() = _cardEquipRight
 
-    private var _cardDiscard = MutableLiveData<Card>()
+    private val _cardDiscard = MutableLiveData<Card>()
     val cardDiscard : LiveData<Card>
         get() = _cardDiscard
 
-    private var _cardBackpack = MutableLiveData<Card>()
+    private val _cardBackpack = MutableLiveData<Card>()
     val cardBackpack: LiveData<Card>
         get() = _cardBackpack
     // endregion
 
     // region displayed non-card values on screen
-    private var _cardsLeftInDeck = MutableLiveData<Int>()
+    private val _cardsLeftInDeck = MutableLiveData<Int>()
     val cardsLeftInDeck  : LiveData<Int>
         get() = _cardsLeftInDeck
 
-    private var _cardsInDeck = MutableLiveData<Int>()
+    private val _cardsInDeck = MutableLiveData<Int>()
     val cardsInDeck  : LiveData<Int>
         get() = _cardsInDeck
 
-    private var _heroMaxHealth = MutableLiveData<Int>()
+    private val _heroMaxHealth = MutableLiveData<Int>()
     val heroMaxHealth  : LiveData<Int>
         get() = _heroMaxHealth
 
-    private var _heroPotentialMaxHealth = MutableLiveData<Int>()
+    private val _heroPotentialMaxHealth = MutableLiveData<Int>()
     val heroPotentialMaxHealth  : LiveData<Int>
         get() = _heroPotentialMaxHealth
 
-    private var _showHeroPotentialMaxHealth = MutableLiveData<Boolean>()
+    private val _showHeroPotentialMaxHealth = MutableLiveData<Boolean>()
     val showHeroPotentialMaxHealth  : LiveData<Boolean>
         get() = _showHeroPotentialMaxHealth
 
-    private var _heroCurrentHealth = MutableLiveData<Int>()
+    private val _heroCurrentHealth = MutableLiveData<Int>()
     val heroCurrentHealth  : LiveData<Int>
         get() = _heroCurrentHealth
 
-    private var _heroPotentialHealth = MutableLiveData<Int>()
+    private val _heroPotentialHealth = MutableLiveData<Int>()
     val heroPotentialHealth  : LiveData<Int>
         get() = _heroPotentialHealth
 
-    private var _showHeroPotentialHealth = MutableLiveData<Boolean>()
+    private val _showHeroPotentialHealth = MutableLiveData<Boolean>()
     val showHeroPotentialHealth  : LiveData<Boolean>
         get() = _showHeroPotentialHealth
 
-    private var _specialsUsed = MutableLiveData<Int>()
+    private val _specialsUsed = MutableLiveData<Int>()
     val specialsUsed  : LiveData<Int>
         get() = _specialsUsed
 
-    private var _dealNewPenalty = MutableLiveData<Int>()
+    private val _dealNewPenalty = MutableLiveData<Int>()
     val dealNewPenalty : LiveData<Int>
         get() = _dealNewPenalty
     // endregion
 
     // region deck related
-    private var _currentDeckNumber = MutableLiveData<Int>()
+    private val _currentDeckNumber = MutableLiveData<Int>()
     val currentDeckNumber : LiveData<Int>
         get() = _currentDeckNumber
 
     // todo each difficulty consists of 3 different decks
     private val deckPaths : Map<Difficulty, List<String>> = mapOf(
         Difficulty.easy to listOf(
-            context.getString(R.string.easy_deck_path_one).orEmpty(),
-            context.getString(R.string.easy_deck_path_two).orEmpty(),
-            context.getString(R.string.easy_deck_path_three).orEmpty()),
+            context.getString(R.string.easy_deck_one).orEmpty(),
+            context.getString(R.string.easy_deck_two).orEmpty(),
+            context.getString(R.string.easy_deck_three).orEmpty()),
         Difficulty.normal to listOf(
             context.getString(R.string.easy_deck_path).orEmpty(),
             context.getString(R.string.easy_deck_path).orEmpty(),
@@ -163,11 +163,11 @@ class GameViewModel(private val context: Context) : ViewModel() {
             context.getString(R.string.easy_deck_path).orEmpty())
     )
 
-    private var activeDeck: MutableList<Card> = mutableListOf()
+    private val activeDeck: MutableList<Card> = mutableListOf()
     // endregion
 
     // needed for loading decks
-    private  var repository = HighscoreRepository(this.context)
+    private var repository = HighscoreRepository(this.context)
 
     private val gameBackground = context.getString(R.string.game_background)
     private lateinit var settings: Settings
@@ -179,13 +179,11 @@ class GameViewModel(private val context: Context) : ViewModel() {
     private var cardResolver = CardResolver()
     private var firstSelected = SelectedCard()
     private var secondSelected= SelectedCard()
-    private var _firstSelectedCard = MutableLiveData<Card>()
-    private var _secondSelectedCard = MutableLiveData<Card>()
-    private var highlightedCards = mutableListOf<MutableLiveData<Card>>()
+    private val highlightedCards = mutableListOf<MutableLiveData<Card>>()
     // endregion
 
     // region game area dungeon & hero card mapping
-    private var dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
+    private val dungeonMap: MutableMap<Location, MutableLiveData<Card>> =
         mutableMapOf(
             Location.dungeon_left_back to _cardLeftBack,
             Location.dungeon_middle_back to _cardMiddleBack,
@@ -195,7 +193,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             Location.dungeon_right_front to _cardRightFront
         )
 
-    private var heroMap: MutableMap<Location, MutableLiveData<Card>> =
+    private val heroMap: MutableMap<Location, MutableLiveData<Card>> =
         mutableMapOf(
             Location.equip_left to _cardEquipLeft,
             Location.equip_right to _cardEquipRight,
@@ -205,7 +203,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         )
     // endregion
 
-    private var _triggerHealing = MutableLiveData<Boolean>()
+    private val _triggerHealing = MutableLiveData<Boolean>()
     val triggerHealing : LiveData<Boolean>
     get() = _triggerHealing
 
@@ -263,7 +261,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         if (activeDeck.isEmpty()){
             if (deckPaths.containsKey(settings.difficulty)){
                 val deckPath = deckPaths[settings.difficulty]?.get(_currentDeckNumber.value ?: 0).orEmpty()
-                activeDeck = getDeck(deckPath)
+                activeDeck.addAll(getDeck(deckPath))
                 activeDeck.shuffle()
             }
             _cardsInDeck.postValue(activeDeck.size)
@@ -300,12 +298,12 @@ class GameViewModel(private val context: Context) : ViewModel() {
             if (firstSelected.location != secondSelected.location){
 
                 if (highlightedCards.any{ it.value?.location == secondSelected.location}){
-                    _firstSelectedCard = getCard(firstSelected.inArea, firstSelected.location)
-                    _secondSelectedCard = getCard(secondSelected.inArea, secondSelected.location)
+                    val firstCard = getCard(firstSelected.inArea, firstSelected.location)
+                    val secondCard = getCard(secondSelected.inArea, secondSelected.location)
 
                     val output = cardResolver.showImpact(
-                                                _firstSelectedCard.value ?: Card(),
-                                                _secondSelectedCard.value ?: Card(),
+                                                firstCard,
+                                                secondCard,
                                                 settings.currentHealth,
                                                 settings.currentMaxHealth
                                             )
@@ -317,10 +315,13 @@ class GameViewModel(private val context: Context) : ViewModel() {
         } // if tap on 2nd card: resolve card move action
         else {
             if (location == secondSelected.location){
+                val firstCard = getCard(firstSelected.inArea, firstSelected.location)
+                val secondCard = getCard(secondSelected.inArea, secondSelected.location)
+
                 val output = cardResolver.resolveCardAction(
                                             firstSelected,
-                                            _firstSelectedCard.value ?: Card(),
-                                            _secondSelectedCard.value ?: Card(),
+                                            firstCard,
+                                            secondCard,
                                             settings.currentHealth,
                                             settings.currentMaxHealth
                                         )
@@ -354,13 +355,13 @@ class GameViewModel(private val context: Context) : ViewModel() {
         if (firstSelected.location != secondSelected.location) {
 
             if (highlightedCards.any { it.value?.location == secondSelected.location }){
-                _firstSelectedCard = getCard(firstSelected.inArea, firstSelected.location)
-                _secondSelectedCard = getCard(secondSelected.inArea, secondSelected.location)
+                val firstCard = getCard(firstSelected.inArea, firstSelected.location)
+                val secondCard = getCard(secondSelected.inArea, secondSelected.location)
 
                 val output = cardResolver.resolveCardAction(
                     firstSelected,
-                    _firstSelectedCard.value ?: Card(),
-                    _secondSelectedCard.value ?: Card(),
+                    firstCard,
+                    secondCard,
                     settings.currentHealth,
                     settings.currentMaxHealth
                 )
@@ -561,17 +562,8 @@ class GameViewModel(private val context: Context) : ViewModel() {
     }
 
     private fun applyImpact(impactOutput: ImpactOutput){
-
-        // if different aka empty card returned - set new card, otherwise update
-        if (_firstSelectedCard.value?.type != impactOutput.firstCard.type){
-            _firstSelectedCard.value = impactOutput.firstCard
-        }
-        else _firstSelectedCard.postValue(impactOutput.firstCard)
-
-        if (_secondSelectedCard.value?.type != impactOutput.secondCard.type){
-            _secondSelectedCard.value = impactOutput.secondCard
-        }
-        else _secondSelectedCard.postValue(impactOutput.secondCard)
+        updateCardValues(firstSelected.inArea, impactOutput.firstCard)
+        updateCardValues(secondSelected.inArea, impactOutput.secondCard)
 
         updateHeroValues(impactOutput)
 
@@ -915,14 +907,26 @@ class GameViewModel(private val context: Context) : ViewModel() {
         to.value = fromCard
     }
 
-    private fun getCard(area: Area, location: Location): MutableLiveData<Card> {
-        return when (area){
-            Area.hero -> _cardHero
-            Area.dungeon -> dungeonMap[location] ?: MutableLiveData()
-            Area.equipped -> heroMap[location] ?: MutableLiveData()
-            Area.backpack -> _cardBackpack
-            Area.discard -> _cardDiscard
-            else -> MutableLiveData()
+    private fun getCard(area: Area, location: Location): Card {
+        val card = when (area){
+            Area.hero -> _cardHero.value
+            Area.dungeon -> dungeonMap[location]?.value
+            Area.equipped -> heroMap[location]?.value
+            Area.backpack -> _cardBackpack.value
+            Area.discard -> _cardDiscard.value
+            else -> Card()
+        }
+        return card ?: Card()
+    }
+
+    private fun updateCardValues(area: Area, updatedCard: Card){
+        when (area){
+            Area.hero -> _cardHero.setValue(updatedCard)
+            Area.dungeon -> dungeonMap[updatedCard.location]?.setValue(updatedCard)
+            Area.equipped -> heroMap[updatedCard.location]?.setValue(updatedCard)
+            Area.backpack -> _cardBackpack.setValue(updatedCard)
+            Area.discard -> _cardDiscard.setValue(updatedCard)
+            else -> return
         }
     }
 
@@ -944,17 +948,18 @@ class GameViewModel(private val context: Context) : ViewModel() {
         highlightedCards.clear()
 
         // reset potential visualisations on first selected card
-        _firstSelectedCard.value?.let{
-            if (!it.isEmpty()){
+        val card = getCard(firstSelected.inArea, firstSelected.location)
+        card.let {
+            if (!it.isEmpty()) {
                 it.showRIP = false
                 it.showEquip = false
                 it.showHealth = it.type != CardType.hero
                 it.showConsumed = false
                 it.showPotentialHealth = false
                 it.isLookActive = true
-                _firstSelectedCard.postValue(_firstSelectedCard.value)
             }
         }
+        updateCardValues(firstSelected.inArea, card)
 
         // disable potential impact visualization for hero values
         _showHeroPotentialHealth.postValue(false)
