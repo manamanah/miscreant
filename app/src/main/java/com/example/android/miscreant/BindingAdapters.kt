@@ -15,13 +15,6 @@ import androidx.databinding.BindingAdapter
 import com.example.android.miscreant.views.GameFragment
 
 
-// workaround to be able to set listeners on included layouts in fragment
-@Suppress("UNUSED_PARAMETER")
-@BindingAdapter("setListeners")
-fun setListeners(view: View, dummyParameter: String?) {
-    GameFragment.setListeners(view)
-}
-
 @BindingAdapter("src")
 fun setImageViewDrawable(view: ImageView, imageString: String?) {
     if (imageString != null && imageString.isNotEmpty()) {

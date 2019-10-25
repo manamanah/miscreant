@@ -28,7 +28,6 @@
             app:triggerCounterHit="@{cardViewModel.triggerCounterHitAnimation}"
             app:triggerClaw="@{cardViewModel.triggerClawAnimation}"
             app:triggerHit="@{cardViewModel.triggerHitAnimation}"
-            app:setListeners="@{cardViewModel.type.id}"
             android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}">
 
         <androidx.constraintlayout.widget.ConstraintLayout

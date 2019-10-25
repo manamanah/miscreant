@@ -6,7 +6,6 @@
   ~ See file 'LICENSE.md' or https://creativecommons.org/licenses/by-nc-nd/4.0/ for full license details.
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -24,6 +23,5 @@
                 android:foreground="@{cardViewModel.isHighlightOn ? @drawable/img_border_highlighted : @drawable/img_border_black}"
                 android:background="@color/backgroundBlack"
                 android:src="@drawable/trash"
-                tools:src="@drawable/trash"
-                app:setListeners="@{cardViewModel.type.id}" />
+                tools:src="@drawable/trash"/>
 </layout>

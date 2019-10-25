@@ -21,10 +21,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.R
 import com.example.android.miscreant.ViewAnimator
+import com.example.android.miscreant.databinding.CardBinding
 import com.example.android.miscreant.databinding.FragmentGameBinding
 import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
-import kotlinx.android.synthetic.main.fragment_game.*
 
 
 class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener {
@@ -44,7 +44,10 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             // don't bother if view not valid
             selectedView = view ?: return true
             gestureDetector.onTouchEvent(motionEvent)
-            view.performClick()
+
+            if (motionEvent?.action == MotionEvent.ACTION_UP){
+                view.performClick()
+            }
         }
         return true
     }
@@ -64,17 +67,6 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     }
     // endregion
 
-    fun onClawEnd(view: CardView) {
-        gameViewModel.onClawEnd(view)
-    }
-
-    fun onHitEnd(view: CardView) {
-        gameViewModel.onHitEnd(view)
-    }
-
-    fun onCounterAttackAnimationEnd(view: CardView) {
-        gameViewModel.counterAttackAnimationEnded(view)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,6 +90,8 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel =
             ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
+
+        setGameViewModel(gameViewModel)
 
         // region observers for navigation
         gameViewModel.navigateToLoseFragment.observe(this, Observer {
@@ -135,7 +129,6 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // endregion
 
         // set up listeners for card touch interaction
-        setFragmentInstance(this)
         gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
         gestureDetector.setOnDoubleTapListener(this)
         selectedView = View(context)
@@ -205,10 +198,25 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         }
         // endregion
 
+        // set listeners for game background and cards
         binding.gameBackground.setOnTouchListener(this)
-        
-        startGame()
+        binding.cardDiscard.cardDiscard.setOnTouchListener(this)
 
+        val cards: List<CardBinding> = listOf(
+            binding.cardDungeonLeftFront,
+            binding.cardDungeonLeftBack,
+            binding.cardDungeonMiddleFront,
+            binding.cardDungeonMiddleBack,
+            binding.cardDungeonRightFront,
+            binding.cardDungeonRightBack,
+            binding.cardEquipLeft,
+            binding.cardEquipRight,
+            binding.cardHero,
+            binding.cardBackpack)
+
+        cards.forEach { card: CardBinding -> setTouchListenerOnCard(card)}
+
+        startGame()
         return binding.root
     }
 
@@ -216,30 +224,29 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel.startGame()
     }
 
+    private fun setTouchListenerOnCard(card: CardBinding){
+        card.cardLayout.setOnTouchListener(this)
+    }
 
     // static access for setListener needed in bindingadapter when creating cards in Fragment
     companion object Listener {
 
-        private lateinit var gameFragment: GameFragment
+        private lateinit var viewModel: GameViewModel
 
-        fun setFragmentInstance(gameFragment: GameFragment) {
-            this.gameFragment = gameFragment
-        }
-
-        fun setListeners(view: View) {
-            //view.setOnTouchListener(gameFragment)
+        fun setGameViewModel(gameViewModel: GameViewModel) {
+            viewModel = gameViewModel
         }
 
         fun onClawEnd(view: CardView) {
-            gameFragment.onClawEnd(view)
+            viewModel.onClawEnd(view)
         }
 
         fun onHitEnd(view: CardView) {
-            gameFragment.onHitEnd(view)
+            viewModel.onHitEnd(view)
         }
 
         fun onCounterAttackAnimationEnd(view: CardView) {
-            gameFragment.onCounterAttackAnimationEnd(view)
+            viewModel.counterAttackAnimationEnded(view)
         }
     }
 }
