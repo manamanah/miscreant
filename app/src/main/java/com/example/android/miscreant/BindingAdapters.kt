@@ -24,11 +24,11 @@ fun setListeners(view: View, dummyParameter: String?) {
 
 @BindingAdapter("src")
 fun setImageViewDrawable(view: ImageView, imageString: String?) {
-    if (imageString != null && imageString.isNotEmpty()){
-        val id : Int? = view.resources.getIdentifier(imageString, "drawable", view.context.packageName)
+    if (imageString != null && imageString.isNotEmpty()) {
+        val id: Int? =
+            view.resources.getIdentifier(imageString, "drawable", view.context.packageName)
         view.setImageResource(id ?: android.R.color.transparent)
-    }
-    else view.setImageResource(android.R.color.transparent)
+    } else view.setImageResource(android.R.color.transparent)
 }
 
 @BindingAdapter("toggleMaxHealth")
@@ -47,17 +47,17 @@ fun triggerCounterAttack(view: CardView, startAnimation: Boolean) {
 }
 
 @BindingAdapter("triggerCounterHit")
-fun triggerCounterHitAnimation(view: CardView, start: Boolean){
+fun triggerCounterHitAnimation(view: CardView, start: Boolean) {
     ViewAnimator.triggerCounterAttackHit(view, start)
 }
 
 @BindingAdapter("triggerClaw")
-fun triggerClawAnimation(view: CardView, start: Boolean){
+fun triggerClawAnimation(view: CardView, start: Boolean) {
     ViewAnimator.triggerClaw(view, start)
 }
 
 @BindingAdapter("triggerHit")
-fun triggerHitAnimation(view: CardView, start: Boolean){
+fun triggerHitAnimation(view: CardView, start: Boolean) {
     ViewAnimator.triggerHitAnimation(view, start)
 }
 

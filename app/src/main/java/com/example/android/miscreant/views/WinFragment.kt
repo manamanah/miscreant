@@ -8,11 +8,11 @@
 package com.example.android.miscreant.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.Enums.Hero
@@ -24,15 +24,23 @@ class WinFragment : Fragment() {
 
     private val result: WinFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentWinBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_win, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val binding: FragmentWinBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_win, container, false)
 
         binding.okButton.setOnClickListener {
             findNavController().navigate(WinFragmentDirections.actionWinFragmentToPreGameFragment())
         }
 
         // set correct victory hero image
-        binding.victoryHeroImg.setImageResource(if (result.heroType == Hero.viking) R.drawable.viking_victory else R.drawable.archer_victory)
+        binding.victoryHeroImg.setImageResource(
+            if (result.heroType == Hero.viking) R.drawable.viking_victory
+            else R.drawable.archer_victory)
 
         binding.heroName.text = result.heroName
 
@@ -40,7 +48,8 @@ class WinFragment : Fragment() {
         binding.dungeonsAccomplished.text = result.accomplishedDecks.toString()
         binding.dungeonPoints.text = deckPoints.toString()
 
-        val maxHealthPoints = result.maxHealth.times(resources.getInteger(R.integer.maxHealthMultiplier))
+        val maxHealthPoints =
+            result.maxHealth.times(resources.getInteger(R.integer.maxHealthMultiplier))
         binding.maxHealth.text = result.maxHealth.toString()
         binding.maxHealthPoints.text = maxHealthPoints.toString()
 
@@ -48,11 +57,6 @@ class WinFragment : Fragment() {
 
         binding.finalScore.text = (deckPoints + maxHealthPoints + result.leftItemsValue).toString()
 
-        // game difficulty for saving to db later needed
-        // todo save
-
         return binding.root
     }
-
-
 }

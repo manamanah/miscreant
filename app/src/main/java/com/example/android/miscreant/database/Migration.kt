@@ -10,7 +10,7 @@ package com.example.android.miscreant.database
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-class InitialMigration: Migration(1, 2){
+class InitialMigration : Migration(1, 2) {
 
     override fun migrate(database: SupportSQLiteDatabase) {
         // initial creation: no need for migration

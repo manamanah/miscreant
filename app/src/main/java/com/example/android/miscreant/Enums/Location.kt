@@ -10,7 +10,7 @@ package com.example.android.miscreant.Enums
 import androidx.annotation.Keep
 
 @Keep
-enum class Location(val title: String){
+enum class Location(val title: String) {
     dungeon_left_back("dungeon_left_back"),
     dungeon_middle_back("dungeon_middle_back"),
     dungeon_right_back("dungeon_right_back"),

@@ -8,11 +8,11 @@
 package com.example.android.miscreant.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.miscreant.Enums.Hero
@@ -24,8 +24,14 @@ class LoseFragment : Fragment() {
 
     private val result: LoseFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentLoseBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_lose, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val binding: FragmentLoseBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_lose, container, false)
 
         binding.okButton.setOnClickListener {
             findNavController().navigate(LoseFragmentDirections.actionLoseFragmentToPreGameFragment())
@@ -36,18 +42,17 @@ class LoseFragment : Fragment() {
 
         binding.heroName.text = result.heroName
 
-        val deckPoints = result.accomplishedDecks.times(resources.getInteger(R.integer.deckMultiplier))
+        val deckPoints =
+            result.accomplishedDecks.times(resources.getInteger(R.integer.deckMultiplier))
         binding.dungeonsAccomplished.text = result.accomplishedDecks.toString()
         binding.dungeonPoints.text = deckPoints.toString()
 
-        val maxHealthPoints = result.maxHealth.times(resources.getInteger(R.integer.maxHealthMultiplier))
+        val maxHealthPoints =
+            result.maxHealth.times(resources.getInteger(R.integer.maxHealthMultiplier))
         binding.maxHealth.text = result.maxHealth.toString()
         binding.maxHealthPoints.text = maxHealthPoints.toString()
 
         binding.finalScore.text = (deckPoints + maxHealthPoints).toString()
-
-        // game difficulty for saving to db later needed
-        // todo save
 
         return binding.root
     }

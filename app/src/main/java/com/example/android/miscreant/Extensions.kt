@@ -11,11 +11,12 @@ import android.view.View
 import com.example.android.miscreant.Enums.CardType
 import com.example.android.miscreant.Enums.Location
 
-fun View.getCardLocationByName() : Location {
+
+fun View.getCardLocationByName(): Location {
     val cardPosition = this.toString().split("app:id/card_")[1].dropLast(1)
     return Location.getLocationFromString(cardPosition)
 }
 
-fun View.getCardTypeFromTag() : CardType {
+fun View.getCardTypeFromTag(): CardType {
     return CardType.getTypeFromString(this.tag.toString())
 }

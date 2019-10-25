@@ -17,7 +17,10 @@ import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.databinding.HighscoreItemBinding
 
 
-class HighscoresAdapter(lifecycleOwner: LifecycleOwner, private var highscores: LiveData<List<Highscore>>) : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHolder>(){
+class HighscoresAdapter(
+    lifecycleOwner: LifecycleOwner,
+    private var highscores: LiveData<List<Highscore>>
+) : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHolder>() {
 
     init {
         highscores.observe(lifecycleOwner, Observer {
@@ -32,7 +35,7 @@ class HighscoresAdapter(lifecycleOwner: LifecycleOwner, private var highscores: 
     }
 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
-        if (position < itemCount){
+        if (position < itemCount) {
             val item = highscores.value?.get(position) ?: Highscore()
             item.position = position + 1 // don't start at 0th position
             holder.bind(item)
@@ -40,7 +43,8 @@ class HighscoresAdapter(lifecycleOwner: LifecycleOwner, private var highscores: 
     }
 
 
-    class HighscoreViewHolder(val binding: HighscoreItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class HighscoreViewHolder(val binding: HighscoreItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(highscoreItem: Highscore) {
             binding.highscore = highscoreItem

@@ -13,12 +13,18 @@ import com.example.android.miscreant.Enums.Hero
 import com.example.android.miscreant.Enums.Location
 import com.example.android.miscreant.models.Card
 
-class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: String = "", val hero: Hero = Hero.viking, val maxDeckNumber: Int = 2, val maxSpecials: Int = 3){
+class Settings(
+    val difficulty: Difficulty = Difficulty.easy,
+    val heroName: String = "",
+    val hero: Hero = Hero.viking,
+    val maxDeckNumber: Int = 2,
+    val maxSpecials: Int = 3
+) {
 
     var usedSpecials: Int = 0
         private set
 
-    var startHealth : Int = 0
+    var startHealth: Int = 0
         private set
 
     var currentHealth: Int = 0
@@ -27,11 +33,11 @@ class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: Strin
     var currentMaxHealth: Int = 0
         private set
 
-    var dealCardsPenalty : Int = 0
+    var dealCardsPenalty: Int = 0
         private set
 
     init {
-        when (difficulty){
+        when (difficulty) {
             Difficulty.easy -> {
                 startHealth = 12
                 dealCardsPenalty = 0
@@ -61,15 +67,15 @@ class Settings(val difficulty: Difficulty = Difficulty.easy, val heroName: Strin
         )
     }
 
-    fun updateHeroHealth(newHealth: Int){
+    fun updateHeroHealth(newHealth: Int) {
         currentHealth = newHealth
     }
 
-    fun updateHeroMaxHealth(addHealth: Int){
+    fun updateHeroMaxHealth(addHealth: Int) {
         currentMaxHealth = addHealth
     }
 
-    fun updateUsedSpecials(){
+    fun updateUsedSpecials() {
         usedSpecials += 1
     }
 }

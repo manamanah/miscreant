@@ -11,18 +11,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.android.miscreant.*
-import com.example.android.miscreant.viewmodels.GameViewModel
+import com.example.android.miscreant.R
+import com.example.android.miscreant.ViewAnimator
 import com.example.android.miscreant.databinding.FragmentGameBinding
+import com.example.android.miscreant.viewmodels.GameViewModel
 import com.example.android.miscreant.viewmodels.GameViewModelFactory
+import kotlinx.android.synthetic.main.fragment_game.*
 
 
 class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleTapListener {
@@ -31,38 +33,13 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
 
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
-    private lateinit var gestureDetector : GestureDetector
-    private lateinit var selectedView : View
+    private lateinit var gestureDetector: GestureDetector
+    private lateinit var selectedView: View
 
-    // static access for setListener needed in bindingadapter when creating cards in Fragment
-    companion object Listener  {
-
-        private lateinit var gameFragment: GameFragment
-
-        fun setFragmentInstance(gameFragment: GameFragment){
-            this.gameFragment = gameFragment
-        }
-
-        fun setListeners(view: View){
-            view.setOnTouchListener(gameFragment)
-        }
-
-        fun onClawEnd(view: CardView){
-            gameFragment.onClawEnd(view)
-        }
-
-        fun onHitEnd(view: CardView){
-            gameFragment.onHitEnd(view)
-        }
-
-        fun onCounterAttackAnimationEnd(view: CardView){
-            gameFragment.onCounterAttackAnimationEnd(view)
-        }
-    }
 
     // region touch interactions
     override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
-        if (!gameViewModel.counterAttackRunning){
+        if (!gameViewModel.counterAttackRunning) {
 
             // don't bother if view not valid
             selectedView = view ?: return true
@@ -87,11 +64,11 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
     }
     // endregion
 
-    fun onClawEnd(view: CardView){
+    fun onClawEnd(view: CardView) {
         gameViewModel.onClawEnd(view)
     }
 
-    fun onHitEnd(view: CardView){
+    fun onHitEnd(view: CardView) {
         gameViewModel.onHitEnd(view)
     }
 
@@ -99,42 +76,58 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         gameViewModel.counterAttackAnimationEnded(view)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        val binding: FragmentGameBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_game, container, false)
+        val binding: FragmentGameBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_game, container, false
+        )
 
         // allows data binding to observe LiveData in fragment lifecycle
         binding.lifecycleOwner = this
 
         // viewModelFactory & viewModel
-        gameViewModelFactory = GameViewModelFactory(context ?: throw IllegalArgumentException("${this.javaClass.simpleName } CONTEXT is null"))
-        gameViewModel = ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
+        gameViewModelFactory = GameViewModelFactory(
+            context
+                ?: throw IllegalArgumentException("${this.javaClass.simpleName} CONTEXT is null")
+        )
+        gameViewModel =
+            ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
 
         // region observers for navigation
         gameViewModel.navigateToLoseFragment.observe(this, Observer {
-            if (it != null && it){
-                findNavController().navigate(GameFragmentDirections.actionGameFragmentToLoseFragment(
-                    gameArguments.gameDifficulty,
-                    gameArguments.heroType,
-                    gameArguments.heroName,
-                    gameViewModel.heroMaxHealth.value ?: 0,
-                    gameViewModel.currentDeckNumber.value ?: 0))
+            if (it != null && it) {
+                findNavController().navigate(
+                    GameFragmentDirections.actionGameFragmentToLoseFragment(
+                        gameArguments.gameDifficulty,
+                        gameArguments.heroType,
+                        gameArguments.heroName,
+                        gameViewModel.heroMaxHealth.value ?: 0,
+                        gameViewModel.currentDeckNumber.value ?: 0
+                    )
+                )
 
                 gameViewModel.navigatedToLoseFragment()
             }
         })
 
         gameViewModel.navigateToWinFragment.observe(this, Observer {
-            if (it != null && it){
-                findNavController().navigate(GameFragmentDirections.actionGameFragmentToWinFragment(
-                    gameArguments.gameDifficulty,
-                    gameArguments.heroType,
-                    gameArguments.heroName,
-                    gameViewModel.heroMaxHealth.value ?: 0,
-                    gameViewModel.currentDeckNumber.value ?: 0,
-                    gameViewModel.leftItemsValue))
+            if (it != null && it) {
+                findNavController().navigate(
+                    GameFragmentDirections.actionGameFragmentToWinFragment(
+                        gameArguments.gameDifficulty,
+                        gameArguments.heroType,
+                        gameArguments.heroName,
+                        gameViewModel.heroMaxHealth.value ?: 0,
+                        gameViewModel.currentDeckNumber.value ?: 0,
+                        gameViewModel.leftItemsValue
+                    )
+                )
 
                 gameViewModel.navigatedToWinFragment()
             }
@@ -148,12 +141,16 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         selectedView = View(context)
 
         // region init game settings and hero stuff
-        gameViewModel.initializeGameSettings(gameArguments.gameDifficulty, gameArguments.heroName, gameArguments.heroType)
+        gameViewModel.initializeGameSettings(
+            gameArguments.gameDifficulty,
+            gameArguments.heroName,
+            gameArguments.heroType
+        )
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
-        gameViewModel.specialsUsed.observe(this, Observer{
-            if (it != null){
-                when(it){
+        gameViewModel.specialsUsed.observe(this, Observer {
+            if (it != null) {
+                when (it) {
                     0 -> {
                         binding.specialUse1.isVisible = true
                         binding.specialUse2.isVisible = true
@@ -172,7 +169,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // endregion
 
         gameViewModel.triggerHealing.observe(this, Observer {
-            if (it != null && it){
+            if (it != null && it) {
                 ViewAnimator.triggerHealing(binding.heart, it)
                 gameViewModel.healingDone()
             }
@@ -183,8 +180,8 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // custom seekbar takes care of correct look
         binding.seekbarGameProgress.isEnabled = false
 
-        gameViewModel.currentDeckNumber.observe( this, Observer{
-            if (it != null){
+        gameViewModel.currentDeckNumber.observe(this, Observer {
+            if (it != null) {
                 binding.seekbarGameProgress.progress = it
             }
         })
@@ -192,11 +189,15 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
 
         // region in-game buttons
         binding.backButton.setOnClickListener { view: View ->
-            fragmentManager?.popBackStack() ?: Log.e(this.javaClass.simpleName,"${getString(R.string.fragmentManager_null)} ${view.contentDescription}")
+            fragmentManager?.popBackStack() ?: Log.e(
+                this.javaClass.simpleName,
+                "${getString(R.string.fragmentManager_null)} ${view.contentDescription}"
+            )
         }
 
         binding.settingsButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToSettingsFragment())
+            view.findNavController()
+                .navigate(GameFragmentDirections.actionGameFragmentToSettingsFragment())
         }
 
         binding.dealNew.setOnClickListener {
@@ -205,13 +206,40 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // endregion
 
         binding.gameBackground.setOnTouchListener(this)
-
+        
         startGame()
 
         return binding.root
     }
 
-    private fun startGame(){
+    private fun startGame() {
         gameViewModel.startGame()
+    }
+
+
+    // static access for setListener needed in bindingadapter when creating cards in Fragment
+    companion object Listener {
+
+        private lateinit var gameFragment: GameFragment
+
+        fun setFragmentInstance(gameFragment: GameFragment) {
+            this.gameFragment = gameFragment
+        }
+
+        fun setListeners(view: View) {
+            //view.setOnTouchListener(gameFragment)
+        }
+
+        fun onClawEnd(view: CardView) {
+            gameFragment.onClawEnd(view)
+        }
+
+        fun onHitEnd(view: CardView) {
+            gameFragment.onHitEnd(view)
+        }
+
+        fun onCounterAttackAnimationEnd(view: CardView) {
+            gameFragment.onCounterAttackAnimationEnd(view)
+        }
     }
 }

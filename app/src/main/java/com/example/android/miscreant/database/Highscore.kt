@@ -33,4 +33,4 @@ data class Highscore(
 
     @ColumnInfo(name = HighscoreDatabase.position)
     var position: Int = -1
-    )
+)

@@ -7,11 +7,15 @@
 
 package com.example.android.miscreant.models
 
-import com.example.android.miscreant.Enums.Location
 import com.example.android.miscreant.Enums.Area
 import com.example.android.miscreant.Enums.CardType
+import com.example.android.miscreant.Enums.Location
 
-data class SelectedCard(var location: Location = Location.none, val type: CardType = CardType.none, var inArea: Area = Area.none){
+data class SelectedCard(
+    var location: Location = Location.none,
+    val type: CardType = CardType.none,
+    var inArea: Area = Area.none
+) {
 
     init {
         inArea = getArea(location)
@@ -21,7 +25,7 @@ data class SelectedCard(var location: Location = Location.none, val type: CardTy
         return location == Location.none && type == CardType.none
     }
 
-    private fun getArea(location: Location): Area{
+    private fun getArea(location: Location): Area {
         return when {
             location == Location.backpack -> Area.backpack
             location == Location.hero -> Area.hero
@@ -32,7 +36,7 @@ data class SelectedCard(var location: Location = Location.none, val type: CardTy
         }
     }
 
-    private fun isEquipped(location: Location): Boolean{
+    private fun isEquipped(location: Location): Boolean {
         return location == Location.equip_left || location == Location.equip_right
     }
 

@@ -8,11 +8,11 @@
 package com.example.android.miscreant.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.android.miscreant.R
 import com.example.android.miscreant.databinding.FragmentMainBinding
@@ -20,27 +20,37 @@ import com.example.android.miscreant.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         // inflate layout for this fragment
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_main, container, false)
+        val binding: FragmentMainBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_main, container, false
+        )
 
         // button onClickListeners
-        binding.playButton.setOnClickListener{ view: View ->
-            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToPreGameFragment())
+        binding.playButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToPreGameFragment())
         }
 
-        binding.settingsButton.setOnClickListener{ view: View ->
-            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToSettingsFragment())
+        binding.settingsButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToSettingsFragment())
         }
 
         binding.highscoreButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHighscoresFragment())
+            view.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToHighscoresFragment())
         }
 
         binding.creditsButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToCreditsFragment())
+            view.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToCreditsFragment())
         }
 
         return binding.root

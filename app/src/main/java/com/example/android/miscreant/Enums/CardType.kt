@@ -20,11 +20,11 @@ enum class CardType(val id: String) {
     backpack("backpack"),
     discard("discard");
 
-    companion object{
+    companion object {
         private val map = values().associateBy(CardType::id)
 
         fun getTypeFromString(name: String): CardType {
-            return if (map.containsKey(name)){
+            return if (map.containsKey(name)) {
                 map[name] ?: none
             } else {
                 none
