@@ -597,8 +597,8 @@ class GameViewModel(private val context: Context) : ViewModel() {
         // hero life values
         if (impactOutput.currentHealth != -1) {
             if (impactOutput.showPotentialHealth) {
-                _heroPotentialHealth.postValue(impactOutput.currentHealth)
-                _showHeroPotentialHealth.postValue(true)
+                _heroPotentialHealth.value = impactOutput.currentHealth
+                _showHeroPotentialHealth.value = true
             } else {
                 // hero dead
                 if (impactOutput.currentHealth <= 0) {
@@ -607,26 +607,26 @@ class GameViewModel(private val context: Context) : ViewModel() {
                 }
 
                 if (impactOutput.currentHealth >= settings.currentHealth) {
-                    _triggerHealing.postValue(true)
+                    _triggerHealing.setValue(true)
                 } else { // if damage goes through shield/weapon visualize claw on hero
                     if (impactOutput.secondCard.type != CardType.hero && _cardHero.value?.triggerClawAnimation != true) {
                         val card = _cardHero.value ?: Card()
                         card.triggerClawAnimation = true
-                        _cardHero.postValue(card)
+                        _cardHero.value = card
                     }
                 }
 
-                _heroCurrentHealth.postValue(impactOutput.currentHealth)
+                _heroCurrentHealth.value = impactOutput.currentHealth
                 settings.updateHeroHealth(impactOutput.currentHealth)
             }
         }
 
         if (impactOutput.maxHealth != -1) {
             if (impactOutput.showPotentialMaxHealth) {
-                _heroPotentialMaxHealth.postValue(impactOutput.maxHealth)
-                _showHeroPotentialMaxHealth.postValue(true)
+                _heroPotentialMaxHealth.value = impactOutput.maxHealth
+                _showHeroPotentialMaxHealth.value = true
             } else {
-                _heroMaxHealth.postValue(impactOutput.maxHealth)
+                _heroMaxHealth.value = impactOutput.maxHealth
                 settings.updateHeroMaxHealth(impactOutput.maxHealth)
             }
         }
@@ -637,7 +637,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             if (!impactOutput.potentialSpecialUse) {
                 settings.updateUsedSpecials()
             }
-            _specialsUsed.postValue(tempUsedSpecials)
+            _specialsUsed.value = tempUsedSpecials
         }
     }
 
