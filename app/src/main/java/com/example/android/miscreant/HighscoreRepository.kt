@@ -73,9 +73,8 @@ class HighscoreRepository(context: Context) {
         AsyncTask<Highscore, Unit, Unit>() {
 
         override fun doInBackground(vararg params: Highscore?) {
-            val toInsert = params[0]
-            if (toInsert != null) {
-                highscoreDao.insert(toInsert)
+            params[0]?.let {
+                highscoreDao.insert(it)
             }
         }
     }
@@ -84,9 +83,8 @@ class HighscoreRepository(context: Context) {
         AsyncTask<String, Unit, Unit>() {
 
         override fun doInBackground(vararg params: String?) {
-            val difficultyToDelete = params[0]
-            if (difficultyToDelete != null) {
-                highscoreDao.clearDifficulty(difficultyToDelete)
+            params[0]?.let {
+                highscoreDao.clearDifficulty(it)
             }
         }
     }
@@ -95,9 +93,8 @@ class HighscoreRepository(context: Context) {
         AsyncTask<String, Unit, Unit>() {
 
         override fun doInBackground(vararg params: String?) {
-            val difficultyToDelete = params[0]
-            if (difficultyToDelete != null) {
-                highscoreDao.clearButBest(difficultyToDelete)
+            params[0]?.let {
+                highscoreDao.clearButBest(it)
             }
         }
     }
