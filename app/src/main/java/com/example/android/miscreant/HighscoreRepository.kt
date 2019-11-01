@@ -8,94 +8,86 @@
 package com.example.android.miscreant
 
 import android.content.Context
-import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.android.miscreant.Enums.Difficulty
 import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.database.HighscoreDatabase
 import com.example.android.miscreant.database.HighscoreDatabaseDao
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class HighscoreRepository(context: Context) {
 
+    private val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
+
     private var highscoreDatabaseDao: HighscoreDatabaseDao =
         HighscoreDatabase.getInstance(context).highscoreDatabaseDao
 
-    private var easyHighscores: LiveData<List<Highscore>>
-    private var normalHighscores: LiveData<List<Highscore>>
-    private var hardHighscores: LiveData<List<Highscore>>
+    private val _easyHighscores = MutableLiveData<List<Highscore>>().apply {
+        postValue(listOf())
+    }
+    val easyHighscores: LiveData<List<Highscore>>
+        get()= _easyHighscores
 
-    private var insertAsyncTask: AsyncTask<Highscore, Unit, Unit>? = null
-    private var deleteAsyncTask: AsyncTask<String, Unit, Unit>? = null
-    private var deleteButBestAsyncTask: AsyncTask<String, Unit, Unit>? = null
+    private val _normalHighscores = MutableLiveData<List<Highscore>>().apply {
+        postValue(listOf())
+    }
+    val normalHighscores: LiveData<List<Highscore>>
+        get()= _normalHighscores
+
+    private val _hardHighscores = MutableLiveData<List<Highscore>>().apply {
+        postValue(listOf())
+    }
+    val hardHighscores: LiveData<List<Highscore>>
+        get() = _hardHighscores
 
     init {
-        easyHighscores = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.easy.title)
-        normalHighscores = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.normal.title)
-        hardHighscores = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.hard.title)
+        coroutineScope.launch {
+            _easyHighscores.value = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.easy.title)
+            _normalHighscores.value = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.normal.title)
+            _hardHighscores.value = highscoreDatabaseDao.getDifficultyHighscores(Difficulty.hard.title)
+        }
     }
 
-    fun insert(highscore: Highscore) {
-        insertAsyncTask = InsertAsyncTask(highscoreDatabaseDao).execute(highscore)
+
+    fun insert(highscore: Highscore, difficulty: String) {
+        coroutineScope.launch {
+            highscoreDatabaseDao.insert(highscore)
+            updateList(difficulty)
+        }
     }
 
     fun deleteDifficultyList(difficulty: String) {
-        deleteAsyncTask = DeleteDifficultyList(highscoreDatabaseDao).execute(difficulty)
+        coroutineScope.launch {
+            highscoreDatabaseDao.clearDifficulty(difficulty)
+            updateList(difficulty)
+        }
     }
 
     fun deleteButBest(difficulty: String) {
-        deleteButBestAsyncTask = DeleteButBestList(highscoreDatabaseDao).execute(difficulty)
+        coroutineScope.launch {
+            highscoreDatabaseDao.clearButBest(difficulty)
+            updateList(difficulty)
+        }
+    }
+
+
+    private suspend fun updateList(difficulty: String){
+        val result = highscoreDatabaseDao.getDifficultyHighscores(difficulty)
+
+        when (difficulty) {
+            Difficulty.easy.title -> _easyHighscores.postValue(result)
+            Difficulty.normal.title -> _normalHighscores.postValue(result)
+            Difficulty.hard.title -> _hardHighscores.postValue(result)
+        }
     }
 
     fun cancel() {
-        if (insertAsyncTask?.status != AsyncTask.Status.FINISHED) {
-            insertAsyncTask?.cancel(true)
-        }
-
-        if (deleteAsyncTask?.status != AsyncTask.Status.FINISHED) {
-            deleteAsyncTask?.cancel(true)
-        }
-
-        if (deleteButBestAsyncTask?.status != AsyncTask.Status.FINISHED) {
-            deleteButBestAsyncTask?.cancel(true)
-        }
-    }
-
-    fun getDifficultyList(name: String): LiveData<List<Highscore>> {
-        return when (name) {
-            Difficulty.easy.title -> easyHighscores
-            Difficulty.normal.title -> normalHighscores
-            else -> hardHighscores
-        }
-    }
-
-    private class InsertAsyncTask(val highscoreDao: HighscoreDatabaseDao) :
-        AsyncTask<Highscore, Unit, Unit>() {
-
-        override fun doInBackground(vararg params: Highscore?) {
-            params[0]?.let {
-                highscoreDao.insert(it)
-            }
-        }
-    }
-
-    private class DeleteDifficultyList(val highscoreDao: HighscoreDatabaseDao) :
-        AsyncTask<String, Unit, Unit>() {
-
-        override fun doInBackground(vararg params: String?) {
-            params[0]?.let {
-                highscoreDao.clearDifficulty(it)
-            }
-        }
-    }
-
-    private class DeleteButBestList(val highscoreDao: HighscoreDatabaseDao) :
-        AsyncTask<String, Unit, Unit>() {
-
-        override fun doInBackground(vararg params: String?) {
-            params[0]?.let {
-                highscoreDao.clearButBest(it)
-            }
-        }
+        job.cancel()
     }
 }

@@ -9,26 +9,18 @@ package com.example.android.miscreant
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.databinding.HighscoreItemBinding
+import java.util.*
 
 
-class HighscoresAdapter(
-    lifecycleOwner: LifecycleOwner,
-    private var highscores: LiveData<List<Highscore>>
-) : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHolder>() {
+class HighscoresAdapter : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHolder>() {
 
-    init {
-        highscores.observe(lifecycleOwner, Observer {
-            notifyDataSetChanged()
-        })
-    }
+    private var highscores: List<Highscore> = Collections.emptyList()
 
-    override fun getItemCount(): Int = highscores.value?.size ?: 0
+
+    override fun getItemCount(): Int = highscores.count()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
         return HighscoreViewHolder.from(parent)
@@ -36,12 +28,16 @@ class HighscoresAdapter(
 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
         if (position < itemCount) {
-            val item = highscores.value?.get(position) ?: Highscore()
+            val item = highscores[position]
             item.position = position + 1 // don't start at 0th position
             holder.bind(item)
         }
     }
 
+    fun updateHighscores(list: List<Highscore>) {
+        highscores = list
+        notifyDataSetChanged()
+    }
 
     class HighscoreViewHolder(val binding: HighscoreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

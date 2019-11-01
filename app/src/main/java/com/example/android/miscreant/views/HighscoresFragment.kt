@@ -16,11 +16,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.example.android.miscreant.Enums.Difficulty
 import com.example.android.miscreant.HighscoreRepository
 import com.example.android.miscreant.PageAdapter
 import com.example.android.miscreant.R
+import com.example.android.miscreant.viewmodels.HighscoreViewModel
+import com.example.android.miscreant.viewmodels.HighscoreViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_highscores.*
 
@@ -36,6 +39,7 @@ class HighscoresFragment : Fragment() {
     }
 
     private lateinit var repository: HighscoreRepository
+    private lateinit var highscoreViewModel: HighscoreViewModel
 
 
     override fun onCreateView(
@@ -54,6 +58,12 @@ class HighscoresFragment : Fragment() {
         repository =
             HighscoreRepository(context ?: throw IllegalArgumentException("Context is null"))
 
+        // viewModelFactory & viewModel
+        val highscoreViewModelFactory = HighscoreViewModelFactory(repository)
+        highscoreViewModel =
+            ViewModelProviders.of(this, highscoreViewModelFactory).get(HighscoreViewModel::class.java)
+
+
         // button onClickListeners
         val backButton = view.findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener {
@@ -67,22 +77,22 @@ class HighscoresFragment : Fragment() {
         val keepButton = view.findViewById<Button>(R.id.keep_best_button)
         keepButton.setOnClickListener {
             when (viewPager.currentItem) {
-                0 -> repository.deleteButBest(Difficulty.easy.title)
-                1 -> repository.deleteButBest(Difficulty.normal.title)
-                else -> repository.deleteButBest(Difficulty.hard.title)
+                0 -> highscoreViewModel.deleteButBest(Difficulty.easy.title)
+                1 -> highscoreViewModel.deleteButBest(Difficulty.normal.title)
+                else -> highscoreViewModel.deleteButBest(Difficulty.hard.title)
             }
         }
 
         val deleteButton = view.findViewById<Button>(R.id.delete_all_button)
         deleteButton.setOnClickListener {
             when (viewPager.currentItem) {
-                0 -> repository.deleteDifficultyList(Difficulty.easy.title)
-                1 -> repository.deleteDifficultyList(Difficulty.normal.title)
-                else -> repository.deleteDifficultyList(Difficulty.hard.title)
+                0 -> highscoreViewModel.deleteList(Difficulty.easy.title)
+                1 -> highscoreViewModel.deleteList(Difficulty.normal.title)
+                else -> highscoreViewModel.deleteList(Difficulty.hard.title)
             }
         }
 
-        val tabAdapter = PageAdapter(childFragmentManager)
+        val tabAdapter = PageAdapter(childFragmentManager, highscoreViewModel)
 
         val viewPager = view.findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = tabAdapter

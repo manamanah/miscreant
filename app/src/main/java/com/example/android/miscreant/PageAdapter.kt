@@ -11,20 +11,21 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.android.miscreant.viewmodels.HighscoreViewModel
 import com.example.android.miscreant.views.HighscoreEasyFragment
 import com.example.android.miscreant.views.HighscoreHardFragment
 import com.example.android.miscreant.views.HighscoreNormalFragment
 import com.example.android.miscreant.views.HighscoresFragment
 
 
-class PageAdapter(fragmentManager: FragmentManager) :
+class PageAdapter(fragmentManager: FragmentManager, val viewModel: HighscoreViewModel) :
     FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> HighscoreEasyFragment()
-            1 -> HighscoreNormalFragment()
-            else -> HighscoreHardFragment()
+            0 -> HighscoreEasyFragment(viewModel)
+            1 -> HighscoreNormalFragment(viewModel)
+            else -> HighscoreHardFragment(viewModel)
         }
     }
 

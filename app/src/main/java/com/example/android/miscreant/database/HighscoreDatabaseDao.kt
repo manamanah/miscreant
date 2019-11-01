@@ -7,7 +7,6 @@
 
 package com.example.android.miscreant.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -19,14 +18,14 @@ interface HighscoreDatabaseDao {
 
     // at gameEnd (win or lose) inserted - there are no updates
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(highscore: Highscore)
+    suspend fun insert(highscore: Highscore)
 
     @Query("SELECT * from highscores_table WHERE difficulty = :difficulty ORDER BY points DESC")
-    fun getDifficultyHighscores(difficulty: String): LiveData<List<Highscore>>
+    suspend fun getDifficultyHighscores(difficulty: String): List<Highscore>
 
     @Query("DELETE FROM highscores_table WHERE difficulty =:difficulty")
-    fun clearDifficulty(difficulty: String)
+    suspend fun clearDifficulty(difficulty: String)
 
     @Query("DELETE FROM highscores_table WHERE highscoreId NOT IN (SELECT highscoreId FROM highscores_table WHERE difficulty =:difficulty ORDER BY points DESC LIMIT 15)")
-    fun clearButBest(difficulty: String)
+    suspend fun clearButBest(difficulty: String)
 }

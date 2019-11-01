@@ -13,15 +13,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.miscreant.Enums.Difficulty
-import com.example.android.miscreant.HighscoreRepository
 import com.example.android.miscreant.HighscoresAdapter
 import com.example.android.miscreant.R
+import com.example.android.miscreant.viewmodels.HighscoreViewModel
 
 
-class HighscoreHardFragment : Fragment() {
+class HighscoreHardFragment(private val viewModel: HighscoreViewModel) : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -35,16 +35,24 @@ class HighscoreHardFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_highscore_hard, container, false)
 
-        val repository =
-            HighscoreRepository(context ?: throw IllegalArgumentException("Context is null"))
-
         viewManager = LinearLayoutManager(context)
-        viewAdapter = HighscoresAdapter(this, repository.getDifficultyList(Difficulty.hard.title))
+        viewAdapter = HighscoresAdapter()
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView).apply {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+        viewModel.hardList.observe(this, Observer {list ->
+            val tempAdapter = viewAdapter as HighscoresAdapter
+            tempAdapter.updateHighscores(list)
+        })
+
         return view
+    }
+
+    override fun onDestroyView() {
+        viewModel.easyList.removeObservers(this)
+        super.onDestroyView()
     }
 }

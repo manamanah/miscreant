@@ -539,7 +539,8 @@ class GameViewModel(private val context: Context) : ViewModel() {
             heroType = settings.hero.imageName,
             points = deckpoints + maxHealthPoints + leftItemsValue
         )
-        repository.insert(highscore)
+
+        repository.insert(highscore, settings.difficulty.title)
 
         _navigateToWinFragment.postValue(true)
         resetGame()
@@ -559,7 +560,8 @@ class GameViewModel(private val context: Context) : ViewModel() {
             heroType = settings.hero.imageName,
             points = deckpoints + maxHealthPoints
         )
-        repository.insert(highscore)
+
+        repository.insert(highscore, settings.difficulty.title)
 
         _navigateToLoseFragment.postValue(true)
         resetGame()
