@@ -266,7 +266,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                 activeDeck.addAll(getDeck(deckPath))
                 activeDeck.shuffle()
             }
-            _cardsInDeck.postValue(activeDeck.size)
+            _cardsInDeck.value = activeDeck.size
         }
         dealCards()
     }
@@ -383,7 +383,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             return
         }
         settings.updateHeroHealth(newHealth)
-        _heroCurrentHealth.postValue(settings.currentHealth)
+        _heroCurrentHealth.value = settings.currentHealth
 
         // existing cards back into deck
         dungeonMap.forEach { (_, card) ->
@@ -400,11 +400,11 @@ class GameViewModel(private val context: Context) : ViewModel() {
     }
 
     fun navigatedToLoseFragment() {
-        _navigateToLoseFragment.postValue(false)
+        _navigateToLoseFragment.value = false
     }
 
     fun navigatedToWinFragment() {
-        _navigateToWinFragment.postValue(false)
+        _navigateToWinFragment.value = false
     }
 
     fun onClawEnd(view: CardView) {
@@ -415,7 +415,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             val card = heroMap[location]?.value ?: Card()
             card.triggerClawAnimation = false
             card.triggerCounterHitAnimation = false
-            heroMap[location]?.postValue(card)
+            heroMap[location]?.value = card
         }
 
         // if damage through shield/weapon on hero
@@ -429,21 +429,21 @@ class GameViewModel(private val context: Context) : ViewModel() {
         if (dungeonMap.containsKey(location)) {
             val card = dungeonMap[location]?.value ?: Card()
             card.triggerHitAnimation = false
-            dungeonMap[location]?.postValue(card)
+            dungeonMap[location]?.value = card
         }
 
         resetHeroAnimationTriggers()
     }
 
     fun healingDone() {
-        _triggerHealing.postValue(false)
+        _triggerHealing.value = false
     }
 
     private fun resetHeroAnimationTriggers() {
         val heroCard = _cardHero.value ?: Card()
         heroCard.triggerClawAnimation = false
         heroCard.triggerCounterHitAnimation = false
-        _cardHero.postValue(heroCard)
+        _cardHero.value = heroCard
     }
 
     fun counterAttackAnimationEnded(view: CardView) {
@@ -452,7 +452,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             dungeonMap[location]?.value?.let {
                 it.triggerCounterAttackAnimation = false
                 it.showCounterAttackIntent = false
-                dungeonMap[location]?.postValue(it)
+                dungeonMap[location]?.value = it
             }
 
             val dungeonStatus = getDungeonStatus()
@@ -513,7 +513,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         }
 
         // update values
-        _cardsLeftInDeck.postValue(activeDeck.size)
+        _cardsLeftInDeck.value = activeDeck.size
     }
 
     private fun gameWon() {
@@ -542,7 +542,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
 
         repository.insert(highscore, settings.difficulty.title)
 
-        _navigateToWinFragment.postValue(true)
+        _navigateToWinFragment.value = true
         resetGame()
     }
 
@@ -563,7 +563,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
 
         repository.insert(highscore, settings.difficulty.title)
 
-        _navigateToLoseFragment.postValue(true)
+        _navigateToLoseFragment.value = true
         resetGame()
     }
 
@@ -589,7 +589,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         if (impactOutput.secondCard.type == CardType.shield ||
             impactOutput.secondCard.type == CardType.none
         ) {
-            heroMap[impactOutput.secondCard.location]?.postValue(impactOutput.secondCard)
+            heroMap[impactOutput.secondCard.location]?.value = impactOutput.secondCard
         }
 
         updateHeroValues(impactOutput)
@@ -682,7 +682,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                     (location == Location.equip_left || location == Location.equip_right)
                 ) {
                     it.isHighlightOn = true
-                    card.postValue(it)
+                    card.value = it
                     highlightedCards.add(card)
                 }
             }
@@ -695,7 +695,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
             card.value?.let {
                 if (it.isEmpty() && location != Location.backpack && location != Location.discard) {
                     it.isHighlightOn = true
-                    card.postValue(it)
+                    card.value = it
                     highlightedCards.add(card)
                 }
             }
@@ -715,12 +715,12 @@ class GameViewModel(private val context: Context) : ViewModel() {
                     }
 
                     it.isHighlightOn = true
-                    card.postValue(it)
+                    card.value = it
                     highlightedCards.add(card)
                 } else {
                     if (it.isEmpty()) {
                         it.isHighlightOn = true
-                        card.postValue(it)
+                        card.value = it
                         highlightedCards.add(card)
                     } else return@forEach
                 }
@@ -749,12 +749,12 @@ class GameViewModel(private val context: Context) : ViewModel() {
                         location == Location.dungeon_right_front
                     ) {
                         it.isHighlightOn = true
-                        card.postValue(card.value)
+                        card.value = card.value
                         highlightedCards.add(card)
                     } else {
                         if (isArcher) {
                             it.isHighlightOn = true
-                            card.postValue(card.value)
+                            card.value = card.value
                             highlightedCards.add(card)
                         }
                     }
@@ -814,7 +814,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                     attackValue += it.counterAttackValue
                     it.showCounterAttackIntent = true
                     it.triggerCounterAttackAnimation = true
-                    card.postValue(it)
+                    card.value = it
                 }
             }
         }
@@ -857,14 +857,14 @@ class GameViewModel(private val context: Context) : ViewModel() {
             val card = heroMap[output.secondCard.location]?.value ?: Card()
             if (card.triggerClawAnimation != output.secondCard.triggerClawAnimation) {
                 card.triggerClawAnimation = output.secondCard.triggerClawAnimation
-                heroMap[output.secondCard.location]?.postValue(card)
+                heroMap[output.secondCard.location]?.value = card
             }
         }
 
         if (output.currentHealth != -1 && _cardHero.value?.triggerClawAnimation == false) {
             _cardHero.value?.let {
                 it.triggerClawAnimation = true
-                _cardHero.postValue(it)
+                _cardHero.value = it
             }
         }
     }
@@ -876,14 +876,14 @@ class GameViewModel(private val context: Context) : ViewModel() {
             val card = heroMap[counterAttackImpact.secondCard.location]?.value ?: Card()
             if (!card.triggerCounterHitAnimation) {
                 card.triggerCounterHitAnimation = true
-                heroMap[counterAttackImpact.secondCard.location]?.postValue(card)
+                heroMap[counterAttackImpact.secondCard.location]?.value = card
             }
         }
 
         if (counterAttackImpact.currentHealth != -1 && _cardHero.value?.triggerCounterHitAnimation == false) {
             _cardHero.value?.let {
                 it.triggerCounterHitAnimation = true
-                _cardHero.postValue(it)
+                _cardHero.value = it
             }
         }
     }
@@ -952,7 +952,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
                 it.showConsumed = false
                 it.showPotentialHealth = false
                 it.isLookActive = true
-                card.postValue(card.value)
+                card.value = it
             }
         }
 
@@ -973,10 +973,10 @@ class GameViewModel(private val context: Context) : ViewModel() {
         updateCardValues(firstSelected.inArea, card)
 
         // disable potential impact visualization for hero values
-        _showHeroPotentialHealth.postValue(false)
-        _showHeroPotentialMaxHealth.postValue(false)
+        _showHeroPotentialHealth.value = false
+        _showHeroPotentialMaxHealth.value = false
 
-        _specialsUsed.postValue(settings.usedSpecials)
+        _specialsUsed.value = settings.usedSpecials
 
         firstSelected = SelectedCard()
         secondSelected = SelectedCard()
