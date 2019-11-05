@@ -850,25 +850,6 @@ class GameViewModel(private val context: Context) : ViewModel() {
             ?: throw IllegalArgumentException("${this.javaClass.simpleName} HERO-CARD is null")
     }
 
-    private fun triggerResolveAnimations(output: ImpactOutput) {
-        Log.i(this.javaClass.simpleName, "Resolve animations TRIGGERED")
-
-        if (output.secondCard.location != Location.hero) {
-            val card = heroMap[output.secondCard.location]?.value ?: Card()
-            if (card.triggerClawAnimation != output.secondCard.triggerClawAnimation) {
-                card.triggerClawAnimation = output.secondCard.triggerClawAnimation
-                heroMap[output.secondCard.location]?.value = card
-            }
-        }
-
-        if (output.currentHealth != -1 && _cardHero.value?.triggerClawAnimation == false) {
-            _cardHero.value?.let {
-                it.triggerClawAnimation = true
-                _cardHero.value = it
-            }
-        }
-    }
-
     private fun triggerCounterAttackClawAnimation() {
         Log.i(this.javaClass.simpleName, "counter attack claw animation TRIGGERED")
 
@@ -962,6 +943,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         val card = getCard(firstSelected.inArea, firstSelected.location)
         card.let {
             if (!it.isEmpty()) {
+                it.isHighlightOn = false
                 it.showRIP = false
                 it.showEquip = false
                 it.showHealth = it.type != CardType.hero
