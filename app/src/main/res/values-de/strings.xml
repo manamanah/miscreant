@@ -169,8 +169,8 @@
     <string name="fragmentManager_null">"FragmentManager NULL on "</string>
 
     <!--DESIGN PLACEHOLDER-->
-    <string name="placeholder_card_title" translatable="false">CARD TITLE</string>
-    <string name="placeholder_card_value" translatable="false">10</string>
+    <string name="placeholder_card_title" translatable="true">CARD TITLE</string>
+    <string name="placeholder_card_value" translatable="true">10</string>
     <string name="placeholder_name">WWWWWWWWWW</string>
 
     <!--DECK PATHS-->
