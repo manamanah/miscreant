@@ -36,14 +36,13 @@ abstract class HighscoreDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        HighscoreDatabase::class.java,
-                        tableName
-                    )
-
-                        // 1st version no migrations yet
-                        .addMigrations(InitialMigration())
-                        .build()
+                                    context.applicationContext,
+                                    HighscoreDatabase::class.java,
+                                    tableName
+                                )
+                                    // 1st version no migrations yet
+                                    .addMigrations(InitialMigration())
+                                    .build()
 
                     INSTANCE = instance
                 }

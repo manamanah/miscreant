@@ -14,14 +14,17 @@ import com.example.android.miscreant.database.Highscore
 
 class HighscoreViewModel(private val repository: HighscoreRepository) : ViewModel() {
 
+    private val _easyList: LiveData<List<Highscore>> = repository.easyHighscores
     val easyList: LiveData<List<Highscore>>
-        get() = repository.easyHighscores
+        get() = _easyList
 
+    private val _normalList: LiveData<List<Highscore>> = repository.normalHighscores
     val normalList: LiveData<List<Highscore>>
-        get() = repository.normalHighscores
+        get() = _normalList
 
+    private val _hardList: LiveData<List<Highscore>> = repository.hardHighscores
     val hardList: LiveData<List<Highscore>>
-        get() = repository.hardHighscores
+        get() = _hardList
 
 
     fun deleteButBest(difficulty: String){
