@@ -95,7 +95,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         setGameViewModel(gameViewModel)
 
         // region observers for navigation
-        gameViewModel.navigateToLoseFragment.observe(this, Observer {
+        gameViewModel.navigateToLoseFragment.observe(viewLifecycleOwner, Observer {
             if (it != null && it) {
                 findNavController().navigate(
                     GameFragmentDirections.actionGameFragmentToLoseFragment(
@@ -111,7 +111,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
             }
         })
 
-        gameViewModel.navigateToWinFragment.observe(this, Observer {
+        gameViewModel.navigateToWinFragment.observe(viewLifecycleOwner, Observer {
             if (it != null && it) {
                 findNavController().navigate(
                     GameFragmentDirections.actionGameFragmentToWinFragment(
@@ -142,7 +142,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         )
         binding.heroSpecial.text = gameViewModel.heroSpecial
 
-        gameViewModel.specialsUsed.observe(this, Observer {
+        gameViewModel.specialsUsed.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 when (it) {
                     0 -> {
@@ -162,7 +162,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         })
         // endregion
 
-        gameViewModel.triggerHealing.observe(this, Observer {
+        gameViewModel.triggerHealing.observe(viewLifecycleOwner, Observer {
             if (it != null && it) {
                 ViewAnimator.triggerHealing(binding.heart, it)
                 gameViewModel.healingDone()
@@ -174,7 +174,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // custom seekbar takes care of correct look
         binding.seekbarGameProgress.isEnabled = false
 
-        gameViewModel.currentDeckNumber.observe(this, Observer {
+        gameViewModel.currentDeckNumber.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 binding.seekbarGameProgress.progress = it
             }

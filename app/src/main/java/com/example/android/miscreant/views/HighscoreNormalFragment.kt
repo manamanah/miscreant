@@ -38,7 +38,7 @@ class HighscoreNormalFragment(private val viewModel: HighscoreViewModel) : Fragm
         viewManager = LinearLayoutManager(context)
         viewAdapter = HighscoresAdapter()
 
-        viewModel.normalList.observe(this, Observer { list ->
+        viewModel.normalList.observe(viewLifecycleOwner, Observer { list ->
             val tempAdapter = viewAdapter as HighscoresAdapter
             tempAdapter.updateHighscores(list)
         })
@@ -51,7 +51,7 @@ class HighscoreNormalFragment(private val viewModel: HighscoreViewModel) : Fragm
     }
 
     override fun onDestroyView() {
-        viewModel.easyList.removeObservers(this)
+        viewModel.easyList.removeObservers(viewLifecycleOwner)
         super.onDestroyView()
     }
 }

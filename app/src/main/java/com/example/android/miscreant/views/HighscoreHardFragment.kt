@@ -43,7 +43,7 @@ class HighscoreHardFragment(private val viewModel: HighscoreViewModel) : Fragmen
             adapter = viewAdapter
         }
 
-        viewModel.hardList.observe(this, Observer {list ->
+        viewModel.hardList.observe(viewLifecycleOwner, Observer {list ->
             val tempAdapter = viewAdapter as HighscoresAdapter
             tempAdapter.updateHighscores(list)
         })
@@ -52,7 +52,7 @@ class HighscoreHardFragment(private val viewModel: HighscoreViewModel) : Fragmen
     }
 
     override fun onDestroyView() {
-        viewModel.easyList.removeObservers(this)
+        viewModel.easyList.removeObservers(viewLifecycleOwner)
         super.onDestroyView()
     }
 }
