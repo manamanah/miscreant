@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.cardview.widget.CardView
+import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,7 +34,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
 
     private lateinit var gameViewModel: GameViewModel
     private lateinit var gameViewModelFactory: GameViewModelFactory
-    private lateinit var gestureDetector: GestureDetector
+    private lateinit var gestureDetector: GestureDetectorCompat
     private lateinit var selectedView: View
 
 
@@ -130,7 +131,7 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
         // endregion
 
         // set up listeners for card touch interaction
-        gestureDetector = GestureDetector(context, GestureDetector.SimpleOnGestureListener())
+        gestureDetector = GestureDetectorCompat(context, GestureDetector.SimpleOnGestureListener())
         gestureDetector.setOnDoubleTapListener(this)
         selectedView = View(context)
 
