@@ -7,12 +7,9 @@
 
 package com.example.android.miscreant
 
-import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
-import com.example.android.miscreant.views.GameFragment
 
 
 @BindingAdapter("src")
@@ -22,16 +19,6 @@ fun setImageViewDrawable(view: ImageView, imageString: String?) {
             view.resources.getIdentifier(imageString, "drawable", view.context.packageName)
         view.setImageResource(id ?: android.R.color.transparent)
     } else view.setImageResource(android.R.color.transparent)
-}
-
-@BindingAdapter("toggleMaxHealth")
-fun setMaxHealthView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-}
-
-@BindingAdapter("togglePotMaxHealth")
-fun setPotMaxView(view: TextView, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
 @BindingAdapter("triggerCounterAttack")
