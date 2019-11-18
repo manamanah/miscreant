@@ -7,6 +7,7 @@
 
 package com.example.android.miscreant
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,13 +21,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
-class HighscoreRepository(context: Context) {
+class HighscoreRepository(application: Application) {
 
     private val job = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
 
     private var highscoreDatabaseDao: HighscoreDatabaseDao =
-        HighscoreDatabase.getInstance(context).highscoreDatabaseDao
+        HighscoreDatabase.getInstance(application.baseContext).highscoreDatabaseDao
 
     private val _easyHighscores = MutableLiveData<List<Highscore>>().apply {
         postValue(listOf())

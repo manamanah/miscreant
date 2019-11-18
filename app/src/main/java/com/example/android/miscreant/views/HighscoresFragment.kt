@@ -56,7 +56,7 @@ class HighscoresFragment : Fragment() {
         difficultyNames.add(resources.getString(R.string.hard))
 
         repository =
-            HighscoreRepository(context ?: throw IllegalArgumentException("Context is null"))
+            HighscoreRepository(activity?.application ?: throw IllegalArgumentException("ACTIVITY is null"))
 
         // viewModelFactory & viewModel
         val highscoreViewModelFactory = HighscoreViewModelFactory(repository)

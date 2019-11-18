@@ -7,7 +7,7 @@
 
 package com.example.android.miscreant.viewmodels
 
-import android.content.Context
+import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.cardview.widget.CardView
@@ -24,7 +24,7 @@ import com.example.android.miscreant.models.SelectedCard
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class GameViewModel(private val context: Context) : ViewModel() {
+class GameViewModel(private val application: Application) : ViewModel() {
 
     var heroSpecial: String = ""
         private set
@@ -148,19 +148,19 @@ class GameViewModel(private val context: Context) : ViewModel() {
     // todo each difficulty consists of 3 different decks
     private val deckPaths: Map<Difficulty, List<String>> = mapOf(
         Difficulty.easy to listOf(
-            context.getString(R.string.easy_deck_one).orEmpty(),
-            context.getString(R.string.easy_deck_two).orEmpty(),
-            context.getString(R.string.easy_deck_three).orEmpty()
+            application.baseContext.getString(R.string.easy_deck_one),
+            application.baseContext.getString(R.string.easy_deck_two),
+            application.baseContext.getString(R.string.easy_deck_three)
         ),
         Difficulty.normal to listOf(
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty()
+            application.baseContext.getString(R.string.easy_deck_path),
+            application.baseContext.getString(R.string.easy_deck_path),
+            application.baseContext.getString(R.string.easy_deck_path)
         ),
         Difficulty.hard to listOf(
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty(),
-            context.getString(R.string.easy_deck_path).orEmpty()
+            application.baseContext.getString(R.string.easy_deck_path),
+            application.baseContext.getString(R.string.easy_deck_path),
+            application.baseContext.getString(R.string.easy_deck_path)
         )
     )
 
@@ -168,12 +168,12 @@ class GameViewModel(private val context: Context) : ViewModel() {
     // endregion
 
     // needed for loading decks
-    private var repository = HighscoreRepository(this.context)
+    private var repository = HighscoreRepository(this.application)
 
-    private val gameBackground = context.getString(R.string.game_background)
+    private val gameBackground = application.baseContext.getString(R.string.game_background)
     private lateinit var settings: Settings
 
-    private val dungeonRowSize = context.resources?.getInteger(R.integer.dungeon_row_size) ?: 3
+    private val dungeonRowSize = application.baseContext.resources.getInteger(R.integer.dungeon_row_size)
     private var counterAttackImpact = ImpactOutput()
 
     // region selected & highlighted cards, cardresolver
@@ -252,8 +252,8 @@ class GameViewModel(private val context: Context) : ViewModel() {
         _cardHero.value = settings.getHeroCard()
         _cardHero.value?.location = Location.hero
         _specialsUsed.value = settings.usedSpecials
-        heroSpecial = if (hero == Hero.archer) context.getString(R.string.archer_power)
-        else context.getString(R.string.viking_power)
+        heroSpecial = if (hero == Hero.archer) application.baseContext.getString(R.string.archer_power)
+        else application.baseContext.getString(R.string.viking_power)
 
         // todo - consider: load all decks for difficulty @app start
     }
@@ -469,7 +469,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
     // better throw exception -> no game possible w/o deck
     private fun getDeck(deckPath: String): MutableList<Card> {
 
-        val bufferedReader = context.assets.open(deckPath).bufferedReader()
+        val bufferedReader = application.baseContext.assets.open(deckPath).bufferedReader()
         val jsonString = bufferedReader.use { it.readText() } //read and store in string
 
         val type = object : TypeToken<MutableList<Card>>() {}.type
@@ -529,9 +529,9 @@ class GameViewModel(private val context: Context) : ViewModel() {
         }
 
         val deckpoints = (currentDeckNumber.value
-            ?: 0).times(context.resources.getInteger(R.integer.deckMultiplier))
+            ?: 0).times(application.baseContext.resources.getInteger(R.integer.deckMultiplier))
         val maxHealthPoints = (heroMaxHealth.value
-            ?: 0).times(context.resources.getInteger(R.integer.maxHealthMultiplier))
+            ?: 0).times(application.baseContext.resources.getInteger(R.integer.maxHealthMultiplier))
 
         val highscore = Highscore(
             difficulty = settings.difficulty.title,
@@ -550,9 +550,9 @@ class GameViewModel(private val context: Context) : ViewModel() {
         Log.i(this.javaClass.simpleName, "GameLOST Entered")
 
         val deckpoints = (currentDeckNumber.value
-            ?: 0).times(context.resources.getInteger(R.integer.deckMultiplier))
+            ?: 0).times(application.baseContext.resources.getInteger(R.integer.deckMultiplier))
         val maxHealthPoints = (heroMaxHealth.value
-            ?: 0).times(context.resources.getInteger(R.integer.maxHealthMultiplier))
+            ?: 0).times(application.baseContext.resources.getInteger(R.integer.maxHealthMultiplier))
 
         val highscore = Highscore(
             difficulty = settings.difficulty.title,
@@ -969,7 +969,7 @@ class GameViewModel(private val context: Context) : ViewModel() {
         _cardHero.value = Card(location = Location.hero)
         _cardEquipRight.value = Card(location = Location.equip_right)
         _cardBackpack.value = Card(
-            image = context.resources?.getResourceName(R.drawable.backpack) ?: "",
+            image = application.baseContext.resources?.getResourceName(R.drawable.backpack) ?: "",
             location = Location.backpack
         )
         _cardDiscard.value = Card(location = Location.discard)

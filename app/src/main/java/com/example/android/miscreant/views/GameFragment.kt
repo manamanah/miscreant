@@ -84,9 +84,10 @@ class GameFragment : Fragment(), View.OnTouchListener, GestureDetector.OnDoubleT
 
         // viewModelFactory & viewModel
         gameViewModelFactory = GameViewModelFactory(
-            context
-                ?: throw IllegalArgumentException("${this.javaClass.simpleName} CONTEXT is null")
+            activity?.application
+                ?: throw IllegalArgumentException("${this.javaClass.simpleName} ACTIVITY is null")
         )
+
         gameViewModel =
             ViewModelProviders.of(this, gameViewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = gameViewModel
