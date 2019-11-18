@@ -10,6 +10,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.example.android.miscreant">
 
+    <uses-feature android:name="android.hardware.screen.portrait" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/miscreant_launcher"
@@ -18,13 +20,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+
         <activity
                 android:name=".MainActivity"
                 android:configChanges="orientation"
                 android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
