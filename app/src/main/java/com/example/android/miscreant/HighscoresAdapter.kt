@@ -23,7 +23,9 @@ class HighscoresAdapter : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHo
     override fun getItemCount(): Int = highscores.count()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
-        return HighscoreViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = HighscoreItemBinding.inflate(layoutInflater, parent, false)
+        return HighscoreViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
@@ -45,14 +47,6 @@ class HighscoresAdapter : RecyclerView.Adapter<HighscoresAdapter.HighscoreViewHo
         fun bind(highscoreItem: Highscore) {
             binding.highscore = highscoreItem
             binding.executePendingBindings()
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): HighscoreViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = HighscoreItemBinding.inflate(layoutInflater, parent, false)
-                return HighscoreViewHolder(binding)
-            }
         }
     }
 }
