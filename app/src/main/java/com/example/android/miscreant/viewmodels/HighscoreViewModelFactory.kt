@@ -9,9 +9,9 @@ package com.example.android.miscreant.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.miscreant.HighscoreRepository
+import com.example.android.miscreant.Repository
 
-class HighscoreViewModelFactory(private val repository: HighscoreRepository) : ViewModelProvider.Factory {
+class HighscoreViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

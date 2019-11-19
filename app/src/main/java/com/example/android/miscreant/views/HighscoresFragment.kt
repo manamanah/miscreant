@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.example.android.miscreant.Enums.Difficulty
-import com.example.android.miscreant.HighscoreRepository
+import com.example.android.miscreant.Repository
 import com.example.android.miscreant.PageAdapter
 import com.example.android.miscreant.R
 import com.example.android.miscreant.viewmodels.HighscoreViewModel
@@ -38,7 +38,7 @@ class HighscoresFragment : Fragment() {
             private set
     }
 
-    private lateinit var repository: HighscoreRepository
+    private lateinit var repository: Repository
     private lateinit var highscoreViewModel: HighscoreViewModel
 
 
@@ -56,7 +56,7 @@ class HighscoresFragment : Fragment() {
         difficultyNames.add(resources.getString(R.string.hard))
 
         repository =
-            HighscoreRepository(activity?.application ?: throw IllegalArgumentException("ACTIVITY is null"))
+            Repository(activity?.application ?: throw IllegalArgumentException("ACTIVITY is null"))
 
         // viewModelFactory & viewModel
         val highscoreViewModelFactory = HighscoreViewModelFactory(repository)

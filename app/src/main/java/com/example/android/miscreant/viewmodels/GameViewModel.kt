@@ -21,8 +21,6 @@ import com.example.android.miscreant.models.Card
 import com.example.android.miscreant.models.Dungeonstatus
 import com.example.android.miscreant.models.ImpactOutput
 import com.example.android.miscreant.models.SelectedCard
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class GameViewModel(private val application: Application) : ViewModel() {
 
@@ -34,8 +32,6 @@ class GameViewModel(private val application: Application) : ViewModel() {
 
     var gameOver = false
         private set
-
-    val maxDecks: Int = if (::settings.isInitialized) settings.maxDeckNumber else 0
 
     var counterAttackRunning: Boolean = false
         private set
@@ -168,7 +164,7 @@ class GameViewModel(private val application: Application) : ViewModel() {
     // endregion
 
     // needed for loading decks
-    private var repository = HighscoreRepository(this.application)
+    private var repository = Repository(this.application)
 
     private val gameBackground = application.baseContext.getString(R.string.game_background)
     private lateinit var settings: Settings
@@ -225,6 +221,7 @@ class GameViewModel(private val application: Application) : ViewModel() {
         _cardRightFront.value = Card(location = Location.dungeon_right_front)
 
         _triggerHealing.value = false
+
         // init empty hero area cards
         resetHeroAreaMap()
     }
@@ -263,7 +260,8 @@ class GameViewModel(private val application: Application) : ViewModel() {
             if (deckPaths.containsKey(settings.difficulty)) {
                 val deckPath =
                     deckPaths[settings.difficulty]?.get(_currentDeckNumber.value ?: 0).orEmpty()
-                activeDeck.addAll(getDeck(deckPath))
+                val deck = repository.getDeck(deckPath)
+                activeDeck.addAll(deck)
                 activeDeck.shuffle()
             }
             _cardsInDeck.value = activeDeck.size
@@ -464,16 +462,6 @@ class GameViewModel(private val application: Application) : ViewModel() {
                 dealCards(dungeonStatus)
             }
         }
-    }
-
-    // better throw exception -> no game possible w/o deck
-    private fun getDeck(deckPath: String): MutableList<Card> {
-
-        val bufferedReader = application.baseContext.assets.open(deckPath).bufferedReader()
-        val jsonString = bufferedReader.use { it.readText() } //read and store in string
-
-        val type = object : TypeToken<MutableList<Card>>() {}.type
-        return Gson().fromJson(jsonString, type)
     }
 
     private fun dealCards(

@@ -8,20 +8,19 @@
 package com.example.android.miscreant
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.android.miscreant.Enums.Difficulty
 import com.example.android.miscreant.database.Highscore
 import com.example.android.miscreant.database.HighscoreDatabase
 import com.example.android.miscreant.database.HighscoreDatabaseDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import com.example.android.miscreant.models.Card
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.*
 
 
-class HighscoreRepository(application: Application) {
+class Repository(private val application: Application) {
 
     private val job = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
@@ -77,6 +76,14 @@ class HighscoreRepository(application: Application) {
         }
     }
 
+    // better throw exception -> no game possible w/o deck
+    fun getDeck(deckPath: String): MutableList<Card>  {
+        val bufferedReader = application.baseContext.assets.open(deckPath).bufferedReader()
+        val jsonString = bufferedReader.use { it.readText() } //read and store in string
+
+        val type = object : TypeToken<MutableList<Card>>() {}.type
+        return Gson().fromJson(jsonString, type)
+    }
 
     private suspend fun updateList(difficulty: String){
         val result = highscoreDatabaseDao.getDifficultyHighscores(difficulty)

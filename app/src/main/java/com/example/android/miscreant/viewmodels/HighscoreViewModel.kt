@@ -9,10 +9,10 @@ package com.example.android.miscreant.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.miscreant.HighscoreRepository
+import com.example.android.miscreant.Repository
 import com.example.android.miscreant.database.Highscore
 
-class HighscoreViewModel(private val repository: HighscoreRepository) : ViewModel() {
+class HighscoreViewModel(private val repository: Repository) : ViewModel() {
 
     private val _easyList: LiveData<List<Highscore>> = repository.easyHighscores
     val easyList: LiveData<List<Highscore>>
